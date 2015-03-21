@@ -165,7 +165,7 @@ public class HexaTile : MonoBehaviour {
 		}
 		return false;
 	}
-	void ApplyDamage(float damage) {
+	public void ApplyDamage(float damage) {
 		
 		hp -= damage;
 		if (hp <= 0 && key != null) {

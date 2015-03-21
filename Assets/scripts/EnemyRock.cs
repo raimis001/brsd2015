@@ -3,10 +3,7 @@ using System.Collections;
 
 public class EnemyRock : Enemy {
 
-
-	public float speed = 0.1f;
 	Vector3 _rotate;
-	
 
 	// Use this for initialization
 	override protected void Start () {

@@ -13,6 +13,7 @@ public class SpawnData {
 	public float delay = 0f;
 	public float distance;
 	public int value = 0;
+	public float charge = 0;
 	
 	//"count":10, "angle":90, x:100,y:100,"spread":10},	
 	public SpawnData (JSONNode node) {
@@ -20,12 +21,13 @@ public class SpawnData {
 		angle = Mathf.Deg2Rad * node["angle"].AsFloat;
 		count = node["count"].AsInt;
 		spread = node["spread"].AsInt;
-		speed = node["spreed"].AsFloat > 0 ? node["spreed"].AsFloat : 1f;
+		speed = node["speed"].AsFloat > 0 ? node["speed"].AsFloat : 1f;
 		damage = node["damage"].AsFloat > 0 ? node["damage"].AsFloat : 1f;
 		hp = node["hp"].AsFloat > 0 ? node["hp"].AsFloat : 10f;
 		delay = node["delay"].AsFloat;
 		distance = node["distance"].AsFloat > 0 ? node["distance"].AsFloat : 10f;
 		value = node["value"].AsInt;
+		charge = node["charge"].AsFloat;
 	}	
 	
 }
