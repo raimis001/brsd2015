@@ -11,6 +11,7 @@ public class Rocket : Device {
 	
 	// Update is called once per frame
 	void Update () {
+		if (data.energyCurrent < data.energyNeed) return;
 		
 		if (shot > 0) {
 			shot -= Time.smoothDeltaTime;

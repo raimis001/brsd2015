@@ -10,6 +10,7 @@ public class TilePoint: IHasNeighbours<TilePoint> {
 	
 	public Path<TilePoint> zeroPath;
 	public HexaShip ship;
+	public int Count = 0;
 	
 	public bool Passable = true;
 	
@@ -38,9 +39,11 @@ public class TilePoint: IHasNeighbours<TilePoint> {
 			new TilePoint(x + -1 + offsetX, y + -1),
 			new TilePoint(x + 0 + offsetX, y + -1),
 		};
+		Count = 0;
 		foreach (TilePoint point in shift) {
 			
 			if (ship.tileSet.ContainsKey(point.index)) {
+				Count++;
 				neibors.Add(ship.tileSet[point.index].key);
 	   	}
     }

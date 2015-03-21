@@ -50,6 +50,7 @@ public class Gui : MonoBehaviour {
 	public Image selectedDamageProgress;
 	
 	public Text selectedEnergyText;
+	public Text selectedEnergyNeed;
 	public Image selectedEnergyProgress;
 	
 	public static int gameMode = 0; //0 - in planet, 1 - in fly, 2 - fly pause
@@ -117,7 +118,8 @@ public class Gui : MonoBehaviour {
 				selectedDamageText.text = tile.hp.ToString("00");
 				selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
 				
-				selectedEnergyText.text = Mathf.Abs(tile.energyNeed).ToString();
+				selectedEnergyText.text = Mathf.Abs(tile.device.energyCurrent).ToString();
+				selectedEnergyNeed.text = Mathf.Abs(tile.device.energyNeed).ToString();
 			} else {
 				selectedTile = null;
 			}
@@ -201,13 +203,14 @@ public class Gui : MonoBehaviour {
 		if (_selectedTile != null) {
 			ShipData.mainShip.SetSelected(_selectedTile.index, true);
 			HexaTile tile = ShipData.mainShip.GetTile(_selectedTile.index);
-			
 			selectedCoord.text = "x:" + tile.key.x.ToString() + " y:" + tile.key.y.ToString();
+			
+			/*
 			selectedDamageText.text = tile.hp.ToString("00");
 			selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
 			
 			selectedEnergyText.text = tile.energy.ToString();
-			
+			*/
 		}
 		
 	}

@@ -9,8 +9,8 @@ public class HexaTile : MonoBehaviour {
 	public TilePoint key;
 	public bool connected = true;
 	
-	public int energy = 0;
-	public int energyNeed = 0;
+	//public int energy = 0;
+	//public int energyNeed = 0;
 
 	public float hp = 1f;
 	public float hpMax = 1f;
@@ -23,8 +23,6 @@ public class HexaTile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		createDevice(tileID);
-		
 		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
 		sr.sortingOrder = key.y;// -(int)transform.position.y;
 	}
@@ -33,15 +31,34 @@ public class HexaTile : MonoBehaviour {
 	void Update () {
 	}
 	
+	public void recalcEnergy() {
+		if (device == null || key == null || key.AllNeighbours == null || key.Count < 1) return;
+		
+		int cnt = key.Count;
+		if (device.energyProduce > 0) {
+			int en = device.energyProduce / cnt;
+			foreach (TilePoint point in key.AllNeighbours) {
+				HexaTile tile = key.ship.GetTile(point.index);
+				if (tile != null) tile.device.energyCurrent += en;
+			}
+		} else {
+			//foreach (TilePoint point in key.AllNeighbours) {
+			//}
+		}
+		
+		
+	}
+		
 	public bool createDevice(int deviceID) {
 		if (device != null && device.id != 0) return false;
 		tileID = deviceID;
-		
+
+		int energy = device != null ? device.energyCurrent : 0;
 		device = DeviceData.createDevice(tileID, transform);
 		hp = hpMax = device.hp;
+		device.energyCurrent = energy;
 		
-		energyNeed = device.energy < 0 ? device.energy : 0;
-		if (device.energy > 0) energy = device.energy;
+		recalcEnergy();
 		
 		ShipData.addEnergy(device.energy);
 		
@@ -107,9 +124,8 @@ public class HexaTile : MonoBehaviour {
 		show(selected ? 1 : 0);
 		
 		foreach (TilePoint point in key.AllNeighbours) {
-			HexaTile tile = null;
-			key.ship.tileSet.TryGetValue(point.index,out tile);
-			if (tile != null) key.ship.tileSet[point.index].show(selected ? 2 : 0);
+			HexaTile tile = key.ship.GetTile(point.index);
+			if (tile != null) tile.show(selected ? 2 : 0);
 		}
 		
 		if (!selected) return;

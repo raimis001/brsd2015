@@ -13,8 +13,12 @@ public class DeviceData {
 	public int hp;
 	public float time;
 	public float speed;
-	public int energy;
 	public float distance;
+
+	public int energy;
+	public int energyNeed;
+	public int energyProduce;
+	public int energyCurrent = 0;
 	
 	public DeviceData(int id, JSONNode node, Sprite sprite) {
 		
@@ -44,7 +48,11 @@ public class DeviceData {
 		this.time = data.time;
 		this.distance = data.distance;
 		this.energy = data.energy;
-		
+
+		if (this.energy < 0)
+			this.energyNeed = -this.energy;
+			else this.energyProduce = this.energy;
+						
 	}
 	
 	public static DeviceData createDevice(int id, Transform parent) {

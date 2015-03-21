@@ -29,6 +29,7 @@ public class HexaShip : MonoBehaviour {
 		}
 		foreach (HexaTile tile in tileSet.Values) {
 			tile.pathToZero();
+			tile.recalcEnergy();
 		}
   }
 	
@@ -47,6 +48,7 @@ public class HexaShip : MonoBehaviour {
 		HexaTile src = obj.GetComponent<HexaTile>();
 			src.tileID = tileID;
 			src.key = key;
+			src.createDevice(tileID);
 		
 		tileSet.Add(key.index,src);
 		if (tileID == 1) zero = src.key;	
@@ -76,6 +78,7 @@ public class HexaShip : MonoBehaviour {
 		}
 		foreach (HexaTile tile in tileSet.Values) {
 			tile.pathToZero();
+			tile.recalcEnergy();
 		}
 		
 		return false;

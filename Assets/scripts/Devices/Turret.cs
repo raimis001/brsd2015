@@ -13,6 +13,8 @@ public class Turret : Device {
 	// Update is called once per frame
 	void Update () {
 		
+		if (data.energyCurrent < data.energyNeed) return;
+		
 		if (shot > 0) {
 			shot -= Time.smoothDeltaTime;
 			return;
