@@ -8,6 +8,9 @@ public class HexaTile : MonoBehaviour {
 	public int tileID = 0;
 	public TilePoint key;
 	public bool connected = true;
+	
+	public int energy = 0;
+	public int energyNeed = 0;
 
 	public float hp = 1f;
 	float hpMax = 1f;
@@ -36,6 +39,11 @@ public class HexaTile : MonoBehaviour {
 		
 		device = DeviceData.createDevice(tileID, transform);
 		hp = hpMax = device.hp;
+		
+		energyNeed = device.energy < 0 ? device.energy : 0;
+		if (device.energy > 0) energy = device.energy;
+		
+		ShipData.addEnergy(device.energy);
 		
 		Turret turret;
 		switch (tileID) {

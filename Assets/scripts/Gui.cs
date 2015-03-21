@@ -7,10 +7,23 @@ public class Gui : MonoBehaviour {
 
 	public Text levelText;
 	public Text timeText;
+	
 	public Text scrapText;
+	public Text scrapText1;
+	public Image scrapProgress;
+	
 	public Text metalText;
+	
 	public Text messageText;
 	public Text selDamage;
+	public Text buttonText;
+	
+	public Image timeProgress;
+	
+	
+	public Text BaseName;
+	public GameObject Base;
+	public GameObject Fabric;
 	
 	public Animator endGame;
 	
@@ -21,7 +34,7 @@ public class Gui : MonoBehaviour {
 	
 	public static TilePoint selectedTile = null;
 	
-	public static bool paused = true;
+	public static int gameMode = 0; //0 - in planet, 1 - in fly, 2 - fly pause
 	
 	int currentSec = 0;
 	// Use this for initialization
@@ -33,21 +46,31 @@ public class Gui : MonoBehaviour {
 		UpdateMetals();
 		
 		cursor.SetActive(false);
-		
 	}
 	
 	
 	// Update is called once per frame
 	void Update () {
-		if (!paused && ShipData.levelData.currentTime > 0) {
+		if ((gameMode == 1) && ShipData.levelData.currentTime > 0) {
 			ShipData.levelData.currentTime -= Time.deltaTime;
 			int sec = (int)(ShipData.levelData.time - ShipData.levelData.currentTime);
-			
+			timeProgress.fillAmount = ShipData.levelData.currentTime / ShipData.levelData.time;
 			if (currentSec != sec) {
 				currentSec = sec;
 				timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
+			
+			if (ShipData.levelData.currentTime <= 0) {
+				//End level
+				gameMode = 0;
+				Base.SetActive(true);
+				timeProgress.fillAmount = 1f;
+				buttonText.text = "LAUNCH";
+				timeText.text = "000";
+				ShipData.nextLevel();
+			}
+		
 		}
 		
 		if (editorMode) {
@@ -91,10 +114,26 @@ public class Gui : MonoBehaviour {
 	void OnDisable() {
 		HexaTile.OnMouseClick -= OnTileClick;
 	}
-	
+	public static void AddMessage(string message) {
+		Debug.Log(message);
+		if (instance == null) return;
+		
+		
+		instance.messageText.text = instance.messageText.text.Insert(0,message + "\n");
+	}
+	public static void updateLevel() {
+		AddMessage("Level " + ShipData.currentLevel + " loaded!");
+		if (!instance) return;
+		instance.BaseName.text = ShipData.levelData.name;
+	}
+		
 	public static void UpdateScraps() {
 		if (!instance) return;
+		
 		instance.scrapText.text = ShipData.scraps.ToString();
+		instance.scrapText1.text = ShipData.scraps.ToString();
+		
+		instance.scrapProgress.fillAmount = (float)ShipData.scraps / (float)ShipData.scrapInventory;
 	}
 	public static void UpdateMetals() {
 		if (!instance) return;
@@ -138,28 +177,56 @@ public class Gui : MonoBehaviour {
 			ShipData.addMetals(-ShipData.devices[device].price);
 		}
 	}
+		
+	/*GUI buttons*/
+	public void SetGameMode() {
+		switch (gameMode) {
+			case 0: 
+			case 2: 
+				EditorMode(false);
+				Base.SetActive(false);
+				Fabric.SetActive(false);
+				buttonText.text = "Pause";
+				gameMode = 1;
+				break;
+			case 1: 
+				buttonText.text = "Resume";
+				gameMode = 2;
+				break;
+		}
+	}
+	public void FabricMode() {
+		EditorMode(false);
+		if (Fabric.activeSelf) {
+			Fabric.SetActive(false);
+		} else {
+			Fabric.SetActive(true);
+		}
+	}
+	
+	public void FabricSellAll() {
+		if (ShipData.scraps < 1) return;
+		
+		int scrap = (int)ShipData.scraps / ShipData.metalPrice;
+		
+		ShipData.addScraps(-scrap * ShipData.metalPrice);
+		ShipData.addMetals(scrap);
+		
+	}
+
+	public void EditorMode(bool value) {
+		editorMode = value;
+		cursor.SetActive(editorMode);
+	}	
 	
 	public void swicthEditor() {
-		editorMode = !editorMode;
-		
-		cursor.SetActive(editorMode);
-		Debug.Log(editorMode);
-		
-	}
-	public void LoadLevel(string level) {
-		ShipData.loadLevel(int.Parse(level));
-		levelText.text = ShipData.currentLevel.ToString();
+		EditorMode(!editorMode);
 	}
 	
-	public void SetPause(bool value) {
-		paused = !value;
-	}
-	public static void AddMessage(string message) {
-		Debug.Log(message);
-		if (instance == null) return;
-		
-			
-		instance.messageText.text = instance.messageText.text.Insert(0,message + "\n");
+	public void loadLevel(int tag) {
+		if (tag == 0) 
+			ShipData.prevLevel();
+			else ShipData.nextLevel();
 	}
 	
 }

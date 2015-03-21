@@ -12,9 +12,16 @@ public class ShipData  {
 	
 	public static int currentLevel;
 	public static LevelData levelData;
+	public static int levelCount;
 	
 	public static int metals = 0;
+	public static int metalPrice = 10;
+	
 	public static int scraps = 0;
+	public static int scrapInventory = 200;
+	
+	public static int energyMax = 100;
+	public static int energyCurrent = 100;
 	
 	public static GameObject tileResource;
 	public static HexaShip mainShip;
@@ -56,7 +63,9 @@ public class ShipData  {
 		}
 		
 		scraps = json["properties"]["scraps"].AsInt;
+		scrapInventory = json["properties"]["scrapInventory"].AsInt;
 		metals = json["properties"]["metals"].AsInt;
+		metalPrice = json["properties"]["metalPrice"].AsInt;
 		Gui.UpdateScraps();
 		Gui.UpdateMetals();
 		
@@ -65,6 +74,7 @@ public class ShipData  {
 			int id = int.Parse(json.AsObject.keyAt(i));
 			levels.Add(id, new LevelData(json[i]));
 		}
+		levelCount = levels.Count;
 		
 		tileResource = Resources.Load ("Tile") as GameObject;
 		
@@ -74,11 +84,21 @@ public class ShipData  {
 		
 	}
 	
-	public static void loadLevel(int level) {
+	public static bool loadLevel(int level) {
+		if (!levels.ContainsKey(level)) return false;
+		
 		currentLevel = level;
 		levelData = levels[currentLevel];
-		Debug.Log("Level loaded: " +  level);
+		Gui.updateLevel();
 		
+		return true;
+	}
+	
+	public static bool nextLevel() {
+		return loadLevel(currentLevel + 1);
+	}
+	public static bool prevLevel() {
+		return loadLevel(currentLevel - 1);
 	}
 	
 	public static void update(int sec) {
@@ -90,7 +110,6 @@ public class ShipData  {
 	public static void addScraps(int value) {
 		scraps += value;
 		Gui.UpdateScraps();
-		addMetals(value);
 	}
 	
 	public static void addMetals(int value) {
@@ -99,6 +118,10 @@ public class ShipData  {
 		if (value < 0) {
 			Gui.AddMessage("Spent metal: " + Mathf.Abs(value));
 		}
+	}
+	
+	public static void addEnergy(int value) {
+		energyCurrent += value;
 	}
 	
 	public static Vector2 HexOffset( int x, int y ) {

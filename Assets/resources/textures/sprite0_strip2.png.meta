@@ -1,9 +1,11 @@
 fileFormatVersion: 2
 guid: 9fb394619563dc44c9ad940986dc5470
-timeCreated: 1426920508
+timeCreated: 1426930529
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: sprite0_strip2_0
+    21300002: sprite0_strip2_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,14 +32,14 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,7 +50,27 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: sprite0_strip2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 110
+        height: 39
+      alignment: 9
+      pivot: {x: .696809053, y: .537725329}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sprite0_strip2_1
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 107
+        height: 39
+      alignment: 9
+      pivot: {x: .688576698, y: .553893387}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -43,6 +43,8 @@
 	},
 	"properties": {
 		"scraps":50,
-		"metals":20
+		"scrapInventory":100,
+		"metals":20,
+		"metalPrice":10
 	}
 }
