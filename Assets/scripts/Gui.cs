@@ -120,6 +120,12 @@ public class Gui : MonoBehaviour {
 				
 				selectedEnergyText.text = Mathf.Abs(tile.device.energyCurrent).ToString();
 				selectedEnergyNeed.text = Mathf.Abs(tile.device.energyNeed).ToString();
+				
+				if (tile.device.energyNeed < 1) {
+					selectedEnergyProgress.fillAmount = 1f;
+				} else {
+					selectedEnergyProgress.fillAmount = (float)tile.device.energyCurrent / (float)tile.device.energyNeed;
+				}
 			} else {
 				selectedTile = null;
 			}

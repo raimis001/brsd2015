@@ -136,6 +136,14 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	public void Demolish(bool explode, bool delay) {
+		if (device.energyProduce > 0) {
+			int en = device.energyProduce / key.Count;
+			foreach (TilePoint point in key.AllNeighbours) {
+				HexaTile tile = key.ship.GetTile(point.index);
+				if (tile != null) tile.device.energyCurrent -= en;
+			}
+		}
+	
 		setSelected(false);
 		if (explode) Explode.create(transform.position,delay);
     Destroy(gameObject);
