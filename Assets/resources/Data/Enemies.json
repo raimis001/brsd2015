@@ -1,0 +1,44 @@
+{
+  "enemies": {
+  	"1": {
+  		"atlas":"smallmeteor",
+  		"name":"Mazs meteors",
+  		"hitpoints":10,
+  		"damage":3,
+  		"speed":0.5,
+  		"scrap":0
+   	},
+  	"2": {
+  		"atlas":"bigmeteor",
+  		"name":"lielais meteors",
+  		"hitpoints":50,
+  		"damage":30,
+  		"speed":0.1,
+      "scrap":0
+  	},
+  	"3": {
+  		"atlas":"comet",
+  		"name":"Komēta",
+  		"hitpoints":20,
+  		"damage":10,
+  		"speed":2,
+      "scrap":0
+  	},
+  	"4": {
+  		"atlas":"crystalship",
+  		"name":"Kristāla kuģis",
+  		"hitpoints":30,
+  		"damage":10,
+  		"speed":2,
+      "scrap":0
+    },
+  	"5": {
+  		"atlas":"cosmicameba",
+  		"name":"Kosmiskā amēba",
+  		"hitpoints":20,
+  		"damage":10,
+  		"speed":2,
+      "scrap":0
+    }
+  }
+}
