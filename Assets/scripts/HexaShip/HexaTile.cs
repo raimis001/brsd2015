@@ -35,15 +35,26 @@ public class HexaTile : MonoBehaviour {
 		if (device == null || key == null || key.AllNeighbours == null || key.Count < 1) return;
 		
 		if (device.energyProduce > 0) {
-			int cnt = key.Count;
-			int en = device.energyProduce / cnt;
+			int cnt = 0;
 			foreach (TilePoint point in key.AllNeighbours) {
 				HexaTile tile = key.ship.GetTile(point.index);
-				if (tile != null) tile.device.energyCurrent += en;
+				if (tile != null && tile.device.energyNeed > 0) {
+					cnt++;
+					tile.device.energyCurrent = 0;
+				}
+			}
+			if (cnt > 0) {
+			int en = device.energyProduce / cnt;
+				foreach (TilePoint point in key.AllNeighbours) {
+					HexaTile tile = key.ship.GetTile(point.index);
+					if (tile != null && tile.device.energyNeed > 0) tile.device.energyCurrent += en;
+				}
 			}
 		} else {
-			//foreach (TilePoint point in key.AllNeighbours) {
-			//}
+			foreach (TilePoint point in key.AllNeighbours) {
+				HexaTile tile = key.ship.GetTile(point.index);
+				if (tile != null && tile.device.energyProduce > 0) tile.recalcEnergy(); 
+			}
 		}
 		
 		
@@ -136,14 +147,9 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	public void Demolish(bool explode, bool delay) {
-		if (device.energyProduce > 0) {
-			int en = device.energyProduce / key.Count;
-			foreach (TilePoint point in key.AllNeighbours) {
-				HexaTile tile = key.ship.GetTile(point.index);
-				if (tile != null) tile.device.energyCurrent -= en;
-			}
-		}
-	
+		device = DeviceData.createDevice(0, transform);
+		recalcEnergy();
+			
 		setSelected(false);
 		if (explode) Explode.create(transform.position,delay);
     Destroy(gameObject);
