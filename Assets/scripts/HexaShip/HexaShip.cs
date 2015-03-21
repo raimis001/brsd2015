@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class HexaShip : MonoBehaviour {
 
 	public Dictionary<string, HexaTile> tileSet = new Dictionary<string, HexaTile>();
-	public TilePoint zero = null;
 	public Dictionary<TilePoint, int> shipData;
+	public TilePoint zero = null;
 	
 	
 	public static HexaShip createShip(Dictionary<TilePoint, int> data, Vector3 position) {
@@ -81,6 +81,18 @@ public class HexaShip : MonoBehaviour {
 		return false;
 	}
 	
+	public Vector3 zeroVector() {
+		if (zero == null) return Vector3.zero;
+		
+		HexaTile tile = null;
+		tileSet.TryGetValue(zero.index, out tile);
+		
+		if (tile != null) 
+			return tile.transform.position;
+			else return Vector3.zero;
+		
+	}
+	
 	public bool createTile(TilePoint tile, int tileID, bool check = false) {
 		return createTile(tile.x, tile.y, tileID, check);
 	}
@@ -104,8 +116,9 @@ public class HexaShip : MonoBehaviour {
 	}
 	
 	public void SetSelected(string index, bool selected) {
-		HexaTile tile = tileSet[index]; 
-		tile.setSelected(selected);
+		HexaTile tile = null;
+		tileSet.TryGetValue(index, out tile);
+		if (tile != null) tile.setSelected(selected);
 	}
 	
 	public void DeleteTile(string index, bool destroy = false) {

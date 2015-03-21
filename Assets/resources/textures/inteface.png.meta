@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: df6b4ddaff8437f42b0ee1b75089ee33
-timeCreated: 1426934397
+timeCreated: 1426938267
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,6 +11,7 @@ TextureImporter:
     21300008: inteface_4
     21300010: inteface_5
     21300012: inteface_6
+    21300014: inteface_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -123,6 +124,16 @@ TextureImporter:
         y: 903
         width: 8
         height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: inteface_7
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 771
+        width: 108
+        height: 108
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

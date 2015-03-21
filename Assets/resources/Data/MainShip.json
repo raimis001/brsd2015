@@ -1,17 +1,8 @@
 {
  "ship": {
- 	"z2": {x:2,y:-1, device:{id:0, damage:2}},
- 	"z3": {x:2,y:-2, device:{id:0, damage:2}},
- 	"z4": {x:1,y:-3, device:{id:0, damage:2}},
- 	"z5": {x:0,y:-3, device:{id:0, damage:2}},
- 	"z6": {x:-1,y:-3, device:{id:0, damage:2}},
- 	"z7": {x:-2,y:-3, device:{id:0, damage:2}},
- 	"z8": {x:-3,y:-3, device:{id:0, damage:2}},
- 	"z9": {x:-3,y:-4, device:{id:0, damage:2}},
- 	"z10": {x:-3,y:-2, device:{id:0, damage:2}},
 	
   
- 	"1": {x:0,y:0, device:{id:1, damage:2}},
+ 	"1": {x:0,y:0, device:{id:0, damage:2}},
  	"2": {x:1,y:0, device:{id:0, damage:2}},
  	"3": {x:2,y:0, device:{id:0, damage:2}},
  	"4": {x:3,y:0, device:{id:0, damage:2}},
@@ -25,7 +16,7 @@
  	"12": {x:2,y:2, device:{id:0, damage:2}},
  	"13": {x:3,y:2, device:{id:0, damage:2}},
  	"14": {x:4,y:2, device:{id:0, damage:2}},
- 	"15": {x:5,y:2, device:{id:0, damage:2}},
+ 	"15": {x:5,y:2, device:{id:1, damage:2}},
  	"16": {x:6,y:2, device:{id:0, damage:2}},
  	"17": {x:7,y:2, device:{id:0, damage:2}},
  	"18": {x:1,y:3, device:{id:0, damage:2}},

@@ -5,8 +5,11 @@ using UnityEngine.EventSystems;
 
 public class Gui : MonoBehaviour {
 
+	public Text BaseName;
 	public Text levelText;
+	
 	public Text timeText;
+	public Image timeProgress;
 	
 	public Text scrapText;
 	public Text scrapText1;
@@ -14,16 +17,14 @@ public class Gui : MonoBehaviour {
 	
 	public Text metalText;
 	
-	public Text messageText;
-	public Text selDamage;
 	public Text buttonText;
 	
-	public Image timeProgress;
+	public Text messageText;
 	
-	
-	public Text BaseName;
 	public GameObject Base;
 	public GameObject Fabric;
+	
+	public GameObject PanelTile;
 	
 	public Animator endGame;
 	
@@ -32,7 +33,24 @@ public class Gui : MonoBehaviour {
 	public static Gui instance;
 	public static bool editorMode = false;
 	
-	public static TilePoint selectedTile = null;
+	private static TilePoint _selectedTile = null;
+	public static TilePoint selectedTile {
+		get { return _selectedTile; }
+		set {
+			TilePoint old = _selectedTile;
+			_selectedTile = value;
+			if (instance) {
+				instance.setSelected(old);
+			}
+		}
+	}
+	
+	public Text selectedCoord;
+	public Text selectedDamageText;
+	public Image selectedDamageProgress;
+	
+	public Text selectedEnergyText;
+	public Image selectedEnergyProgress;
 	
 	public static int gameMode = 0; //0 - in planet, 1 - in fly, 2 - fly pause
 	
@@ -90,21 +108,20 @@ public class Gui : MonoBehaviour {
 		}
 		
 		if (Input.GetMouseButtonDown(1) && selectedTile != null) {
-			selectedTile.ship.SetSelected(selectedTile.index, false);
 			selectedTile = null;
 		}
 		
 		if (selectedTile != null) {
-			HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
-			if (tile == null) {
-				selectedTile = null;
-				selDamage.text = "";
+			HexaTile tile = ShipData.mainShip.GetTile(selectedTile.index);
+			if (tile != null) {
+				selectedDamageText.text = tile.hp.ToString("00");
+				selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
+				
+				selectedEnergyText.text = Mathf.Abs(tile.energyNeed).ToString();
 			} else {
-				selDamage.text = tile.hp.ToString();
+				selectedTile = null;
 			}
 			
-		} else {
-			selDamage.text = "";
 		}
 		
 	}
@@ -125,6 +142,7 @@ public class Gui : MonoBehaviour {
 		AddMessage("Level " + ShipData.currentLevel + " loaded!");
 		if (!instance) return;
 		instance.BaseName.text = ShipData.levelData.name;
+		instance.levelText.text = ShipData.currentLevel.ToString();
 	}
 		
 	public static void UpdateScraps() {
@@ -144,10 +162,7 @@ public class Gui : MonoBehaviour {
 		if (EventSystem.current.IsPointerOverGameObject()) return;
 		if (editorMode) return;
 		
-		//Debug.Log(key);
-		if (selectedTile != null) selectedTile.ship.SetSelected(selectedTile.index,false);
 		selectedTile = key;
-		selectedTile.ship.SetSelected(selectedTile.index,true);
 	}
 	
 	public void deleteTile() {
@@ -176,6 +191,25 @@ public class Gui : MonoBehaviour {
 		if (selectedTile.ship.CreateDevice(selectedTile.index, device)) {
 			ShipData.addMetals(-ShipData.devices[device].price);
 		}
+	}
+		
+	public void setSelected(TilePoint oldValue) {
+		if (oldValue != null) ShipData.mainShip.SetSelected(oldValue.index, false);
+		
+		PanelTile.SetActive(_selectedTile != null);
+		
+		if (_selectedTile != null) {
+			ShipData.mainShip.SetSelected(_selectedTile.index, true);
+			HexaTile tile = ShipData.mainShip.GetTile(_selectedTile.index);
+			
+			selectedCoord.text = "x:" + tile.key.x.ToString() + " y:" + tile.key.y.ToString();
+			selectedDamageText.text = tile.hp.ToString("00");
+			selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
+			
+			selectedEnergyText.text = tile.energy.ToString();
+			
+		}
+		
 	}
 		
 	/*GUI buttons*/

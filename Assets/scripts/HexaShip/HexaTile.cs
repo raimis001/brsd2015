@@ -13,7 +13,7 @@ public class HexaTile : MonoBehaviour {
 	public int energyNeed = 0;
 
 	public float hp = 1f;
-	float hpMax = 1f;
+	public float hpMax = 1f;
 	
 	
 	public DeviceData device = null;
@@ -47,6 +47,9 @@ public class HexaTile : MonoBehaviour {
 		
 		Turret turret;
 		switch (tileID) {
+			case 1:
+				key.ship.zero = key;
+				break;
 			case 2:
 				turret = gameObject.AddComponent<Turret>();
 				turret.data = device;
