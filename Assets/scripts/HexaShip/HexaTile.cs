@@ -34,8 +34,8 @@ public class HexaTile : MonoBehaviour {
 	public void recalcEnergy() {
 		if (device == null || key == null || key.AllNeighbours == null || key.Count < 1) return;
 		
-		int cnt = key.Count;
 		if (device.energyProduce > 0) {
+			int cnt = key.Count;
 			int en = device.energyProduce / cnt;
 			foreach (TilePoint point in key.AllNeighbours) {
 				HexaTile tile = key.ship.GetTile(point.index);
