@@ -69,7 +69,20 @@ public class DeviceData {
 		obj.transform.position = parent.position;
 		obj.transform.parent = parent;
 		
-		return new DeviceData(data);
+		data = new DeviceData(data);
+		switch (id) {
+		case 2:
+			obj.AddComponent<Turret>().data = data;
+			break;
+		case 6:
+			obj.AddComponent<Turret>().data = data;
+			break;
+		case 7:
+			obj.AddComponent<Fabric>().data = data;
+			break;
+		}
+		
+		return data;
 	}
 	
 }

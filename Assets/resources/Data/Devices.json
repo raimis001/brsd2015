@@ -82,9 +82,9 @@
   		"hp":75,
   		"damage":100,
   		"speed":1,
-  		"time":0.1,
+  		"time":0.75,
   		"distance":5,
-  		"energy":-100
+  		"energy":-10
   	},
   	"8": {
   		"atlas":"devices_3",
@@ -121,12 +121,12 @@
   		"atlas":"devices_6",
   		"name":"Lausku vacele (T)",
   		"price":10,
-  		"hp":10,
+  		"hp":100,
   		"damage":100,
   		"speed":1,
   		"time":0.1,
   		"distance":5,
-  		"energy":-100
+  		"energy":-10
   	}
   }
 }

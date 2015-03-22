@@ -62,18 +62,9 @@ public class HexaTile : MonoBehaviour {
 		device = DeviceData.createDevice(tileID, transform);
 		hp = hpMax = device.hp;
 		
-		Turret turret;
 		switch (tileID) {
 			case 1:
 				key.ship.zero = key;
-				break;
-			case 2:
-				turret = gameObject.AddComponent<Turret>();
-				turret.data = device;
-				break;
-			case 6:
-				turret = gameObject.AddComponent<Turret>();
-				turret.data = device;
 				break;
 			case 11:
 				ShipData.mainShip.tractor = key;
