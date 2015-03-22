@@ -7,7 +7,9 @@ public class HexaShip : MonoBehaviour {
 
 	public Dictionary<string, HexaTile> tileSet = new Dictionary<string, HexaTile>();
 	public Dictionary<TilePoint, int> shipData;
+	
 	public TilePoint zero = null;
+	public TilePoint tractor = null;
 	
 	
 	public static HexaShip createShip(Dictionary<TilePoint, int> data, Vector3 position) {

@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour {
 	public float damage = 1f;
 	public float hp = 10f;
 	public float delay = 0f;
-	public int scraps = 0;
 	public float speed = 0.1f;
 	
 	public SpawnData data;
@@ -34,7 +33,6 @@ public class Enemy : MonoBehaviour {
 		speed = data.speed * Random.Range(0.9f, 1.2f);
 		hp = data.hp;
 		damage = data.damage;
-		scraps = data.value;
 		
 		if (delay > 0) {
 			GetComponent<SpriteRenderer>().enabled = false;
@@ -84,7 +82,7 @@ public class Enemy : MonoBehaviour {
 		hp -= shot.damage;
 		//Debug.Log(hp + " : " + shot.damage);
 		if (hp <= 0) {
-			ShipData.addScraps(scraps);
+			Scrap.create(transform.position, data.value);
 			explode();
 		}
 	}

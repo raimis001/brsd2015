@@ -18,7 +18,7 @@ public class EnemyRock : Enemy {
 		if (GetComponent<SpriteRenderer>().enabled) {
 			transform.Rotate(_rotate);
 			transform.position = Vector3.MoveTowards(transform.position, ShipData.mainShip.zeroVector(), speed * Time.deltaTime);		
-		}
+		} 
 		
 	}
 }

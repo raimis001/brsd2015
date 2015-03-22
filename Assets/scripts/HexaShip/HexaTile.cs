@@ -86,6 +86,9 @@ public class HexaTile : MonoBehaviour {
 				turret = gameObject.AddComponent<Turret>();
 				turret.data = device;
 				break;
+			case 11:
+				ShipData.mainShip.tractor = key;
+				break;
 		}
 		
 		return true;

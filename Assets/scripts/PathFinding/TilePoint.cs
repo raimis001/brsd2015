@@ -55,6 +55,12 @@ public class TilePoint: IHasNeighbours<TilePoint> {
 		return (zeroPath != null);
 	}
 	
+	public Vector3 Vector() {
+		HexaTile tile = ship.GetTile(index);
+		if (tile == null) return Vector3.zero;
+		return tile.transform.position;
+	}
+	
 	override public string ToString() {
 		return "TILE: " + index;
 	}
