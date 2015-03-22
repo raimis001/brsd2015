@@ -31,47 +31,36 @@ public class HexaTile : MonoBehaviour {
 	void Update () {
 	}
 	
+	public void resetEnergy() {
+		if (device == null || device.energyNeed < 1) return;
+		device.energyCurrent = 0;
+	}
+	
 	public void recalcEnergy() {
-		if (device == null || key == null || key.AllNeighbours == null || key.Count < 1) return;
-		
-		if (device.energyProduce > 0) {
-			int cnt = 0;
-			foreach (TilePoint point in key.AllNeighbours) {
-				HexaTile tile = key.ship.GetTile(point.index);
-				if (tile != null && tile.device.energyNeed > 0) {
-					cnt++;
-					tile.device.energyCurrent = 0;
-				}
-			}
-			if (cnt > 0) {
-			int en = device.energyProduce / cnt;
-				foreach (TilePoint point in key.AllNeighbours) {
-					HexaTile tile = key.ship.GetTile(point.index);
-					if (tile != null && tile.device.energyNeed > 0) tile.device.energyCurrent += en;
-				}
-			}
-		} else {
-			foreach (TilePoint point in key.AllNeighbours) {
-				HexaTile tile = key.ship.GetTile(point.index);
-				if (tile != null && tile.device.energyProduce > 0) tile.recalcEnergy(); 
+		if (device == null || device.energyProduce < 1 || key == null || key.AllNeighbours == null || key.Count < 1) return;
+			
+		int cnt = 0;
+		foreach (TilePoint point in key.AllNeighbours) {
+			HexaTile tile = key.ship.GetTile(point.index);
+			if (tile != null && tile.device.energyNeed > 0) {
+				cnt++;
 			}
 		}
-		
-		
+		if (cnt > 0) {
+		int en = device.energyProduce / cnt;
+			foreach (TilePoint point in key.AllNeighbours) {
+				HexaTile tile = key.ship.GetTile(point.index);
+				if (tile != null && tile.device.energyNeed > 0) tile.device.energyCurrent += en;
+			}
+		}
 	}
 		
 	public bool createDevice(int deviceID) {
 		if (device != null && device.id != 0) return false;
 		tileID = deviceID;
 
-		int energy = device != null ? device.energyCurrent : 0;
 		device = DeviceData.createDevice(tileID, transform);
 		hp = hpMax = device.hp;
-		device.energyCurrent = energy;
-		
-		recalcEnergy();
-		
-		ShipData.addEnergy(device.energy);
 		
 		Turret turret;
 		switch (tileID) {
@@ -103,6 +92,7 @@ public class HexaTile : MonoBehaviour {
 	public void getNeibors() {
 		key.getNeibors();
 	} 
+	
 	public void pathToZero() {
 		connected = key.pathToZero();
 		if (!connected) {
@@ -156,9 +146,6 @@ public class HexaTile : MonoBehaviour {
 				break;
 		}
 	
-		device = DeviceData.createDevice(0, transform);
-		recalcEnergy();
-			
 		setSelected(false);
 		if (explode) Explode.create(transform.position,delay);
     Destroy(gameObject);
@@ -174,6 +161,7 @@ public class HexaTile : MonoBehaviour {
 		}
 		return false;
 	}
+	
 	public void ApplyDamage(float damage) {
 		
 		hp -= damage;
@@ -186,18 +174,14 @@ public class HexaTile : MonoBehaviour {
 		int sprite = (int)(cnt - (hp / hpMax * cnt));
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		sr.sprite = ShipData.tiles[sprite];
-		//Debug.Log(sprite);
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-		
 		if (coll.gameObject.tag == "enemyShot") {
-			//Debug.Log(coll.gameObject.name);
 			Shot shot = coll.gameObject.GetComponent<Shot>();
 			ApplyDamage(shot.damage);
 			Destroy(coll.gameObject);
 		}
-		
 	}
 	
 }

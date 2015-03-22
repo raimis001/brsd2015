@@ -26,13 +26,9 @@ public class HexaShip : MonoBehaviour {
 		foreach (KeyValuePair<TilePoint, int> tile in shipData) {
 			createTile(tile.Key, tile.Value);
 		}	
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.getNeibors();
-		}
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.pathToZero();
-			tile.recalcEnergy();
-		}
+		
+		RecalcShip();
+		RecalcEnergy();
   }
 	
 	public bool createTile(int x, int y, int tileID, bool check = false) {
@@ -57,45 +53,20 @@ public class HexaShip : MonoBehaviour {
 		
 		if (!check) return true;
 		
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.getNeibors();
-		}
+		RecalcShip();
 		
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.pathToZero();
-		}
-		
-		if (src.connected) return true;
-		Debug.Log("Kannot place tile " + key.index);
-		
-		foreach (TilePoint p in key.Neighbours) {
-						Debug.Log(p.index);
+		if (src.connected) {
+			RecalcEnergy();
+			return true;
 		}
 		
 		tileSet.Remove(src.key.index);
 		Destroy(obj);
 		
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.getNeibors();
-		}
-		foreach (HexaTile tile in tileSet.Values) {
-			tile.pathToZero();
-			tile.recalcEnergy();
-		}
+		RecalcShip();
+		RecalcEnergy();
 		
 		return false;
-	}
-	
-	public Vector3 zeroVector() {
-		if (zero == null) return Vector3.zero;
-		
-		HexaTile tile = null;
-		tileSet.TryGetValue(zero.index, out tile);
-		
-		if (tile != null) 
-			return tile.transform.position;
-			else return Vector3.zero;
-		
 	}
 	
 	public bool createTile(TilePoint tile, int tileID, bool check = false) {
@@ -106,9 +77,33 @@ public class HexaShip : MonoBehaviour {
 	}
 	
 	public bool CreateDevice(string index, int device) {
-		return tileSet[index].createDevice(device);
+		bool result = tileSet[index].createDevice(device);
+		if (result) RecalcEnergy();
+		return result;
 	}
 	
+	public Vector3 zeroVector() {
+		if (zero == null) return Vector3.zero;
+		return zero.Vector();
+	}
+
+	public void RecalcShip() {
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.getNeibors();
+		}
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.pathToZero();
+		}
+	}
+	public void RecalcEnergy() {
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.resetEnergy();
+		}
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.recalcEnergy();
+		}
+	}
+			
 	// Update is called once per frame
 	void Update () {
 		
@@ -140,7 +135,10 @@ public class HexaShip : MonoBehaviour {
 			
 		foreach (HexaTile t in rec) t.pathToZero();
 		
-		if (!destroy) return;
+		if (!destroy) {
+			RecalcEnergy();
+			return;
+		}
 		
 		List<string> ind = new List<string>();
 		foreach (HexaTile t in tileSet.Values) {
@@ -151,7 +149,7 @@ public class HexaShip : MonoBehaviour {
 			tileSet[idx].Demolish(true, true);
 			tileSet.Remove(idx);
 		}
-		
+		RecalcEnergy();
   }
   
 	

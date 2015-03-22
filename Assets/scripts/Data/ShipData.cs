@@ -7,7 +7,6 @@ public class ShipData  {
 	public static Dictionary<int, DeviceData> devices = new Dictionary<int, DeviceData>();
 	public static Dictionary<int, LevelData> levels = new Dictionary<int, LevelData>();
 	
-	public static Dictionary<string, Sprite> rocks = new Dictionary<string, Sprite>();
 	public static List<Sprite> tiles = new List<Sprite>();
 	
 	public static int currentLevel;
@@ -38,11 +37,6 @@ public class ShipData  {
 			spritesNames.Add(sprites[i].name, sprites[i]);
 		}		
 		
-		sprites = Resources.LoadAll<Sprite>("textures/stones");
-		for(int i=0; i< sprites.Length; i++) {
-			rocks.Add(sprites[i].name, sprites[i]);
-		}		
-
 		sprites = Resources.LoadAll<Sprite>("textures/hexaTiles");
 		for(int i=0; i< sprites.Length; i++) {
 			if (sprites[i].name.IndexOf("cursor") < 0) {
