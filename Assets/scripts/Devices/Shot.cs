@@ -21,6 +21,17 @@ public class Shot : MonoBehaviour {
 		shot.speed = data.speed;
 		shot.damage = data.damage;
 	}
+	
+	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab) {
+	
+		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
+		Shot shot = (Instantiate (Resources.Load (prefab),position,angle)as GameObject).GetComponent<Shot>();
+			
+		shot.gameObject.tag = tag;
+		shot.speed = speed;
+		shot.damage = damage;
+		
+	}
 
 	public float speed;	
 	public int damage;

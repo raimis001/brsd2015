@@ -179,4 +179,16 @@ public class HexaTile : MonoBehaviour {
 		sr.sprite = ShipData.tiles[sprite];
 		//Debug.Log(sprite);
 	}
+	
+	void OnTriggerEnter2D(Collider2D coll) {
+		
+		if (coll.gameObject.tag == "enemyShot") {
+			//Debug.Log(coll.gameObject.name);
+			Shot shot = coll.gameObject.GetComponent<Shot>();
+			ApplyDamage(shot.damage);
+			Destroy(coll.gameObject);
+		}
+		
+	}
+	
 }

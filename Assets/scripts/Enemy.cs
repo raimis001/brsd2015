@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour {
 			prefab = "Rock";
 		} else if (type.Equals("medusa")) {
 			prefab = "Medusa";
+		} else if (type.Equals("evil")) {
+			prefab = "Evil";
 		}
 		
 		if (prefab == null) return;	
@@ -66,23 +68,52 @@ public class Enemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 	
 		if (coll.gameObject.tag == "ship") {
-			if (coll.gameObject != null) {
-				coll.gameObject.SendMessage("ApplyDamage", damage);
-			}
-			explode();
-			return;
+				collideShip(coll.gameObject);
+				return;
 		}
 		
 		if (coll.gameObject.tag == "shot") {
-			Shot shot = coll.gameObject.GetComponent<Shot>();
-			hp -= shot.damage;
-			Destroy(coll.gameObject);
-			if (hp <= 0) {
-				ShipData.addScraps(scraps);
-				explode();
+			if (coll.gameObject != null) {
+				collideShot(coll.gameObject.GetComponent<Shot>());
+				Destroy(coll.gameObject);
 			}
 		}
 		
 	}
+	protected virtual void collideShip(GameObject collider) {
+		if (collider != null) {
+			collider.SendMessage("ApplyDamage", damage);
+			explode();
+		}
+		
+	}
+	protected virtual void collideShot(Shot shot) {
+		if (shot == null) return;
+		
+		hp -= shot.damage;
+		//Debug.Log(hp + " : " + shot.damage);
+		if (hp <= 0) {
+			ShipData.addScraps(scraps);
+			explode();
+		}
+	}
 	
+	protected GameObject FindClosestEnemy(string tag, float radius) {
+		GameObject[] gos = GameObject.FindGameObjectsWithTag(tag);
+		GameObject closest = null;
+		float distance = Mathf.Infinity;
+		Vector3 position = transform.position;
+		float border = radius * radius;
+		
+		foreach (GameObject go in gos) {
+			Vector3 diff = go.transform.position - position;
+			float curDistance = diff.sqrMagnitude;
+			if (curDistance < border && curDistance < distance) {
+				closest = go;
+				distance = curDistance;
+			}
+		}
+		return closest;
+	}
+		
 }

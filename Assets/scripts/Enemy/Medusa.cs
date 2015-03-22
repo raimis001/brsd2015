@@ -18,6 +18,7 @@ public class Medusa : Enemy {
 	// Update is called once per frame
 	override protected void Update () {
 		base.Update();
+		if (!GetComponent<SpriteRenderer>().enabled) return;
 		
 		if (charge > 0) {
 			charge -= Time.deltaTime;

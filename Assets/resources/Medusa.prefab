@@ -11,9 +11,11 @@ GameObject:
   - 212: {fileID: 21295858}
   - 114: {fileID: 11415384}
   - 95: {fileID: 9591400}
+  - 58: {fileID: 5864280}
+  - 50: {fileID: 5099934}
   m_Layer: 0
   m_Name: Medusa
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,6 +32,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5099934
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116690}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!58 &5864280
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116690}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: .28902328
 --- !u!95 &9591400
 Animator:
   serializedVersion: 3
@@ -87,7 +117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1742616197
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 9e60caf74409597458adc105a8eab0a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f45082846ca9fc498bf5e59164875b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
