@@ -6,6 +6,7 @@
 		"scraps":0,
 		"scrapInventory":50,
 		"metals":2000,
-		"metalPrice":5
+		"metalPrice":5,
+		"knowledge":10
 	}
 }

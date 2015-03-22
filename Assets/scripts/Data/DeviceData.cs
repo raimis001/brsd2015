@@ -80,6 +80,9 @@ public class DeviceData {
 		case 7:
 			obj.AddComponent<Fabric>().data = data;
 			break;
+		case 8:
+			obj.AddComponent<Laboratory>().data = data;
+			break;
 		}
 		
 		return data;

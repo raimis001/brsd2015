@@ -17,6 +17,8 @@ public class Gui : MonoBehaviour {
 	
 	public Text metalText;
 	
+	public Text knownText;
+	
 	public Text buttonText;
 	
 	public Text messageText;
@@ -27,6 +29,8 @@ public class Gui : MonoBehaviour {
 	public GameObject PanelTile;
 	
 	public Animator endGame;
+	
+	
 	
 	public GameObject cursor;
 	
@@ -153,6 +157,12 @@ public class Gui : MonoBehaviour {
 		instance.levelText.text = ShipData.currentLevel.ToString();
 	}
 		
+	public static void UpdateKnowledge() {
+		if (!instance) return;
+		
+		instance.knownText.text = ShipData.knowledge.ToString();
+	}
+	
 	public static void UpdateScraps() {
 		if (!instance) return;
 		

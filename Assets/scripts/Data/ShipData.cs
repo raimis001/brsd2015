@@ -13,6 +13,8 @@ public class ShipData  {
 	public static LevelData levelData;
 	public static int levelCount;
 	
+	public static int knowledge = 0;
+	
 	public static int metals = 0;
 	public static int metalPrice = 10;
 	
@@ -56,12 +58,14 @@ public class ShipData  {
 			ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),json["ship"][i]["device"]["id"].AsInt);
 		}
 		
+		knowledge = json["properties"]["knowledge"].AsInt;
 		scraps = json["properties"]["scraps"].AsInt;
 		scrapInventory = json["properties"]["scrapInventory"].AsInt;
 		metals = json["properties"]["metals"].AsInt;
 		metalPrice = json["properties"]["metalPrice"].AsInt;
 		Gui.UpdateScraps();
 		Gui.UpdateMetals();
+		Gui.UpdateKnowledge();
 		
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
 		for (int i = 0; i < json.Count; i++) {
@@ -101,6 +105,11 @@ public class ShipData  {
 		}
 	}
 	
+	public static void addKnowledge(int value) {
+		knowledge += value;
+		Gui.UpdateKnowledge();
+	}
+	
 	public static void addScraps(int value) {
 		scraps += value;
 		Gui.UpdateScraps();
@@ -113,6 +122,7 @@ public class ShipData  {
 			Gui.AddMessage("Spent metal: " + Mathf.Abs(value));
 		}
 	}
+	
 	
 	public static void addEnergy(int value) {
 		energyCurrent += value;
