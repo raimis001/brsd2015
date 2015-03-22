@@ -8,6 +8,7 @@ TagManager:
   - ship
   - shot
   - enemyShot
+  - shield
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@
 		"time":100,
 		"baseName":"Presbiterania",
 		"events": {
-			"3": {
+			"300": {
 				 "medusa":{"count":1, "angle":90, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":15, "value":50, "charge":0.5, "range":8, "velocity":2},
 			},
 			"5": {

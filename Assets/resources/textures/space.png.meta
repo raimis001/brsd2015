@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: af0142cc856abc1419c9e8ef11d318c2
-timeCreated: 1427017537
+timeCreated: 1427028306
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: rock2
     21300008: rocket0
     21300010: rocket1
+    21300012: shield
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -114,6 +115,16 @@ TextureImporter:
         height: 39
       alignment: 9
       pivot: {x: .682350874, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shield
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 824
+        width: 286
+        height: 195
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

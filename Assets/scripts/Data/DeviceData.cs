@@ -59,20 +59,28 @@ public class DeviceData {
 		DeviceData data = ShipData.devices[id];
 		if (data.id == 0) return new DeviceData(data);
 			
-		GameObject obj = new GameObject("device");
+		GameObject obj;
 	
-		SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
-			sr.sprite = data.sprite;
-			sr.sortingLayerName = "devices";
-		
+		if (id != 4) {
+			obj = new GameObject("device");
 			
-		obj.transform.position = parent.position;
+			SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
+				sr.sprite = data.sprite;
+				sr.sortingLayerName = "devices";
+				obj.transform.position = parent.position;
+		} else {
+			obj = HexaShip.Instantiate(Resources.Load("shield"), parent.position, Quaternion.identity) as GameObject; 
+		}
+		
 		obj.transform.parent = parent;
 		
 		data = new DeviceData(data);
 		switch (id) {
 		case 2:
 			obj.AddComponent<Turret>().data = data;
+			break;
+		case 4:
+			obj.AddComponent<Shield>().data = data;
 			break;
 		case 6:
 			obj.AddComponent<Turret>().data = data;

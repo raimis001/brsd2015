@@ -26,7 +26,7 @@ public class Medusa : Enemy {
 		}
 		
 
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.55f);
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f);
 		List<HexaTile> tiles = new List<HexaTile>();
 		foreach (Collider2D collider in colliders) {
 			if (collider.gameObject.tag != "ship") continue;
@@ -42,9 +42,7 @@ public class Medusa : Enemy {
 		}
 		if (animator != null) animator.SetTrigger("go");
 		
-		if (GetComponent<SpriteRenderer>().enabled) {
-			transform.position = Vector3.MoveTowards(transform.position, ShipData.mainShip.zeroVector(), speed * Time.deltaTime);		
-		}
+		transform.position = Vector3.MoveTowards(transform.position, ShipData.mainShip.zeroVector(), speed * Time.deltaTime);		
 		
 	}
 }

@@ -12,7 +12,11 @@ public class Device : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
 	
+	public virtual void doShot(Shot collider) {
+		Debug.Log(collider.damage);
+		DestroyImmediate(collider.gameObject);
 	}
 	
 	protected GameObject FindClosestEnemy(string tag, float radius) {

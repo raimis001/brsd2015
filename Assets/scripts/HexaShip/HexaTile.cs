@@ -24,7 +24,8 @@ public class HexaTile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-		sr.sortingOrder = key.y;// -(int)transform.position.y;
+		sr.sortingOrder = key.y;
+		gameObject.name = "tile";
 	}
 	
 	// Update is called once per frame
@@ -167,12 +168,10 @@ public class HexaTile : MonoBehaviour {
 		sr.sprite = ShipData.tiles[sprite];
 	}
 	
-	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.tag == "enemyShot") {
-			Shot shot = coll.gameObject.GetComponent<Shot>();
-			ApplyDamage(shot.damage);
-			Destroy(coll.gameObject);
-		}
+	public virtual void doShot(Shot collider) {
+		Debug.Log(collider.damage);
+		ApplyDamage(collider.damage);
+		Destroy(collider.gameObject);
 	}
 	
 }
