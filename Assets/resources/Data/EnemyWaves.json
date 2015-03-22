@@ -4,14 +4,14 @@
 		"time":100,
 		"baseName":"Presbiterania",
 		"events": {
-			"300": {
-				 "evil":{"count":1, "angle":90, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":20, "value":50, "charge":0.5, "range":8, "velocity":2},
-			},
 			"3": {
-				 "medusa":{"count":1, "angle":90, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":20, "value":50, "charge":0.5, "range":8, "velocity":2},
+				 "medusa":{"count":1, "angle":90, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":15, "value":50, "charge":0.5, "range":8, "velocity":2},
 			},
-			"445": {
-				 "smallMeteor":{"count":4, "angle":90, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+			"5": {
+				 "evil":{"count":1, "angle":0, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":10, "value":50, "charge":0.5, "range":8, "velocity":2},
+			},
+			"7": {
+				 "rock":{"count":4, "angle":90, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
 			 },
 			"340": {
 				 "smallMeteor":{"count":5, "angle":20, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},

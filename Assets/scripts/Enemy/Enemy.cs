@@ -13,23 +13,14 @@ public class Enemy : MonoBehaviour {
 	
 	public static void create(string type, SpawnData data) {
 		
-		string prefab = null;
-		if (ShipData.rocks.ContainsKey(type)) {
-			prefab = "Rock";
-		} else if (type.Equals("medusa")) {
-			prefab = "Medusa";
-		} else if (type.Equals("evil")) {
-			prefab = "Evil";
-		}
-		
+		GameObject prefab = Resources.Load(type) as GameObject;
 		if (prefab == null) return;	
-				
 			
 		float delay = 0f;
 		for (int i = 0; i < data.count; i++) {
 			float angle = data.angle + (Random.Range(-10f,10f) * Mathf.Deg2Rad);
 			Vector3 pos = new Vector3(Mathf.Sin(angle),Mathf.Cos(angle), 0) * data.distance ;
-			Enemy enemy = (Instantiate(Resources.Load(prefab), pos, Quaternion.identity) as GameObject).GetComponent<Enemy>();
+			Enemy enemy = (Instantiate(prefab, pos, Quaternion.identity) as GameObject).GetComponent<Enemy>();
 			enemy.delay = delay;
 			enemy.data = data;
 				

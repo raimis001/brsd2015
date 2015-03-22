@@ -33,8 +33,7 @@ public class EvilEnemy : Enemy {
 			if (target.name == "dummyTarget") {
 				transform.position = Vector3.RotateTowards(transform.position,target.transform.position ,0.002f, speed * Time.deltaTime);
 				GameObject obj = FindClosestEnemy("ship",30f);
-				if (obj == null) return;
-				if (Vector2.Distance(transform.position, obj.transform.position) > range * 1.5f) {
+				if (obj != null && Vector2.Distance(transform.position, obj.transform.position) > range * 1.5f) {
 					Destroy(target);
 					target = obj;
 				}
@@ -58,8 +57,7 @@ public class EvilEnemy : Enemy {
 			if (Vector2.Distance(transform.position, target.transform.position) < 3f) {
 				
 				Vector3 dir = target.transform.position - transform.position;
-				float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg + 45;
-				
+				float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg + 90;
 				
 				target = new GameObject("dummyTarget");
 				target.transform.position = target.transform.position;

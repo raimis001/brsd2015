@@ -1,15 +1,19 @@
 fileFormatVersion: 2
-guid: f1c0dccd93098804c951f9bae659f762
-timeCreated: 1426606664
+guid: af0142cc856abc1419c9e8ef11d318c2
+timeCreated: 1427017537
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tilesbest_0
-    21300002: tilesbest_1
+    21300000: scrap
+    21300002: bullet
+    21300004: rock1
+    21300006: rock2
+    21300008: rocket0
+    21300010: rocket1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -51,25 +55,65 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: tilesbest_0
+    - name: scrap
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 88
-        height: 103
+        x: 20
+        y: 958
+        width: 44
+        height: 48
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tilesbest_1
+    - name: bullet
       rect:
         serializedVersion: 2
-        x: 101
-        y: 0
-        width: 89
-        height: 103
+        x: 34
+        y: 902
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 945
+        width: 64
+        height: 72
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rock2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 982
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rocket0
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 890
+        width: 109
+        height: 39
+      alignment: 9
+      pivot: {x: .685485423, y: .511393249}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rocket1
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 890
+        width: 106
+        height: 39
+      alignment: 9
+      pivot: {x: .682350874, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
