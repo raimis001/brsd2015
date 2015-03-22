@@ -150,6 +150,12 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	public void Demolish(bool explode, bool delay) {
+		switch (device.id) {
+			case 11:
+				ShipData.mainShip.tractor = null;
+				break;
+		}
+	
 		device = DeviceData.createDevice(0, transform);
 		recalcEnergy();
 			

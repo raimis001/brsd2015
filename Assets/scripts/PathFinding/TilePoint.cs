@@ -61,6 +61,13 @@ public class TilePoint: IHasNeighbours<TilePoint> {
 		return tile.transform.position;
 	}
 	
+	public bool Working() {
+		HexaTile tile = ship.GetTile(index);
+		if (tile == null) return false;
+		
+		return tile.device.energyCurrent >= tile.device.energyNeed;
+	}
+	
 	override public string ToString() {
 		return "TILE: " + index;
 	}

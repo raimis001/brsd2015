@@ -23,8 +23,8 @@ public class Scrap : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Rotate(_rotate);
-		if (ShipData.mainShip.tractor == null) {
-			transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, -_speed * Time.deltaTime * 0.4f);	
+		if (ShipData.mainShip.tractor == null || !ShipData.mainShip.tractor.Working()) {
+			transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, -_speed * Time.deltaTime * 0.2f);	
 			if (Vector3.Distance(transform.position, Vector3.zero) > 20f) {
 				Destroy(gameObject);
 			}	
