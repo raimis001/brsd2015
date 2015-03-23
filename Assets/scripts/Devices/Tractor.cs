@@ -14,6 +14,8 @@ public class Tractor : Device {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!data.isEnergy()) return;
+		
 		if (scrap == null) {
 			GameObject obj = FindClosestScrap("scraps",data.distance);
 			if (obj != null) scrap = obj.GetComponent<Scrap>();

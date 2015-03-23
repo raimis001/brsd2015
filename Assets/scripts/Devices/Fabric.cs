@@ -5,7 +5,7 @@ using System.Collections;
 public class Fabric : Device {
 	
 	float timer = 1;
-	int rate = 1;
+	float rate = 1;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,7 +26,7 @@ public class Fabric : Device {
 			timer -= Time.smoothDeltaTime;
 			if (timer <= 0) {
 				timer = data.time;
-				ShipData.addScraps(-rate);
+				ShipData.addScraps(-(int)rate);
 				ShipData.addMetals(1);
 			}
 		}

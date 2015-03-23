@@ -11,7 +11,7 @@ public class DeviceData {
 	public int price;
 	public int damage;
 	public int hp;
-	public int rate;
+	public float rate;
 	public float time;
 	public float speed;
 	public float distance;
@@ -34,7 +34,7 @@ public class DeviceData {
 		this.time = node["time"].AsFloat;
 		this.distance = node["distance"].AsFloat;
 		this.energy = node["energy"].AsInt;
-		this.rate = node["rate"].AsInt;
+		this.rate = node["rate"].AsFloat;
 		
 	}	
 	public bool isEnergy() {
@@ -53,7 +53,8 @@ public class DeviceData {
 		this.time = data.time;
 		this.distance = data.distance;
 		this.energy = data.energy;
-
+		this.rate = data.rate;
+		
 		if (this.energy < 0)
 			this.energyNeed = -this.energy;
 			else this.energyProduce = this.energy;

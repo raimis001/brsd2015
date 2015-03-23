@@ -5,26 +5,29 @@ public class Shield : Device {
 
 
 	float scale = 1f;
+	Vector3 localScale;
 	
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector3(transform.position.x, transform.position.y, 5f);
 		gameObject.name = "shield";
+		localScale = transform.localScale;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (scale < 1f) {
 			if (data.isEnergy()) {
-				scale += 0.0005f;
+				scale += (data.rate / 1000);
+				Debug.Log("restore shield:" + data.rate.ToString());
 				if (scale >= 1f) scale = 1f;
 			}
-			transform.localScale = Vector3.one * scale;
+			transform.localScale = scale * localScale;
 		}
 	}
 	
 	public void ApplyDamage(float damage) {
-		if (scale > 0) scale -= damage * 0.01f;
+		if (scale > 0) scale -= damage / data.damage;
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
