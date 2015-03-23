@@ -16,7 +16,6 @@ public class Gui : MonoBehaviour {
 	public Image scrapProgress;
 	
 	public Text metalText;
-	
 	public Text knownText;
 	
 	public Text buttonText;
@@ -27,9 +26,9 @@ public class Gui : MonoBehaviour {
 	public GameObject Fabric;
 	
 	public GameObject PanelTile;
+	public GameObject PanelDevice;
 	
 	public Animator endGame;
-	
 	
 	
 	public GameObject cursor;
@@ -53,6 +52,8 @@ public class Gui : MonoBehaviour {
 	public Text selectedDamageText;
 	public Image selectedDamageProgress;
 	
+	public Text selectedDevice;
+	
 	public Text selectedEnergyText;
 	public Text selectedEnergyNeed;
 	public Image selectedEnergyProgress;
@@ -69,6 +70,9 @@ public class Gui : MonoBehaviour {
 		UpdateMetals();
 		
 		cursor.SetActive(false);
+		
+		PanelTile.SetActive(false);
+		PanelDevice.SetActive(false);
 	}
 	
 	
@@ -214,20 +218,23 @@ public class Gui : MonoBehaviour {
 	public void setSelected(TilePoint oldValue) {
 		if (oldValue != null) ShipData.mainShip.SetSelected(oldValue.index, false);
 		
-		PanelTile.SetActive(_selectedTile != null);
 		
+		PanelTile.SetActive(false);
+		PanelDevice.SetActive(false);
 		if (_selectedTile != null) {
+			
 			ShipData.mainShip.SetSelected(_selectedTile.index, true);
 			HexaTile tile = ShipData.mainShip.GetTile(_selectedTile.index);
-			selectedCoord.text = "x:" + tile.key.x.ToString() + " y:" + tile.key.y.ToString();
 			
-			/*
-			selectedDamageText.text = tile.hp.ToString("00");
-			selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
+			if (tile.tileID == 0) {
+				selectedCoord.text = "x:" + tile.key.x.ToString() + " y:" + tile.key.y.ToString();
+				PanelTile.SetActive(true);
+			} else {
+				selectedDevice.text = tile.device.name;
+				PanelDevice.SetActive(true);
+			}
 			
-			selectedEnergyText.text = tile.energy.ToString();
-			*/
-		}
+		} 
 		
 	}
 		
@@ -270,6 +277,7 @@ public class Gui : MonoBehaviour {
 	public void EditorMode(bool value) {
 		editorMode = value;
 		cursor.SetActive(editorMode);
+		selectedTile = null;
 	}	
 	
 	public void swicthEditor() {

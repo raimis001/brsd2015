@@ -21,6 +21,8 @@ public class DeviceData {
 	public int energyProduce;
 	public int energyCurrent = 0;
 	
+	public int level = 1;
+	
 	public DeviceData(int id, JSONNode node, Sprite sprite) {
 		
 		this.id = id;
