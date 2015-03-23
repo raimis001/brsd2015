@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21222260}
   - 95: {fileID: 9598804}
   - 114: {fileID: 11476480}
-  - 50: {fileID: 5096020}
   - 58: {fileID: 5853708}
   m_Layer: 0
   m_Name: Evil
@@ -32,21 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5096020
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181416}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
 --- !u!58 &5853708
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -91,7 +75,6 @@ MonoBehaviour:
   damage: 1
   hp: 10
   delay: 0
-  scraps: 0
   speed: .100000001
 --- !u!212 &21222260
 SpriteRenderer:

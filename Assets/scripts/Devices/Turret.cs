@@ -7,7 +7,6 @@ public class Turret : Device {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log("Turret added " + data.name);
 	}
 	
 	// Update is called once per frame

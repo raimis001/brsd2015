@@ -44,6 +44,7 @@ public class Shot : MonoBehaviour {
 	void Start () {
 		start = transform.position;
 		direction = new Vector3(0.2f,0f,0) * speed;
+		name = "shot";
 	}
 	
 	// Update is called once per frame
@@ -54,46 +55,6 @@ public class Shot : MonoBehaviour {
 			Destroy(gameObject);
 			return;
 		}
-		
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.9f);
-		
-		foreach (Collider2D coll in colliders) {
-			if (coll.gameObject.GetInstanceID() == this.gameObject.GetInstanceID()) continue;
-			if (coll.gameObject.name == "shield") {
-				if (gameObject.tag == "enemyShot") {
-					if (coll.gameObject.tag == "ship") {
-						Device device = coll.gameObject.GetComponent<Device>();						
-						if (device) device.doShot(this);
-						return;
-					}
-				} else {
-					if (coll.gameObject.tag == "enemy") {
-						Device device = coll.gameObject.GetComponent<Device>();						
-						if (device) device.doShot(this);
-						return;
-					}
-				}
-			}
-		}
-		
-		foreach (Collider2D coll in colliders) {
-			if (coll.gameObject.GetInstanceID() == this.gameObject.GetInstanceID()) continue;
-			if (coll.gameObject.name == "tile") {
-				if (gameObject.tag == "enemyShot") {
-					if (coll.gameObject.tag == "ship") {
-						HexaTile tile = coll.gameObject.GetComponent<HexaTile>();
-						if (tile != null) tile.doShot(this);
-						return;
-					}
-				} else {
-					if (coll.gameObject.tag == "enemy") {
-						HexaTile tile = coll.gameObject.GetComponent<HexaTile>();
-						if (tile != null) tile.doShot(this);
-						return;
-					}
-				}
-			}
-		}
-		
 	}
+
 }

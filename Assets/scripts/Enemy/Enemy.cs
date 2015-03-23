@@ -30,10 +30,11 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		speed = data.speed * Random.Range(0.9f, 1.2f);
-		hp = data.hp;
-		damage = data.damage;
-		
+		if (data != null) {
+			speed = data.speed * Random.Range(0.9f, 1.2f);
+			hp = data.hp;
+			damage = data.damage;
+		}
 		if (delay > 0) {
 			GetComponent<SpriteRenderer>().enabled = false;
 		}
@@ -51,39 +52,33 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	void explode() {
+		if (data != null && data.value > 0) {
+			Scrap.create(transform.position, data.value);
+		}
 		Destroy(gameObject);
+	}
+		
+	
+	public void ApplyDamage(float damage) {
+		hp -= damage;
+		if (hp <= 0) {
+			explode();
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-	
-		if (coll.gameObject.tag == "ship") {
-				collideShip(coll.gameObject);
-				return;
+		if (name != "rock" && coll.gameObject.name ==  "rock") {
+			float damage = coll.gameObject.GetComponent<Enemy>().damage;
+			ApplyDamage(damage);
+			Destroy(coll.gameObject);
+			return;
 		}
 		
-		if (coll.gameObject.tag == "shot") {
-			if (coll.gameObject != null) {
-				collideShot(coll.gameObject.GetComponent<Shot>());
-				Destroy(coll.gameObject);
-			}
-		}
-		
-	}
-	protected virtual void collideShip(GameObject collider) {
-		if (collider != null) {
-			collider.SendMessage("ApplyDamage", damage);
-			explode();
-		}
-		
-	}
-	protected virtual void collideShot(Shot shot) {
-		if (shot == null) return;
-		
-		hp -= shot.damage;
-		//Debug.Log(hp + " : " + shot.damage);
-		if (hp <= 0) {
-			Scrap.create(transform.position, data.value);
-			explode();
+		if (coll.gameObject.name == "shot" && coll.gameObject.tag == "shot") {
+			float damage = coll.gameObject.GetComponent<Shot>().damage;
+			ApplyDamage(damage);
+			Destroy(coll.gameObject);
+			return;
 		}
 	}
 	

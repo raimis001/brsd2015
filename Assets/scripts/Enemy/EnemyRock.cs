@@ -9,6 +9,7 @@ public class EnemyRock : Enemy {
 	override protected void Start () {
 		base.Start();
 		_rotate = new Vector3(0,0, Random.Range(-2f, 2f));
+		name = "rock";
 	}
 	
 	// Update is called once per frame

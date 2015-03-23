@@ -11,6 +11,7 @@ public class DeviceData {
 	public int price;
 	public int damage;
 	public int hp;
+	public int rate;
 	public float time;
 	public float speed;
 	public float distance;
@@ -33,8 +34,12 @@ public class DeviceData {
 		this.time = node["time"].AsFloat;
 		this.distance = node["distance"].AsFloat;
 		this.energy = node["energy"].AsInt;
-			
+		this.rate = node["rate"].AsInt;
+		
 	}	
+	public bool isEnergy() {
+		return energyCurrent >= energyNeed;
+	}
 	
 	public DeviceData(DeviceData data) {
 		this.id = data.id;
@@ -70,27 +75,31 @@ public class DeviceData {
 				obj.transform.position = parent.position;
 		} else {
 			obj = HexaShip.Instantiate(Resources.Load("shield"), parent.position, Quaternion.identity) as GameObject; 
+			
 		}
 		
 		obj.transform.parent = parent;
 		
 		data = new DeviceData(data);
 		switch (id) {
-		case 2:
-			obj.AddComponent<Turret>().data = data;
-			break;
-		case 4:
-			obj.AddComponent<Shield>().data = data;
-			break;
-		case 6:
-			obj.AddComponent<Turret>().data = data;
-			break;
-		case 7:
-			obj.AddComponent<Fabric>().data = data;
-			break;
-		case 8:
-			obj.AddComponent<Laboratory>().data = data;
-			break;
+			case 2:
+				obj.AddComponent<Turret>().data = data;
+				break;
+			case 4:
+				obj.GetComponent<Shield>().data = data;
+				break;
+			case 6:
+				obj.AddComponent<Turret>().data = data;
+				break;
+			case 7:
+				obj.AddComponent<Fabric>().data = data;
+				break;
+			case 8:
+				obj.AddComponent<Laboratory>().data = data;
+				break;
+			case 11:
+				obj.AddComponent<Tractor>().data = data;
+				break;
 		}
 		
 		return data;

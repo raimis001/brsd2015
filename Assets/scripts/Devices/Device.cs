@@ -14,11 +14,6 @@ public class Device : MonoBehaviour {
 	void Update () {
 	}
 	
-	public virtual void doShot(Shot collider) {
-		Debug.Log(collider.damage);
-		DestroyImmediate(collider.gameObject);
-	}
-	
 	protected GameObject FindClosestEnemy(string tag, float radius) {
 		GameObject[] gos = GameObject.FindGameObjectsWithTag(tag);
 		GameObject closest = null;

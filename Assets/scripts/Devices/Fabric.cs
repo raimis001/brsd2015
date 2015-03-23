@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//https://github.com/raimis001/brsd2015/wiki/Fabric
 public class Fabric : Device {
-
-	float timer = 0;
-
+	
+	float timer = 1;
+	int rate = 1;
+	
 	// Use this for initialization
 	void Start () {
-		Debug.Log("Start fabric");
-		
-		timer = data.time;
-		
+		if (data != null) {
+			timer = data.time;
+			rate = data.rate;
+		}
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,7 @@ public class Fabric : Device {
 			timer -= Time.smoothDeltaTime;
 			if (timer <= 0) {
 				timer = data.time;
-				ShipData.addScraps(-ShipData.metalPrice);
+				ShipData.addScraps(-rate);
 				ShipData.addMetals(1);
 			}
 		}

@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 3.12080002, y: -2.45611191, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,7 +38,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 133842}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -47,10 +47,12 @@ PolygonCollider2D:
       - {x: .000995278358, y: .964000106}
       - {x: -.552721739, y: .884693027}
       - {x: -1.00117302, y: .677981257}
-      - {x: -1.29993677, y: .369523615}
+      - {x: -1.16516578, y: .542674422}
+      - {x: -1.35978544, y: .240363121}
       - {x: -1.41285753, y: .00034930557}
-      - {x: -1.31667995, y: -.330870181}
-      - {x: -.986742139, y: -.674502611}
+      - {x: -1.31677735, y: -.29588604}
+      - {x: -1.1384213, y: -.55437088}
+      - {x: -.859789371, y: -.753419161}
       - {x: -.55433023, y: -.879701495}
       - {x: -.00310924649, y: -.957002819}
       - {x: .518841147, y: -.892029881}

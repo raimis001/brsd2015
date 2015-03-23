@@ -9,6 +9,7 @@ TagManager:
   - shot
   - enemyShot
   - shield
+  - scraps
   layers:
   - Default
   - TransparentFX

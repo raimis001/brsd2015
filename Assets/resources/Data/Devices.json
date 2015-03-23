@@ -84,7 +84,8 @@
   		"speed":1,
   		"time":0.75,
   		"distance":5,
-  		"energy":-10
+  		"energy":-10,
+  		"rate":5
   	},
   	"8": {
   		"atlas":"devices_3",
@@ -125,7 +126,7 @@
   		"damage":100,
   		"speed":1,
   		"time":0.1,
-  		"distance":5,
+  		"distance":30,
   		"energy":-10
   	}
   }
