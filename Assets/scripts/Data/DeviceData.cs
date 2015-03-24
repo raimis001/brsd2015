@@ -63,45 +63,47 @@ public class DeviceData {
 						
 	}
 	
+	public GameObject gameObject;
+	
 	public static DeviceData createDevice(int id, Transform parent) {
 		DeviceData data = ShipData.devices[id];
 		if (data.id == 0) return new DeviceData(data);
-			
-		GameObject obj;
-	
+		Sprite sprite = data.sprite;
+		
+		data = new DeviceData(data);
+		
 		if (id != 4) {
-			obj = new GameObject("device");
+			data.gameObject = new GameObject("device");
 			
-			SpriteRenderer sr = obj.AddComponent<SpriteRenderer>();
-				sr.sprite = data.sprite;
+			SpriteRenderer sr = data.gameObject.AddComponent<SpriteRenderer>();
+				sr.sprite = sprite;
 				sr.sortingLayerName = "devices";
-				obj.transform.position = parent.position;
+			data.gameObject.transform.position = parent.position;
 		} else {
-			obj = HexaShip.Instantiate(Resources.Load("shield"), parent.position, Quaternion.identity) as GameObject; 
+			data.gameObject = HexaShip.Instantiate(Resources.Load("shield"), parent.position, Quaternion.identity) as GameObject; 
 			
 		}
 		
-		obj.transform.parent = parent;
+		data.gameObject.transform.parent = parent;
 		
-		data = new DeviceData(data);
 		switch (id) {
 			case 2:
-				obj.AddComponent<Turret>().data = data;
+				data.gameObject.AddComponent<Turret>().data = data;
 				break;
 			case 4:
-				obj.GetComponent<Shield>().data = data;
+				data.gameObject.GetComponent<Shield>().data = data;
 				break;
 			case 6:
-				obj.AddComponent<Turret>().data = data;
+				data.gameObject.AddComponent<Turret>().data = data;
 				break;
 			case 7:
-				obj.AddComponent<Fabric>().data = data;
+				data.gameObject.AddComponent<Fabric>().data = data;
 				break;
 			case 8:
-				obj.AddComponent<Laboratory>().data = data;
+				data.gameObject.AddComponent<Laboratory>().data = data;
 				break;
 			case 11:
-				obj.AddComponent<Tractor>().data = data;
+				data.gameObject.AddComponent<Tractor>().data = data;
 				break;
 		}
 		

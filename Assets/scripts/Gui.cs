@@ -187,22 +187,6 @@ public class Gui : MonoBehaviour {
 		selectedTile = key;
 	}
 	
-	public void deleteTile() {
-		if (selectedTile == null) return;
-
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
-		if (tile.device.id == 1) {
-			AddMessage("Cannot delete pilot cabine");
-			return;
-		}
-		
-		ShipData.addMetals(ShipData.devices[tile.device.id].price);
-		AddMessage("Return metal:" + ShipData.devices[tile.device.id].price.ToString());
-						
-		selectedTile.ship.DeleteTile(selectedTile.index);
-		selectedTile = null;
-		
-	}
 	
 	public void createDevice(int device) {
 		if (selectedTile == null) return;
@@ -213,6 +197,10 @@ public class Gui : MonoBehaviour {
 		if (selectedTile.ship.CreateDevice(selectedTile.index, device)) {
 			ShipData.addMetals(-ShipData.devices[device].price);
 		}
+		
+		//selectedTile = null;
+		selectedTile = selectedTile;
+		
 	}
 		
 	public void setSelected(TilePoint oldValue) {
@@ -288,6 +276,41 @@ public class Gui : MonoBehaviour {
 		if (tag == 0) 
 			ShipData.prevLevel();
 			else ShipData.nextLevel();
+	}
+	
+	public void deleteTile() {
+		if (selectedTile == null) return;
+		
+		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		if (tile.device.id == 1) {
+			AddMessage("Cannot delete pilot cabine");
+			return;
+		}
+		
+		ShipData.addMetals(ShipData.devices[tile.device.id].price);
+		AddMessage("Return metal:" + ShipData.devices[tile.device.id].price.ToString());
+		
+		selectedTile.ship.DeleteTile(selectedTile.index);
+		selectedTile = null;
+		
+	}
+	public void deleteDevice() {
+		if (selectedTile == null) return;
+		
+		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		if (tile.device.id == 1) {
+			AddMessage("Cannot delete pilot cabine");
+			return;
+		}
+		
+		int price = ShipData.devices[tile.device.id].price;
+		
+		if (selectedTile.ship.DeleteDevice(selectedTile.index)) {
+			ShipData.addMetals(price);
+		}
+		
+		selectedTile = null;
+		selectedTile = tile.key;
 	}
 	
 }
