@@ -10,9 +10,9 @@
   		"atlas":"devices_13",
   		"name":"Lāzers (L)", "price":60, "hp":50,	"damage":50, "speed":0.8,	"time":1.5,	"distance":10, "energy":-30,
       "upgrade":{
-  			"damage":{"price":30,"value":50, "energy":0},
-  			"time":{"price":30,"value":0, "energy":0},
-  			"distance":{"price":30,"value":0, "energy":0}
+  			"damage":{"price":50,"value":50, "energy":0},
+  			"time":{"price":40000,"value":-25, "energy":0},
+  			"distance":{"price":50,"value":25, "energy":0}
   		}
   	},
   	"3": {
@@ -26,12 +26,24 @@
   		"name":"Raķešmetējs (R)",	"price":80,	"hp":50,	"damage":100,	"speed":1,	"time":1,	"distance":20, "energy":-10},
   	"7": {
   		"atlas":"devices_4",
-  		"name":"Metāla pārstrādātājs (F)",	"price":60,	"hp":50,	"damage":100,	"speed":0,	"time":1,	"distance":5,	"energy":-30,	"rate":4},
+  		"name":"Metāla pārstrādātājs (F)",	"price":60,	"hp":50,	"damage":100,	"speed":0,	"time":1,	"distance":5,	"energy":-30,	"rate":4
+  		"upgrade":{
+  			"rate":{"price":50,"value":-25, "energy":0},
+  			"time":{"price":40000,"value":-25, "energy":0},
+  			"distance":{"price":50,"value":50, "energy":0}
+  		}
+  		},
   	"8": {
   		"atlas":"devices_3",
   		"name":"Pētniecības bloks (K)",	"price":60,	"hp":50,	"damage":100,	"speed":1,	"time":1,	"distance":5,	"energy":-30},
   	"11": {
   		"atlas":"devices_6",
-  		"name":"Savācējstars (T)",	"price":60,	"hp":50,	"damage":100,	"speed":0.6,	"time":0.1,	"distance":15,	"energy":-30}
+  		"name":"Savācējstars (T)",	"price":60,	"hp":50,	"damage":100,	"speed":0.6,	"time":0.1,	"distance":15,	"energy":-30,
+  		 "upgrade":{
+  			"speed":{"price":50,"value":50, "energy":0},
+  			"time":{"price":40000,"value":-25, "energy":0},
+  			"distance":{"price":50,"value":50, "energy":0}
+  		}
+  		}
   }
 }

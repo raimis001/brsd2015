@@ -1,6 +1,6 @@
 {
  "ship": {
-	"1": {x:5,y:2, device:{id:1, damage:2}}
+	"1": {x:0,y:0, device:{id:1, damage:2}}
 	},
 	"properties": {
 		"scraps":0,
