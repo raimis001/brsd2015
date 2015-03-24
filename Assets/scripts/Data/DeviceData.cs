@@ -137,30 +137,27 @@ public class DeviceData {
 		UpgradeData data = upgrades[param];
 		
 		if (ShipData.knowledge < data.price) return false;
-		if (data.value == 0) return false;
 			
 		ShipData.addKnowledge(-data.price);
 		data.level ++;
 		    
-		if (data.energy != 0) 
-			energyNeed = (int)((float)energyNeed * (1f + (1f / (float)data.energy)));
-		    
+		energyNeed = (int)((float)energyNeed * (1f + (float)data.energy / 100f));
 		    
 		switch (param) {
 			case "damage":
-			 	damage = (int)((float)damage * (1f + (1f / (float)data.value)));
+				damage = (int)((float)damage * (1f + (float)data.value/ 100f));
 				break;
 			case "time":
-				time = ((float)time * (1f + (1f / (float)data.value)));
+				time = ((float)time * (1f + (float)data.value/ 100f));
 				break;
 			case "distance":
-				distance = ((float)distance * (1f + (1f / (float)data.value)));
+				distance = ((float)distance * (1f + (float)data.value/ 100f));
 				break;
 			case "speed":
-				speed = ((float)speed * (1f + (1f / (float)data.value)));
+				speed = ((float)speed * (1f + (float)data.value/ 100f));
 				break;
 			case "rate":
-				rate = ((float)rate * (1f + (1f / (float)data.value)));
+				rate = ((float)rate * (1f + (1f / (float)data.value) * 100f));
 				break;
 		}
 		

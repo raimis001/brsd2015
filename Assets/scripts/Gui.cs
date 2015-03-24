@@ -235,7 +235,7 @@ public class Gui : MonoBehaviour {
 				
 												
 				for (int i = 0; i < upgrades.Length; i++) {
-					Debug.Log(upgrades[i].name);
+					//Debug.Log(upgrades[i].name);
 					if (tile.device.upgrades.ContainsKey(upgrades[i].name)) {
 						upgrades[i].gameObject.SetActive(true);
 					} else {
@@ -338,6 +338,8 @@ public class Gui : MonoBehaviour {
 		
 		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
 		tile.ugradeDevice(param);
+		
+		ShipData.mainShip.RecalcEnergy();
 		
 		selectedTile = selectedTile;
 	}
