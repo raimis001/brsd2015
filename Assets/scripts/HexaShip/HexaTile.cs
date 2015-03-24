@@ -74,6 +74,14 @@ public class HexaTile : MonoBehaviour {
 		
 		return true;
 	}
+	public bool deleteDevice() {
+		if (device == null || device.id == 0) return false;
+		
+		Destroy(device.gameObject);
+		device = null;
+		createDevice(0);
+		return true;
+	}
 	
 	public bool isGenerator() {
 		if (tileID == 1) return true;
@@ -130,6 +138,16 @@ public class HexaTile : MonoBehaviour {
 			show(3);
 		} 
 	}
+	public bool Reconnect(string index) {
+		if (key.zeroPath == null) return false;
+		foreach (TilePoint tile in key.AllNeighbours) {
+			if (tile.index == index) {
+				key.getNeibors();
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public void Demolish(bool explode, bool delay) {
 		switch (device.id) {
@@ -143,16 +161,6 @@ public class HexaTile : MonoBehaviour {
     Destroy(gameObject);
 	}
 	
-	public bool Reconnect(string index) {
-		if (key.zeroPath == null) return false;
-		foreach (TilePoint tile in key.AllNeighbours) {
-			if (tile.index == index) {
-				key.getNeibors();
-				return true;
-			}
-		}
-		return false;
-	}
 	
 	public void ApplyDamage(float damage) {
 		

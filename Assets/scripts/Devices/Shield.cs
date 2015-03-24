@@ -19,7 +19,6 @@ public class Shield : Device {
 		if (scale < 1f) {
 			if (data.isEnergy()) {
 				scale += (data.rate / 1000);
-				Debug.Log("restore shield:" + data.rate.ToString());
 				if (scale >= 1f) scale = 1f;
 			}
 			transform.localScale = scale * localScale;

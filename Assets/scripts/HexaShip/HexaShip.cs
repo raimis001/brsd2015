@@ -122,8 +122,9 @@ public class HexaShip : MonoBehaviour {
 	}
 	
 	public void DeleteTile(string index, bool destroy = false) {
+		HexaTile tile = tileSet[index];
 		
-		HexaTile tile = tileSet[index]; 
+		
 		tileSet.Remove(index);
     tile.Demolish(destroy, false);
 		
@@ -150,6 +151,14 @@ public class HexaShip : MonoBehaviour {
 			tileSet.Remove(idx);
 		}
 		RecalcEnergy();
+  }
+  
+	public bool DeleteDevice(string index) {
+		HexaTile tile = tileSet[index];
+		bool result = tile.deleteDevice();
+		if (result) RecalcEnergy();
+		
+		return result;
   }
   
 	
