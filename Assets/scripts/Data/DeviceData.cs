@@ -146,7 +146,7 @@ public class DeviceData {
 		    
 		switch (param) {
 			case "damage":
-				damage += (int)((float)mainDevice.damage * ((float)data.value/ 100f));
+				damage = (int)(damage + (float)mainDevice.damage * ((float)data.value/ 100f));
 				break;
 			case "time":
 				time += ((float)mainDevice.time * ((float)data.value/ 100f));
@@ -159,6 +159,13 @@ public class DeviceData {
 				break;
 			case "rate":
 				rate += ((float)mainDevice.rate * ((float)data.value/ 100f));
+				break;
+			case "energy":
+				energy = (int)(energy + (float)mainDevice.energy * ((float)data.value/ 100f));
+				if (this.energy < 0)
+					this.energyNeed = -this.energy;
+					else this.energyProduce = this.energy;
+			
 				break;
 		}
 		

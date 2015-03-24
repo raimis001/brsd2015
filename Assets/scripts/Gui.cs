@@ -344,4 +344,23 @@ public class Gui : MonoBehaviour {
 		selectedTile = selectedTile;
 	}
 	
+	public void repairTile() {
+		if (selectedTile == null) return;
+		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		if (tile != null || tile.device.hpCurrent >= tile.device.hpMax) return;
+		
+		int price = (int)((float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		
+		if (ShipData.metals < price) {
+			AddMessage("Pietrukst metala");
+			return;
+		}
+		
+		ShipData.addMetals(-price);
+		tile.device.hpCurrent = tile.device.hpMax;
+		
+		selectedTile = selectedTile;
+		
+	}
+	
 }
