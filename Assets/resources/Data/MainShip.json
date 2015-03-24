@@ -5,8 +5,8 @@
 	"properties": {
 		"scraps":0,
 		"scrapInventory":5000,
-		"metals":500,
-		"metalPrice":5,
+		"metals":400,
+		"metalPrice":6,
 		"knowledge":0
 	}
 }

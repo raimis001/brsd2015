@@ -1,45 +1,281 @@
 {
 "levels":{
 	"1": {
-		"time":120,
-		"baseName":"Presbiterania",
+		"time":130,
+		"baseName":"Centauri sektors",
 		"events": {
 			"5": {
-				 "rock":{"count":4, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
+				 "rock":{"count":4, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 },
 			"20": {
-				 "rock":{"count":6, "angle":20, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
+				 "rock":{"count":6, "angle":20, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 }, 
 			"40": {
-         "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
+         "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 }, 
 			"60": {
-				 "rock":{"count":10, "angle":260, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
+				 "rock":{"count":10, "angle":260, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 }
 		}
 	},
 	"2": {
-		"time":120,
-		"baseName":"Katolinamia",
+		"time":150,
+		"baseName":"Sirius sektors",
 		"events": {
 			"5": {
-				 "rock":{"count":6, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-				 "rock":{"count":6, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
+				 "rock":{"count":6, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":6, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 },
 			"30": {
-				 "rock":{"count":8, "angle":240, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-				 "rock":{"count":8, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
-			 }, 
+				 "rock":{"count":8, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":8, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
 			"70": {
-         "rock":{"count":7, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-         "rock":{"count":7, "angle":70, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-         "rock":{"count":7, "angle":140, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
+         "rock":{"count":7, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":7, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 }, 
+			"72": {
+         "rock":{"count":7, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
 			"95": {
-				 "rock":{"count":10, "angle":15, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-				 "rock":{"count":10, "angle":40, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-				 "rock":{"count":10, "angle":75, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
-				 "rock":{"count":10, "angle":260, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
+				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":140, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }
+		}
+	},
+	"3": {
+		"time":170,
+		"baseName":"Eridani sektors",
+		"events": {
+			"5": {
+				 "rock":{"count":8, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":8, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"7": {
+				 "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"30": {
+				 "rock":{"count":10, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":10, "angle":150, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"32": {
+				 "rock":{"count":10, "angle":250, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"70": {
+         "rock":{"count":12, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":12, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }, 
+			"72": {
+         "rock":{"count":12, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"95": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"98": {
+				 "rock":{"count":10, "angle":120, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }
+		}
+	},
+	"4": {
+		"time":180,
+		"baseName":"Vega sektors",
+		"events": {
+			"5": {
+				 "rock":{"count":8, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":8, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"7": {
+				 "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"30": {
+				 "rock":{"count":10, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":10, "angle":150, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"32": {
+				 "rock":{"count":10, "angle":250, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"70": {
+         "rock":{"count":12, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":12, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }, 
+			"72": {
+         "rock":{"count":12, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"95": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"98": {
+				 "rock":{"count":10, "angle":120, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }
+		}
+	},
+	"5": {
+		"time":180,
+		"baseName":"Herculis sektors",
+		"events": {
+			"5": {
+				 "rock":{"count":8, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":8, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"7": {
+				 "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"30": {
+				 "rock":{"count":10, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":10, "angle":150, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"32": {
+				 "rock":{"count":10, "angle":250, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"70": {
+         "rock":{"count":12, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":12, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }, 
+			"72": {
+         "rock":{"count":12, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"95": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"98": {
+				 "rock":{"count":10, "angle":120, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }
+		}
+	},
+	"6": {
+		"time":180,
+		"baseName":"Pegasi sektors",
+		"events": {
+			"5": {
+				 "rock":{"count":8, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":8, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"7": {
+				 "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"30": {
+				 "rock":{"count":10, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":10, "angle":150, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"32": {
+				 "rock":{"count":10, "angle":250, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"70": {
+         "rock":{"count":12, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":12, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }, 
+			"72": {
+         "rock":{"count":12, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"95": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"98": {
+				 "rock":{"count":10, "angle":120, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }
+		}
+	},
+	"7": {
+		"time":240,
+		"baseName":"Aldemarin sektors",
+		"events": {
+			"5": {
+				 "rock":{"count":8, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"6": {
+				 "rock":{"count":8, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"7": {
+				 "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"30": {
+				 "rock":{"count":10, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"31": {
+				 "rock":{"count":10, "angle":150, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"32": {
+				 "rock":{"count":10, "angle":250, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"70": {
+         "rock":{"count":12, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"71": {
+         "rock":{"count":12, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 }, 
+			"72": {
+         "rock":{"count":12, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },  
+			"95": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"96": {
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"97": {
+				 "rock":{"count":10, "angle":60, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
+			 },
+			"98": {
+				 "rock":{"count":10, "angle":120, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":20}
 			 }
 		}
 	}
