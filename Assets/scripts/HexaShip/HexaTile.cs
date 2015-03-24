@@ -12,8 +12,8 @@ public class HexaTile : MonoBehaviour {
 	//public int energy = 0;
 	//public int energyNeed = 0;
 
-	public float hp = 1f;
-	public float hpMax = 1f;
+	//public float hp = 1f;
+	//public float hpMax = 1f;
 	
 	
 	public DeviceData device = null;
@@ -61,7 +61,6 @@ public class HexaTile : MonoBehaviour {
 		tileID = deviceID;
 
 		device = DeviceData.createDevice(tileID, transform);
-		hp = hpMax = device.hp;
 		
 		switch (tileID) {
 			case 1:
@@ -82,6 +81,13 @@ public class HexaTile : MonoBehaviour {
 		createDevice(0);
 		return true;
 	}
+	
+	public bool ugradeDevice(string param) {
+		if (device == null || device.id == 0) return false;
+		
+		return device.upgrade(param);
+	}
+	
 	
 	public bool isGenerator() {
 		if (tileID == 1) return true;
@@ -164,14 +170,14 @@ public class HexaTile : MonoBehaviour {
 	
 	public void ApplyDamage(float damage) {
 		
-		hp -= damage;
-		if (hp <= 0 && key != null) {
+		device.hpCurrent -= (int)damage;
+		if (device.hpCurrent <= 0 && key != null) {
 			key.ship.DeleteTile(key.index,true);
 			return;
 		}
 		
 		int cnt = ShipData.tiles.Count - 1;
-		int sprite = (int)(cnt - (hp / hpMax * cnt));
+		int sprite = (int)(cnt - (device.hpCurrent / device.hpMax * cnt));
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		sr.sprite = ShipData.tiles[sprite];
 	}

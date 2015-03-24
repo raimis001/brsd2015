@@ -31,7 +31,12 @@
   		"speed":0.8,
   		"time":1.5,
   		"distance":10,
-  		"energy":-30
+  		"energy":-30,
+  		"upgrade":{
+  			"damage":{"price":30,"value":10, "energy":5},
+  			"time":{"price":30,"value":-10, "energy":5},
+  			"distance":{"price":30,"value":10, "energy":5},
+  		}
   	},
   	"3": {
   		"atlas":"devices_12",

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleJSON;
+using System.Collections.Generic;
 
 public class DeviceData {
 	
@@ -10,11 +11,14 @@ public class DeviceData {
 	
 	public int price;
 	public int damage;
-	public int hp;
 	public float rate;
 	public float time;
 	public float speed;
 	public float distance;
+
+	public int hp;
+	public int hpCurrent;
+	public int hpMax;
 
 	public int energy;
 	public int energyNeed;
@@ -22,6 +26,8 @@ public class DeviceData {
 	public int energyCurrent = 0;
 	
 	public int level = 1;
+	
+	public Dictionary<string,UpgradeData> upgrades = new Dictionary<string, UpgradeData>();
 	
 	public DeviceData(int id, JSONNode node, Sprite sprite) {
 		
@@ -37,7 +43,20 @@ public class DeviceData {
 		this.distance = node["distance"].AsFloat;
 		this.energy = node["energy"].AsInt;
 		this.rate = node["rate"].AsFloat;
+
+		if (node["upgrade"] != null) {
+			for (int i = 0; i < node["upgrade"].Count; i++) {
+				string n = node["upgrade"].AsObject.keyAt(i);
+				upgrades.Add(n, new UpgradeData(
+					node["upgrade"][i]["price"].AsInt,
+					node["upgrade"][i]["value"].AsInt,
+					node["upgrade"][i]["energy"].AsInt
+					));
+			}
+		}
 		
+		hpCurrent = hpMax = hp;
+						
 	}	
 	public bool isEnergy() {
 		return energyCurrent >= energyNeed;
@@ -56,11 +75,13 @@ public class DeviceData {
 		this.distance = data.distance;
 		this.energy = data.energy;
 		this.rate = data.rate;
+		this.upgrades = data.upgrades;
 		
 		if (this.energy < 0)
 			this.energyNeed = -this.energy;
 			else this.energyProduce = this.energy;
-						
+
+		hpCurrent = hpMax = hp;
 	}
 	
 	public GameObject gameObject;
@@ -108,6 +129,32 @@ public class DeviceData {
 		}
 		
 		return data;
+	}
+	
+	public bool upgrade(string param) {
+		if (!upgrades.ContainsKey(param)) return false;
+		
+		UpgradeData data = upgrades[param];
+		
+		if (ShipData.knowledge < data.price) return false;
+		
+		ShipData.addKnowledge(-data.price);
+		data.level ++;
+		    
+		switch (param) {
+			case "damage":
+				damage = (int)((float)damage * (1f + (1f / (float)data.value)));
+				break;
+			case "time":
+				time = ((float)time * (1f + (1f / (float)data.value)));
+				break;
+			case "distance":
+				distance = (int)((float)distance * (1f + (1f / (float)data.value)));
+				break;
+		}
+		
+		return true;
+		
 	}
 	
 }
