@@ -49,6 +49,10 @@ public class Enemy : MonoBehaviour {
 				GetComponent<SpriteRenderer>().enabled = true;
 			}
 		}
+		
+		if (Gui.gameMode == 0) {
+			Destroy(gameObject);
+		}
 	}
 	
 	void explode() {
