@@ -10,7 +10,7 @@
   		"atlas":"devices_13",
   		"name":"Lāzers (L)", "price":60, "hp":50,	"damage":50, "speed":0.8,	"time":1.5,	"distance":10, "energy":-30,
       "upgrade":{
-  			"damage":{"price":100,"value":50, "energy":0},
+  			"damage":{"price":30,"value":50, "energy":0},
   			"time":{"price":30,"value":0, "energy":0},
   			"distance":{"price":30,"value":0, "energy":0}
   		}
