@@ -55,6 +55,8 @@ public class Gui : MonoBehaviour {
 	public Text deviceDamage;
 	public Text deviceTime;
 	public Text deviceDistance;
+	public Text deviceSpeed;
+	public Text deviceRate;
 	
 	public Text selectedDevice;
 	
@@ -228,6 +230,8 @@ public class Gui : MonoBehaviour {
 				deviceDamage.text = "dmg: " + tile.device.damage.ToString(); 
 				deviceTime.text = "crg: " + tile.device.time.ToString("0.00"); 
 				deviceDistance.text = "dist: " + tile.device.distance.ToString(); 
+				deviceSpeed.text = "spd: " + tile.device.speed.ToString("0.00"); 
+				deviceRate.text = "rate: " + tile.device.rate.ToString("0.00"); 
 				
 												
 				for (int i = 0; i < upgrades.Length; i++) {
@@ -334,7 +338,7 @@ public class Gui : MonoBehaviour {
 		
 		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
 		tile.ugradeDevice(param);
-		Debug.Log("Upgade " + param);
+		
 		selectedTile = selectedTile;
 	}
 	

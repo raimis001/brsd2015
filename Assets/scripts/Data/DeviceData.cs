@@ -154,7 +154,13 @@ public class DeviceData {
 				time = ((float)time * (1f + (1f / (float)data.value)));
 				break;
 			case "distance":
-				distance = (int)((float)distance * (1f + (1f / (float)data.value)));
+				distance = ((float)distance * (1f + (1f / (float)data.value)));
+				break;
+			case "speed":
+				speed = ((float)speed * (1f + (1f / (float)data.value)));
+				break;
+			case "rate":
+				rate = ((float)rate * (1f + (1f / (float)data.value)));
 				break;
 		}
 		
