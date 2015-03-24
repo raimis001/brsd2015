@@ -17,7 +17,7 @@ public class Fabric : Device {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Gui.gameMode != 1 || data.energyCurrent < data.energyNeed || ShipData.scraps < ShipData.metalPrice) {
+		if (Gui.gameMode != 1 || data.energyCurrent < data.energyNeed || ShipData.scraps < rate) {
 			timer = data.time;
 			return;
 		}

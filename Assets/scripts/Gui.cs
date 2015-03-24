@@ -51,12 +51,18 @@ public class Gui : MonoBehaviour {
 	public Text selectedCoord;
 	public Text selectedDamageText;
 	public Image selectedDamageProgress;
+
+	public Text deviceDamage;
+	public Text deviceTime;
+	public Text deviceDistance;
 	
 	public Text selectedDevice;
 	
 	public Text selectedEnergyText;
 	public Text selectedEnergyNeed;
 	public Image selectedEnergyProgress;
+	
+	public Button[] upgrades;
 	
 	public static int gameMode = 0; //0 - in planet, 1 - in fly, 2 - fly pause
 	
@@ -123,8 +129,8 @@ public class Gui : MonoBehaviour {
 		if (selectedTile != null) {
 			HexaTile tile = ShipData.mainShip.GetTile(selectedTile.index);
 			if (tile != null) {
-				selectedDamageText.text = tile.hp.ToString("00");
-				selectedDamageProgress.fillAmount = tile.hp / tile.hpMax;
+				selectedDamageText.text = tile.device.hpCurrent.ToString("00");
+				selectedDamageProgress.fillAmount = tile.device.hpCurrent / tile.device.hpMax;
 				
 				selectedEnergyText.text = Mathf.Abs(tile.device.energyCurrent).ToString();
 				selectedEnergyNeed.text = Mathf.Abs(tile.device.energyNeed).ToString();
@@ -219,11 +225,23 @@ public class Gui : MonoBehaviour {
 				PanelTile.SetActive(true);
 			} else {
 				selectedDevice.text = tile.device.name;
+				deviceDamage.text = "dmg: " + tile.device.damage.ToString(); 
+				deviceTime.text = "crg: " + tile.device.time.ToString("0.00"); 
+				deviceDistance.text = "dist: " + tile.device.distance.ToString(); 
+				
+												
+				for (int i = 0; i < upgrades.Length; i++) {
+					Debug.Log(upgrades[i].name);
+					if (tile.device.upgrades.ContainsKey(upgrades[i].name)) {
+						upgrades[i].gameObject.SetActive(true);
+					} else {
+						upgrades[i].gameObject.SetActive(false);
+					}
+				}
 				PanelDevice.SetActive(true);
+				
 			}
-			
 		} 
-		
 	}
 		
 	/*GUI buttons*/
@@ -259,7 +277,6 @@ public class Gui : MonoBehaviour {
 		
 		ShipData.addScraps(-scrap * ShipData.metalPrice);
 		ShipData.addMetals(scrap);
-		
 	}
 
 	public void EditorMode(bool value) {
@@ -311,6 +328,14 @@ public class Gui : MonoBehaviour {
 		
 		selectedTile = null;
 		selectedTile = tile.key;
+	}
+	public void upgradeDevice(string param) {
+		if (selectedTile == null) return;
+		
+		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		tile.ugradeDevice(param);
+		Debug.Log("Upgade " + param);
+		selectedTile = selectedTile;
 	}
 	
 }
