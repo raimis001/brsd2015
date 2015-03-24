@@ -1,51 +1,46 @@
 {
 "levels":{
 	"1": {
-		"time":100,
+		"time":120,
 		"baseName":"Presbiterania",
 		"events": {
-			"300": {
-				 "medusa":{"count":1, "angle":90, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":15, "value":50, "charge":0.5, "range":8, "velocity":2},
-			},
 			"5": {
-				 "evil":{"count":1, "angle":0, "speed":0.5, "damage":1, "hp":10, "delay":0.3, "distance":10, "value":50, "charge":0.5, "range":8, "velocity":2},
-			},
-			"7": {
-				 "rock":{"count":4, "angle":90, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":4, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
 			 },
-			"340": {
-				 "smallMeteor":{"count":5, "angle":20, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+			"20": {
+				 "rock":{"count":6, "angle":20, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
 			 }, 
-			"540": {
-          "smallMeteor":{"count":8, "angle":120, "speed":0.5, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+			"40": {
+         "rock":{"count":8, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
 			 }, 
-			"740": {
-				 "bigMeteor":{"count":2, "angle":70, "speed":0.3, "damage":20, "hp":300, "delay":0.3, "distance":20, "value":200},
+			"60": {
+				 "rock":{"count":10, "angle":260, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":30, "value":50}
 			 }
 		}
 	},
 	"2": {
-		"time":100,
+		"time":120,
 		"baseName":"Katolinamia",
 		"events": {
-			"10": {
-				 "smallMeteor":{"count":10, "angle":10, "speed":1, "damage":6, "hp":30, "delay":0.3, "distance":10, "value":5},
+			"5": {
+				 "rock":{"count":6, "angle":30, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":6, "angle":110, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
 			 },
-			"20": {
-				 "smallMeteor":{"count":10, "angle":180, "speed":1, "damage":1, "hp":10, "delay":0.3, "distance":15, "value":10},
-				 "smallShip":{"count":2, x:100,y:100}
-			 }, 
 			"30": {
-				 "smallMeteor":{"count":10, "angle":10, "speed":1, "damage":1, "hp":10, "delay":0.3, "distance":10, "value":10},
-				 "smallShip":{"count":2, x:100,y:100}
+				 "rock":{"count":8, "angle":240, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":8, "angle":50, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
 			 }, 
-			"50": {
-				 "fastMeteor":{"count":10, "angle":10, "speed":1, "damage":1, "hp":10, "delay":0.3, "distance":10, "value":10},
-			 },
 			"70": {
-				 "bigMeteor":{"count":10, "angle":10, "speed":1, "damage":1, "hp":10, "delay":0.3, "distance":10, "value":10},
-				 "smallShip":{"count":2, x:100,y:100}
-			 } 	
+         "rock":{"count":7, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+         "rock":{"count":7, "angle":70, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+         "rock":{"count":7, "angle":140, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
+			 }, 
+			"95": {
+				 "rock":{"count":10, "angle":15, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":10, "angle":40, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":10, "angle":75, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50},
+				 "rock":{"count":10, "angle":260, "speed":0.7, "damage":5, "hp":100, "delay":0.3, "distance":20, "value":50}
+			 }
 		}
 	}
 }

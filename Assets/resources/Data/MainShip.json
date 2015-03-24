@@ -1,17 +1,12 @@
 {
  "ship": {
-	"1": {x:5,y:2, device:{id:1, damage:2}},
-	"2": {x:4,y:2, device:{id:4, damage:2}},
-	"3": {x:4,y:1, device:{id:0, damage:2}},
-	"4": {x:3,y:2, device:{id:0, damage:2}},
-	"5": {x:3,y:3, device:{id:3, damage:2}},
-	
+	"1": {x:5,y:2, device:{id:1, damage:2}}
 	},
 	"properties": {
 		"scraps":0,
-		"scrapInventory":50,
-		"metals":2000,
+		"scrapInventory":5000,
+		"metals":500,
 		"metalPrice":5,
-		"knowledge":10
+		"knowledge":0
 	}
 }
