@@ -12,6 +12,15 @@ public class Enemy : MonoBehaviour {
 	
 	public static void create(string type, SpawnData data) {
 		
+		if (ShipData.enemyShips.ContainsKey(type)) {
+			Vector3 pos = new Vector3(Mathf.Sin(data.angle),Mathf.Cos(data.angle), 0) * data.distance ;
+			HexaShip enemy = HexaShip.createShip(ShipData.enemyShips[type].ship,pos);
+				enemy.speed = data.speed;
+				enemy.type = "enemy";
+			
+			return;
+		}
+		
 		GameObject prefab = Resources.Load(type) as GameObject;
 		if (prefab == null) return;	
 			

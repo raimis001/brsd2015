@@ -8,7 +8,8 @@ public class Fabric : Device {
 	float rate = 1;
 	
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		if (data != null) {
 			timer = data.time;
 			rate = data.rate;
@@ -16,7 +17,8 @@ public class Fabric : Device {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		if (Gui.gameMode != 1 || data.energyCurrent < data.energyNeed || ShipData.scraps < rate) {
 			timer = data.time;
 			return;

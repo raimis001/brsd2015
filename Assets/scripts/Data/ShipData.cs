@@ -6,6 +6,7 @@ public class ShipData  {
 	public static Dictionary<TilePoint, int> ship = new Dictionary<TilePoint, int>();
 	public static Dictionary<int, DeviceData> devices = new Dictionary<int, DeviceData>();
 	public static Dictionary<int, LevelData> levels = new Dictionary<int, LevelData>();
+	public static Dictionary<string, EnemyData> enemyShips = new Dictionary<string, EnemyData>();
 	
 	public static List<Sprite> tiles = new List<Sprite>();
 	
@@ -45,8 +46,7 @@ public class ShipData  {
 				tiles.Add(sprites[i]);
 			}
 		}		
-		
-		
+				
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
 		for (int i = 0; i < json.Count; i++) {
 			int id = int.Parse(json.AsObject.keyAt(i));
@@ -75,6 +75,11 @@ public class ShipData  {
 		levelCount = levels.Count;
 		
 		tileResource = Resources.Load ("Tile") as GameObject;
+		
+		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Enemies").text)["enemies"];
+		for (int i = 0; i < json.Count; i++) {
+			enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
+		}
 		
 		mainShip = HexaShip.createShip(ship,Vector3.zero);
 		

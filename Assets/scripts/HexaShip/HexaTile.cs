@@ -9,13 +9,6 @@ public class HexaTile : MonoBehaviour {
 	public TilePoint key;
 	public bool connected = true;
 	
-	//public int energy = 0;
-	//public int energyNeed = 0;
-
-	//public float hp = 1f;
-	//public float hpMax = 1f;
-	
-	
 	public DeviceData device = null;
 
 	public delegate void MouseClick(TilePoint key);
@@ -65,9 +58,6 @@ public class HexaTile : MonoBehaviour {
 		switch (tileID) {
 			case 1:
 				key.ship.zero = key;
-				break;
-			case 11:
-				ShipData.mainShip.tractor = key;
 				break;
 		}
 		
@@ -156,11 +146,6 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	public void Demolish(bool explode, bool delay) {
-		switch (device.id) {
-			case 11:
-				ShipData.mainShip.tractor = null;
-				break;
-		}
 	
 		setSelected(false);
 		if (explode) Explode.create(transform.position,delay);

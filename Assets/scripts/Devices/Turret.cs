@@ -4,13 +4,16 @@ using System.Collections;
 public class Turret : Device {
 
 	float shot = 0;
-
+	
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();	
+		shot = data.time;	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		
 		if (data.energyCurrent < data.energyNeed) return;
 		
@@ -20,13 +23,13 @@ public class Turret : Device {
 		}
 		
 		shot = data.time;
-		GameObject enemy = FindClosestEnemy("enemy", data.distance);
+		GameObject enemy = FindClosestEnemy(type, data.distance);
 		if (enemy == null) return;
 		
 		Vector3 dir = enemy.transform.position - transform.position;
 		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
 		
-		Shot.create(transform.position, angle, data);
+		Shot.create(transform.position, angle, data, shotType);
 	}
 	
 }

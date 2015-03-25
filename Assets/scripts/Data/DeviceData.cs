@@ -106,6 +106,7 @@ public class DeviceData {
 		}
 		
 		data.gameObject.transform.parent = parent;
+		data.gameObject.tag = parent.gameObject.tag;
 		
 		switch (id) {
 			case 2:

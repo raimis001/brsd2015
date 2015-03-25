@@ -8,14 +8,16 @@ public class Shield : Device {
 	Vector3 localScale;
 	
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		transform.position = new Vector3(transform.position.x, transform.position.y, 5f);
 		gameObject.name = "shield";
 		localScale = transform.localScale;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		if (scale < 1f) {
 			if (data.isEnergy()) {
 				scale += (data.rate / 1000);

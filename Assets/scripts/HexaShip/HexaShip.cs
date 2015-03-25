@@ -9,8 +9,11 @@ public class HexaShip : MonoBehaviour {
 	public Dictionary<TilePoint, int> shipData;
 	
 	public TilePoint zero = null;
-	public TilePoint tractor = null;
 	
+	public string type = "ship";
+	
+	public float speed = 0f;
+	Vector3 destination = Vector3.zero;
 	
 	public static HexaShip createShip(Dictionary<TilePoint, int> data, Vector3 position) {
 	
@@ -29,7 +32,12 @@ public class HexaShip : MonoBehaviour {
 		
 		RecalcShip();
 		RecalcEnergy();
-  }
+		
+		destination = transform.position;
+		if (speed > 0) {
+			destination.x = -10f;
+		}
+	}
 	
 	public bool createTile(int x, int y, int tileID, bool check = false) {
 		TilePoint key = new TilePoint(x,y);
@@ -41,8 +49,9 @@ public class HexaShip : MonoBehaviour {
 		
 		Vector2 hexpos = ShipData.HexOffset(x, y);
 		
-		GameObject obj = Instantiate(ShipData.tileResource, new Vector3( hexpos.x, hexpos.y), Quaternion.identity ) as GameObject;
+		GameObject obj = Instantiate(ShipData.tileResource, new Vector3( hexpos.x + transform.position.x, hexpos.y + transform.position.y), Quaternion.identity ) as GameObject;
 		obj.transform.parent = this.transform;
+		obj.tag = type;
 		HexaTile src = obj.GetComponent<HexaTile>();
 			src.tileID = tileID;
 			src.key = key;
@@ -106,7 +115,14 @@ public class HexaShip : MonoBehaviour {
 			
 	// Update is called once per frame
 	void Update () {
+		if (speed == 0) return;
 		
+		transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);		
+	
+		if (Vector3.Distance(transform.position, destination) < 0.01f) {
+			Destroy(gameObject);
+		}
+				
 	}
 	
 	public HexaTile GetTile(string index) {
@@ -123,7 +139,7 @@ public class HexaShip : MonoBehaviour {
 	
 	public void DeleteTile(string index, bool destroy = false) {
 		HexaTile tile = tileSet[index];
-		
+		int deviceId = tile.tileID;
 		
 		tileSet.Remove(index);
     tile.Demolish(destroy, false);
@@ -138,6 +154,11 @@ public class HexaShip : MonoBehaviour {
 		
 		if (!destroy) {
 			RecalcEnergy();
+			return;
+		}
+		
+		if (deviceId == 1) {
+			DestroyShip();
 			return;
 		}
 		
@@ -159,6 +180,14 @@ public class HexaShip : MonoBehaviour {
 		if (result) RecalcEnergy();
 		
 		return result;
+  }
+  
+  public void DestroyShip() {
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.Demolish(true, true);
+		}
+		
+		Destroy(gameObject);
   }
   
 	

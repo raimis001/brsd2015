@@ -4,22 +4,20 @@ using System.Collections;
 public class Shot : MonoBehaviour {
 
 	
-	public static void create(Vector3 position, float direction, DeviceData data) {
-		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
-		Shot shot = null;
+	public static void create(Vector3 position, float direction, DeviceData data, string tag) {
+		string prefab = null;
 		switch (data.id) {
 			case 2:
-				shot = (Instantiate (Resources.Load ("Shot"),position,angle)as GameObject).GetComponent<Shot>();
+				prefab = "Shot";
 				break;
 			case 6:
-				shot = (Instantiate (Resources.Load ("Rocket"),position,angle)as GameObject).GetComponent<Shot>();
+				prefab = "Rocket";
 				break;
 			
 		}
-		if (shot == null) return;		
+		if (prefab == null) return;		
 		
-		shot.speed = data.speed;
-		shot.damage = data.damage;
+		Shot.create(position, direction, data.speed, data.damage, tag, prefab);
 	}
 	
 	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab) {
@@ -27,10 +25,11 @@ public class Shot : MonoBehaviour {
 		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
 		Shot shot = (Instantiate (Resources.Load (prefab),position,angle)as GameObject).GetComponent<Shot>();
 			
-		shot.gameObject.tag = tag;
 		shot.speed = speed;
 		shot.damage = damage;
-		
+		shot.gameObject.tag = tag;
+	
+		Debug.Log("Creating shot with tag:" + tag);	
 	}
 
 	public float speed;	
