@@ -16,9 +16,16 @@ public class HexaTile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-		sr.sortingOrder = key.y;
 		gameObject.name = "tile";
+		
+		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		sr.sortingOrder = key.y;
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[0];
+		} else {
+			sr.sprite = ShipData.tilesPirate[0];
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -109,7 +116,7 @@ public class HexaTile : MonoBehaviour {
 				sr.color = Color.white;
 				break;
 			case 1: //Selected
-				sr.color = Color.blue;
+				sr.color = new Color(237f / 255f,1f,69f / 255f);
 				break;
 			case 2: //Fitting
 				sr.color = Color.yellow;
@@ -123,10 +130,10 @@ public class HexaTile : MonoBehaviour {
 	public void setSelected(bool selected) {
 		show(selected ? 1 : 0);
 		
-		foreach (TilePoint point in key.AllNeighbours) {
-			HexaTile tile = key.ship.GetTile(point.index);
-			if (tile != null) tile.show(selected ? 2 : 0);
-		}
+		//foreach (TilePoint point in key.AllNeighbours) {
+		//	HexaTile tile = key.ship.GetTile(point.index);
+		//	if (tile != null) tile.show(selected ? 2 : 0);
+		//}
 		
 		if (!selected) return;
 		
@@ -134,6 +141,7 @@ public class HexaTile : MonoBehaviour {
 			show(3);
 		} 
 	}
+	
 	public bool Reconnect(string index) {
 		if (key.zeroPath == null) return false;
 		foreach (TilePoint tile in key.AllNeighbours) {
@@ -162,13 +170,18 @@ public class HexaTile : MonoBehaviour {
 		}
 		
 		int cnt = ShipData.tiles.Count - 1;
-		int sprite = (int)(cnt - (device.hpCurrent / device.hpMax * cnt));
+		int sprite = cnt - (int)((float)cnt * ((float)device.hpCurrent / (float)device.hpMax ));
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		sr.sprite = ShipData.tiles[sprite];
+		Debug.Log("Set sprite " + sprite.ToString());
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[sprite];
+		} else {
+			sr.sprite = ShipData.tilesPirate[sprite];
+		}
 	}
 	
 	public virtual void doShot(Shot collider) {
-		Debug.Log(collider.damage);
+		//Debug.Log(collider.damage);
 		ApplyDamage(collider.damage);
 		Destroy(collider.gameObject);
 	}

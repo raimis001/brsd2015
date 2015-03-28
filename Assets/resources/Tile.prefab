@@ -56,8 +56,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileID: 0
   connected: 1
-  hp: 1
-  hpMax: 1
 --- !u!212 &21203660
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -82,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 156313223
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ade6f25022fb7d54798d62ed8be2d567, type: 3}
+  m_Sprite: {fileID: 21300068, guid: af0142cc856abc1419c9e8ef11d318c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

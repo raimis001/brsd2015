@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class DeviceData {
 	
 	public int id;
-	public Sprite sprite;
 	public string name;
+	public string prefab;
 	
 	public int price;
 	public int damage;
@@ -27,12 +27,14 @@ public class DeviceData {
 	
 	public int level = 1;
 	
+	public GameObject gameObject;
+	
 	public Dictionary<string,UpgradeData> upgrades = new Dictionary<string, UpgradeData>();
 	
-	public DeviceData(int id, JSONNode node, Sprite sprite) {
+	public DeviceData(int id, JSONNode node) {
 		
 		this.id = id;
-		this.sprite = sprite;
+		this.prefab = node["atlas"];
 		
 		this.name = node["name"];
 		this.price = node["price"].AsInt;
@@ -64,9 +66,10 @@ public class DeviceData {
 	
 	public DeviceData(DeviceData data) {
 		this.id = data.id;
-		//this.sprite = data.sprite;
+		this.prefab = data.prefab;
 		
 		this.name = data.name;
+		
 		this.price = data.price;
 		this.hp = data.hp;
 		this.damage = data.damage;
@@ -84,50 +87,37 @@ public class DeviceData {
 		hpCurrent = hpMax = hp;
 	}
 	
-	public GameObject gameObject;
+	public void UpdateData(DeviceData data) {
+
+		if (data.price > 0) this.price = data.price;
+		if (data.hp > 0) this.hp = data.hp;
+		if (data.damage > 0) this.damage = data.damage;
+		if (data.speed > 0) this.speed = data.speed;
+		if (data.time > 0) this.time = data.time;
+		if (data.distance > 0) this.distance = data.distance;
+		if (data.energy != 0) this.energy = data.energy;
+		if (data.rate > 0) this.rate = data.rate;
+		
+		if (this.energy < 0)
+			this.energyNeed = -this.energy;
+			else this.energyProduce = this.energy;
+			
+		hpCurrent = hpMax = hp;
+	}
 	
 	public static DeviceData createDevice(int id, Transform parent) {
 		DeviceData data = ShipData.devices[id];
 		if (data.id == 0) return new DeviceData(data);
-		Sprite sprite = data.sprite;
-		
+		GameObject prefab = Resources.Load("devices/" + data.prefab) as GameObject;
+		if (prefab == null) return null;
+			
 		data = new DeviceData(data);
+			data.gameObject = HexaShip.Instantiate(prefab, parent.position, Quaternion.identity) as GameObject; 
+			data.gameObject.transform.parent = parent;
+			data.gameObject.tag = parent.gameObject.tag;
 		
-		if (id != 4) {
-			data.gameObject = new GameObject("device");
-			
-			SpriteRenderer sr = data.gameObject.AddComponent<SpriteRenderer>();
-				sr.sprite = sprite;
-				sr.sortingLayerName = "devices";
-			data.gameObject.transform.position = parent.position;
-		} else {
-			data.gameObject = HexaShip.Instantiate(Resources.Load("shield"), parent.position, Quaternion.identity) as GameObject; 
-			
-		}
-		
-		data.gameObject.transform.parent = parent;
-		data.gameObject.tag = parent.gameObject.tag;
-		
-		switch (id) {
-			case 2:
-				data.gameObject.AddComponent<Turret>().data = data;
-				break;
-			case 4:
-				data.gameObject.GetComponent<Shield>().data = data;
-				break;
-			case 6:
-				data.gameObject.AddComponent<Turret>().data = data;
-				break;
-			case 7:
-				data.gameObject.AddComponent<Fabric>().data = data;
-				break;
-			case 8:
-				data.gameObject.AddComponent<Laboratory>().data = data;
-				break;
-			case 11:
-				data.gameObject.AddComponent<Tractor>().data = data;
-				break;
-		}
+		Device device = data.gameObject.GetComponent<Device>();
+		if (device != null) device.data = data;
 		
 		return data;
 	}

@@ -28,7 +28,10 @@ public class Shield : Device {
 	}
 	
 	public void ApplyDamage(float damage) {
-		if (scale > 0) scale -= damage / data.damage;
+		if (scale > 0) {
+			scale -= (damage / data.damage) * 0.1f;
+			if (scale < 0) scale = 0;
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {

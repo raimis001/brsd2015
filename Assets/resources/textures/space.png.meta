@@ -1,16 +1,81 @@
 fileFormatVersion: 2
 guid: af0142cc856abc1419c9e8ef11d318c2
-timeCreated: 1427028306
+timeCreated: 1427549344
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: scrap
-    21300002: bullet
+    21300002: bullet1
     21300004: rock1
     21300006: rock2
     21300008: rocket0
     21300010: rocket1
     21300012: shield
+    21300014: cabine1
+    21300016: cabine2
+    21300018: turret1
+    21300020: turret2
+    21300022: RTurret1
+    21300024: RTurret2
+    21300026: RTurret3
+    21300028: SGenerator1
+    21300030: SGenerator2
+    21300032: SGenerator3
+    21300034: generator1
+    21300036: generator2
+    21300038: tractor1
+    21300040: tractor2
+    21300042: fabric1
+    21300044: fabric8
+    21300046: fabric7
+    21300048: fabric6
+    21300050: fabric5
+    21300052: fabric4
+    21300054: fabric3
+    21300056: fabric2
+    21300058: research1
+    21300060: research2
+    21300062: research3
+    21300064: research4
+    21300066: research5
+    21300068: mainShip0
+    21300070: mainShip1
+    21300072: mainShip2
+    21300074: mainShip3
+    21300076: mainShip4
+    21300078: mainShip5
+    21300080: mainShip6
+    21300082: mainShip7
+    21300084: mainShip8
+    21300086: mainShip9
+    21300088: mainShip10
+    21300090: pirateShip0
+    21300092: pirateShip1
+    21300094: pirateShip2
+    21300096: pirateShip3
+    21300098: pirateShip4
+    21300100: pirateShip5
+    21300102: pirateShip6
+    21300104: pirateShip7
+    21300106: pirateShip8
+    21300108: pirateShip9
+    21300110: pirateShip10
+    21300112: cursor
+    21300114: explode0
+    21300116: explode1
+    21300118: explode2
+    21300120: explode3
+    21300122: explode4
+    21300124: explode5
+    21300126: explode6
+    21300128: medusa0
+    21300130: medusa1
+    21300132: medusa2
+    21300134: medusa3
+    21300136: medusa4
+    21300138: evil0
+    21300140: evil1
+    21300142: bullet
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -36,7 +101,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -53,24 +118,32 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Web
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
   spriteSheet:
     sprites:
     - name: scrap
       rect:
         serializedVersion: 2
-        x: 20
-        y: 958
-        width: 44
-        height: 48
+        x: 11
+        y: 940
+        width: 19
+        height: 21
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: bullet
+    - name: bullet1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 902
+        x: 12
+        y: 918
         width: 16
         height: 16
       alignment: 0
@@ -79,50 +152,690 @@ TextureImporter:
     - name: rock1
       rect:
         serializedVersion: 2
-        x: 108
+        x: 53
         y: 945
-        width: 64
-        height: 72
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: rock2
-      rect:
-        serializedVersion: 2
-        x: 204
-        y: 982
-        width: 16
-        height: 18
+        width: 65
+        height: 73
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rocket0
       rect:
         serializedVersion: 2
-        x: 93
-        y: 890
-        width: 109
-        height: 39
+        x: 132
+        y: 1000
+        width: 63
+        height: 14
       alignment: 9
-      pivot: {x: .685485423, y: .511393249}
+      pivot: {x: .685485363, y: .535173714}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: rocket1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 890
-        width: 106
-        height: 39
+        x: 197
+        y: 1000
+        width: 63
+        height: 14
       alignment: 9
-      pivot: {x: .682350874, y: .5}
+      pivot: {x: .682350755, y: .538918614}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: shield
       rect:
         serializedVersion: 2
-        x: 358
-        y: 824
-        width: 286
-        height: 195
+        x: 639
+        y: 763
+        width: 373
+        height: 255
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cabine1
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 972
+        width: 80
+        height: 46
+      alignment: 9
+      pivot: {x: .5, y: .180000007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cabine2
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 971
+        width: 80
+        height: 46
+      alignment: 9
+      pivot: {x: .5, y: .180000007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: turret1
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 538
+        width: 41
+        height: 90
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: turret2
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 538
+        width: 41
+        height: 90
+      alignment: 9
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RTurret1
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 538
+        width: 78
+        height: 67
+      alignment: 9
+      pivot: {x: .629999995, y: .200000003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RTurret2
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 538
+        width: 78
+        height: 67
+      alignment: 9
+      pivot: {x: .629999995, y: .200000003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RTurret3
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 538
+        width: 78
+        height: 67
+      alignment: 9
+      pivot: {x: .629999995, y: .200000003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SGenerator1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 846
+        width: 47
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SGenerator2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 847
+        width: 47
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SGenerator3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 847
+        width: 47
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: generator1
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 942
+        width: 75
+        height: 68
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: generator2
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 942
+        width: 75
+        height: 68
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tractor1
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 838
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tractor2
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 838
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric8
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric7
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric6
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric5
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric4
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fabric2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 623
+        width: 80
+        height: 98
+      alignment: 9
+      pivot: {x: .5, y: .150000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: research1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 534
+        width: 74
+        height: 71
+      alignment: 9
+      pivot: {x: .5, y: .25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: research2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 534
+        width: 74
+        height: 71
+      alignment: 9
+      pivot: {x: .5, y: .25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: research3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 534
+        width: 74
+        height: 71
+      alignment: 9
+      pivot: {x: .5, y: .25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: research4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 534
+        width: 74
+        height: 71
+      alignment: 9
+      pivot: {x: .5, y: .25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: research5
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 534
+        width: 74
+        height: 71
+      alignment: 9
+      pivot: {x: .5, y: .25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip6
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip7
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip8
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip9
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mainShip10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 409
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip6
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip7
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip8
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip9
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pirateShip10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 283
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cursor
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 536
+        width: 90
+        height: 103
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 195
+        width: 57
+        height: 54
+      alignment: 9
+      pivot: {x: .437870234, y: .543720961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 173
+        width: 70
+        height: 83
+      alignment: 9
+      pivot: {x: .516863823, y: .460177332}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 21
+        width: 107
+        height: 124
+      alignment: 9
+      pivot: {x: .513322473, y: .463212907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode3
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 21
+        width: 157
+        height: 172
+      alignment: 9
+      pivot: {x: .485472471, y: .471821189}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 23
+        width: 184
+        height: 192
+      alignment: 9
+      pivot: {x: .537187159, y: .486635685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode5
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 23
+        width: 193
+        height: 209
+      alignment: 9
+      pivot: {x: .480796367, y: .525918245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: explode6
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 33
+        width: 171
+        height: 185
+      alignment: 9
+      pivot: {x: .53334552, y: .573972106}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: medusa0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 745
+        width: 89
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: medusa1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 745
+        width: 89
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: medusa2
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 745
+        width: 89
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: medusa3
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 745
+        width: 89
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: medusa4
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 745
+        width: 89
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: evil0
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 829
+        width: 83
+        height: 84
+      alignment: 9
+      pivot: {x: .662848055, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: evil1
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 829
+        width: 83
+        height: 84
+      alignment: 9
+      pivot: {x: .655093253, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 879
+        width: 19
+        height: 6
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

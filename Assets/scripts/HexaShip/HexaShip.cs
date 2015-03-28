@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class HexaShip : MonoBehaviour {
 
 	public Dictionary<string, HexaTile> tileSet = new Dictionary<string, HexaTile>();
-	public Dictionary<TilePoint, int> shipData;
+	public Dictionary<TilePoint, DeviceData> shipData;
 	
 	public TilePoint zero = null;
 	
@@ -15,7 +15,7 @@ public class HexaShip : MonoBehaviour {
 	public float speed = 0f;
 	Vector3 destination = Vector3.zero;
 	
-	public static HexaShip createShip(Dictionary<TilePoint, int> data, Vector3 position) {
+	public static HexaShip createShip(Dictionary<TilePoint, DeviceData> data, Vector3 position) {
 	
 		HexaShip ship = (Instantiate (Resources.Load ("Ship"),position,Quaternion.identity)as GameObject).GetComponent<HexaShip>();
 			ship.shipData = data;
@@ -26,8 +26,8 @@ public class HexaShip : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		foreach (KeyValuePair<TilePoint, int> tile in shipData) {
-			createTile(tile.Key, tile.Value);
+		foreach (KeyValuePair<TilePoint, DeviceData> tile in shipData) {
+			createTile(tile.Key.x, tile.Key.y, tile.Value.id, false, tile.Value);
 		}	
 		
 		RecalcShip();
@@ -39,7 +39,7 @@ public class HexaShip : MonoBehaviour {
 		}
 	}
 	
-	public bool createTile(int x, int y, int tileID, bool check = false) {
+	private bool createTile(int x, int y, int tileID, bool check = false, DeviceData device = null) {
 		TilePoint key = new TilePoint(x,y);
 		if (tileSet.ContainsKey(key.index)) {
 			Debug.Log("Existing index " + key.index);
@@ -56,6 +56,8 @@ public class HexaShip : MonoBehaviour {
 			src.tileID = tileID;
 			src.key = key;
 			src.createDevice(tileID);
+			
+			if (device != null) src.device.UpdateData(device);
 		
 		tileSet.Add(key.index,src);
 		if (tileID == 1) zero = src.key;	
@@ -78,9 +80,6 @@ public class HexaShip : MonoBehaviour {
 		return false;
 	}
 	
-	public bool createTile(TilePoint tile, int tileID, bool check = false) {
-		return createTile(tile.x, tile.y, tileID, check);
-	}
 	public bool createTile(Vector2 position, int tileID, bool check = false) {
 		return createTile((int)position.x, (int)position.y, tileID, check);
 	}

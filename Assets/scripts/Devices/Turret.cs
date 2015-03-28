@@ -25,11 +25,12 @@ public class Turret : Device {
 		shot = data.time;
 		GameObject enemy = FindClosestEnemy(type, data.distance);
 		if (enemy == null) return;
+		Vector3 pos = transform.position;
+		pos.y += 0.8f;
 		
-		Vector3 dir = enemy.transform.position - transform.position;
+		Vector3 dir = enemy.transform.position - pos;
 		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
-		
-		Shot.create(transform.position, angle, data, shotType);
+		Shot.create(pos, angle, data, shotType);
 	}
 	
 }

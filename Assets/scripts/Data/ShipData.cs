@@ -3,12 +3,13 @@ using UnityEngine;
 using SimpleJSON;
 
 public class ShipData  {
-	public static Dictionary<TilePoint, int> ship = new Dictionary<TilePoint, int>();
+	public static Dictionary<TilePoint, DeviceData> ship = new Dictionary<TilePoint, DeviceData>();
 	public static Dictionary<int, DeviceData> devices = new Dictionary<int, DeviceData>();
 	public static Dictionary<int, LevelData> levels = new Dictionary<int, LevelData>();
 	public static Dictionary<string, EnemyData> enemyShips = new Dictionary<string, EnemyData>();
 	
-	public static List<Sprite> tiles = new List<Sprite>();
+	public static Dictionary<int, Sprite> tiles = new Dictionary<int, Sprite>();
+	public static Dictionary<int, Sprite> tilesPirate = new Dictionary<int,Sprite>();
 	
 	public static int currentLevel;
 	public static LevelData levelData;
@@ -34,28 +35,30 @@ public class ShipData  {
 	public ShipData() {
 		JSONNode json;
 			
-		Sprite[] sprites = Resources.LoadAll<Sprite>("textures/devices");
-		Dictionary<string, Sprite> spritesNames = new Dictionary<string, Sprite>();
-		for(int i=0; i< sprites.Length; i++) {
-			spritesNames.Add(sprites[i].name, sprites[i]);
-		}		
+		Sprite[] sprites;
 		
-		sprites = Resources.LoadAll<Sprite>("textures/hexaTiles");
+		sprites = Resources.LoadAll<Sprite>("textures/space");
 		for(int i=0; i< sprites.Length; i++) {
-			if (sprites[i].name.IndexOf("cursor") < 0) {
-				tiles.Add(sprites[i]);
+			if (sprites[i].name.IndexOf("mainShip") > -1) {
+				string s = sprites[i].name.Remove(0,8);
+				tiles.Add(int.Parse(s), sprites[i]);
 			}
-		}		
+			if (sprites[i].name.IndexOf("pirateShip") > -1) {
+				string s = sprites[i].name.Remove(0,10);
+				tilesPirate.Add(int.Parse(s), sprites[i]);
+			}
+		}	
+	
 				
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
 		for (int i = 0; i < json.Count; i++) {
 			int id = int.Parse(json.AsObject.keyAt(i));
-			devices.Add(id, new DeviceData(id, json[i],id == 0 ? null : spritesNames[json[i]["atlas"]]));
+			devices.Add(id, new DeviceData(id, json[i]));
 		}
 		
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
 		for (int i = 0; i < json["ship"].Count; i++) {
-			ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),json["ship"][i]["device"]["id"].AsInt);
+			ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
 		}
 		
 		knowledge = json["properties"]["knowledge"].AsInt;
