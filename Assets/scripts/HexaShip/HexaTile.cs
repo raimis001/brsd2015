@@ -181,7 +181,6 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	public virtual void doShot(Shot collider) {
-		//Debug.Log(collider.damage);
 		ApplyDamage(collider.damage);
 		Destroy(collider.gameObject);
 	}
