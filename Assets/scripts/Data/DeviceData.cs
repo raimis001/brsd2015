@@ -122,7 +122,7 @@ public class DeviceData {
 		if (!upgrades.ContainsKey(param)) return false;
 		
 		UpgradeData data = upgrades[param];
-		if (data.level >= 3) return false;
+		if (data.level > 3) return false;
 		
 		if (ShipData.knowledge < data.price) return false;
 		DeviceData mainDevice = ShipData.devices[id];
