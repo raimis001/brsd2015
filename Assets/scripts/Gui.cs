@@ -8,6 +8,7 @@ public class Gui : MonoBehaviour {
 
 	public Text metalText;
 	public Text scrapText;
+	public Text scrapText1;
 	public Text knownText;
 	
 	public Text tilePriceText;
@@ -105,7 +106,7 @@ public class Gui : MonoBehaviour {
 		energyColors[1] = new Color(237f / 255f, 37f / 255f, 37f / 255f);
 		energyColors[2] = new Color(0f / 255f, 174f / 255f, 24f / 255f);
 		
-		gameMode = 0;
+		gameMode = 2;
 	}
 	
 	
@@ -126,7 +127,7 @@ public class Gui : MonoBehaviour {
 			
 			if (ShipData.levelData.currentTime <= 0) {
 				//End level
-				gameMode = 0;
+				gameMode = 2;
 				ShipData.nextLevel();
 			}
 		
@@ -199,7 +200,9 @@ public class Gui : MonoBehaviour {
 			edditorToggle.isOn = false;
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
+			selectedPanel.SetActive(false);
 			selected = null;
+			Base.StartBase();
 			break;
 		}
 	}
@@ -262,6 +265,8 @@ public class Gui : MonoBehaviour {
 	void OnTileClick(TilePoint key) {
 		if (EventSystem.current.IsPointerOverGameObject()) return;
 		if (editorMode) return;
+		if (gameMode == 2) return;
+		
 		selected = key.index;		
 	}
 	
@@ -291,6 +296,7 @@ public class Gui : MonoBehaviour {
 		if (instance.scrapText == null) return;
 		
 		instance.scrapText.text = ShipData.scraps.ToString();
+		instance.scrapText1.text = ShipData.scraps.ToString();
 	}
 	public static void UpdateKnowledge() {
 		if (!instance) return;

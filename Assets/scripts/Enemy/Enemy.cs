@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		
-		if (Gui.gameMode == 0) {
+		if (Gui.gameMode == 0 || Gui.gameMode == 2) {
 			Destroy(gameObject);
 		}
 	}
