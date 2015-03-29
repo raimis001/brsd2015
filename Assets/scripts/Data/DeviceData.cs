@@ -134,7 +134,7 @@ public class DeviceData {
 		
 		data.level ++;
 		    
-		energyNeed = (int)((float)mainDevice.energyNeed * ((float)data.energy / 100f));
+		//energyNeed = (int)((float)mainDevice.energyNeed * ((float)data.energy / 100f));
 		Debug.Log("Ugrade - " + param);
 		switch (param) {
 			case "damage":

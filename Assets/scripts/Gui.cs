@@ -109,6 +109,7 @@ public class Gui : MonoBehaviour {
 		energyColors[1] = new Color(237f / 255f, 37f / 255f, 37f / 255f);
 		energyColors[2] = new Color(0f / 255f, 174f / 255f, 24f / 255f);
 		
+		cursor.SetActive(false);
 		gameMode = 2;
 	}
 	
@@ -120,11 +121,11 @@ public class Gui : MonoBehaviour {
 			int sec = (int)(ShipData.levelData.time - ShipData.levelData.currentTime);
 			
 			travelSlider.value = 1 - ShipData.levelData.currentTime / ShipData.levelData.time;
-			travelText.text = (travelSlider.value * 100f).ToString("00") + "%";
 			
 			if (currentSec != sec) {
 				currentSec = sec;
 				if (timerText != null) timerText.text = sec.ToString("000");
+				travelText.text = sec.ToString("000");//(travelSlider.value * 100f).ToString("00") + "%";
 				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
@@ -199,6 +200,9 @@ public class Gui : MonoBehaviour {
 			edditorToggle.isOn = false;
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
+			
+			travelSlider.value = 0;
+			travelText.text = "";
 			travelPanel.SetActive(true);
 			selected = null;
 			break;
@@ -398,11 +402,15 @@ public class Gui : MonoBehaviour {
 	
 	public void repairTile() {
 		if (selected == null) return;
-		
+		Debug.Log("Start repair " + selected);
 		HexaTile tile = ShipData.mainShip.GetTile(selected);
-		if (tile != null || tile.device.hpCurrent >= tile.device.hpMax) return;
+		if (tile == null || tile.device.hpCurrent >= tile.device.hpMax) {
+			Debug.Log("repair not needed " + selected);
+			return;
+		}
 		
-		int price = (int)(((float)tile.device.price / (float)tile.device.hpMax)  * (float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		int price = Mathf.CeilToInt(((float)tile.device.price / (float)tile.device.hpMax)  * (float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		Debug.Log("repair price " + price.ToString());
 		
 		
 		if (ShipData.metals < price) {
@@ -411,7 +419,8 @@ public class Gui : MonoBehaviour {
 		}
 		
 		ShipData.addMetals(-price);
-		tile.device.hpCurrent = tile.device.hpMax;
+		tile.Repair();
+		Debug.Log("repairing " + tile.device.hpCurrent.ToString());
 		
 		selected = selected;
 		
