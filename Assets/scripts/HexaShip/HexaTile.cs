@@ -19,7 +19,7 @@ public class HexaTile : MonoBehaviour {
 		gameObject.name = "tile";
 		
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		sr.sortingOrder = key.y;
+		sr.sortingOrder = key.y * 100;
 		if (tag == "ship") {
 			sr.sprite = ShipData.tiles[0];
 		} else {

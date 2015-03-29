@@ -26,5 +26,15 @@ public class UpgradeData {
 		this.value = node["value"].AsInt;
 		this.energy = node["energy"].AsInt;
 	}
-	
+	public UpgradeData(UpgradeData data) {
+		this.label = data.label;
+		this.value = data.value;
+		this.energy = data.energy;
+		
+		
+		for (int i = 0; i < 3; i++) {
+			prices[i] = data.prices[i];
+		}
+	}
+		
 }

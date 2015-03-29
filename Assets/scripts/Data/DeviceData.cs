@@ -74,7 +74,11 @@ public class DeviceData {
 		this.distance = data.distance;
 		this.energy = data.energy;
 		this.rate = data.rate;
-		this.upgrades = data.upgrades;
+		
+		this.upgrades = new Dictionary<string, UpgradeData>();
+		foreach (KeyValuePair<string, UpgradeData> upgr in  data.upgrades) {
+			this.upgrades.Add(upgr.Key, new UpgradeData(upgr.Value));
+		}
 		
 		if (this.energy < 0)
 			this.energyNeed = -this.energy;
