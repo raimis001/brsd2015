@@ -195,6 +195,12 @@ public class Gui : MonoBehaviour {
 			planetPanel.SetActive(false);
 			selected = null;
 			break;
+		case 2:
+			edditorToggle.isOn = false;
+			buildPanel.SetActive(false);
+			planetPanel.SetActive(false);
+			selected = null;
+			break;
 		}
 	}
 	
