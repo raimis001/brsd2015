@@ -120,11 +120,11 @@ public class Gui : MonoBehaviour {
 			int sec = (int)(ShipData.levelData.time - ShipData.levelData.currentTime);
 			
 			travelSlider.value = 1 - ShipData.levelData.currentTime / ShipData.levelData.time;
-			travelText.text = (travelSlider.value * 100f).ToString("00") + "%";
 			
 			if (currentSec != sec) {
 				currentSec = sec;
 				if (timerText != null) timerText.text = sec.ToString("000");
+				travelText.text = sec.ToString("000");//(travelSlider.value * 100f).ToString("00") + "%";
 				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
@@ -199,6 +199,9 @@ public class Gui : MonoBehaviour {
 			edditorToggle.isOn = false;
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
+			
+			travelSlider.value = 0;
+			travelText.text = "";
 			travelPanel.SetActive(true);
 			selected = null;
 			break;
