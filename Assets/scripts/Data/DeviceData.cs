@@ -49,11 +49,7 @@ public class DeviceData {
 		if (node["upgrade"] != null) {
 			for (int i = 0; i < node["upgrade"].Count; i++) {
 				string n = node["upgrade"].AsObject.keyAt(i);
-				upgrades.Add(n, new UpgradeData(
-					node["upgrade"][i]["price"].AsInt,
-					node["upgrade"][i]["value"].AsInt,
-					node["upgrade"][i]["energy"].AsInt
-					));
+				upgrades.Add(n, new UpgradeData(node["upgrade"][i]));
 			}
 		}
 		
@@ -126,15 +122,16 @@ public class DeviceData {
 		if (!upgrades.ContainsKey(param)) return false;
 		
 		UpgradeData data = upgrades[param];
+		if (data.level >= 3) return false;
 		
 		if (ShipData.knowledge < data.price) return false;
-			
 		DeviceData mainDevice = ShipData.devices[id];
 		ShipData.addKnowledge(-data.price);
+		
 		data.level ++;
 		    
 		energyNeed = (int)((float)mainDevice.energyNeed * ((float)data.energy / 100f));
-		    
+		Debug.Log("Ugrade - " + param);
 		switch (param) {
 			case "damage":
 				damage = (int)(damage + (float)mainDevice.damage * ((float)data.value/ 100f));

@@ -223,6 +223,8 @@ public class Gui : MonoBehaviour {
 						obj.value.text = tile.valueByName(obj.gameObject.name);
 						
 						if (tile.device.upgrades[obj.gameObject.name].level < 3) {
+							obj.price.text = tile.device.upgrades[obj.gameObject.name].price.ToString();
+							obj.label.text = tile.device.upgrades[obj.gameObject.name].label;
 							obj.button.gameObject.SetActive(true);
 						} else {
 							obj.button.gameObject.SetActive(false);
