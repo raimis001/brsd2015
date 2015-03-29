@@ -166,6 +166,16 @@ public class HexaTile : MonoBehaviour {
 	}
 	
 	
+	public void Repair() {
+		device.hpCurrent = device.hpMax;
+		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[0];
+		} else {
+			sr.sprite = ShipData.tilesPirate[0];
+		}
+	}
+	
 	public void ApplyDamage(float damage) {
 		
 		device.hpCurrent -= (int)damage;
@@ -177,7 +187,7 @@ public class HexaTile : MonoBehaviour {
 		int cnt = ShipData.tiles.Count - 1;
 		int sprite = cnt - (int)((float)cnt * ((float)device.hpCurrent / (float)device.hpMax ));
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		Debug.Log("Set sprite " + sprite.ToString());
+		//Debug.Log("Set sprite " + sprite.ToString());
 		if (tag == "ship") {
 			sr.sprite = ShipData.tiles[sprite];
 		} else {

@@ -31,7 +31,7 @@ public class Base : MonoBehaviour {
 		topRightPosition.z = 0;
 		topRightPosition.y = 0;
 		transform.position = topRightPosition + delta;
-		Debug.Log("Seting new position");
+		//Debug.Log("Seting new position");
 		
 		if (!gameObject.activeSelf) {
 			gameObject.SetActive(true);

@@ -31,9 +31,15 @@ public class Stars : MonoBehaviour {
 				star.transform.parent = transform;
 				
 				SpriteRenderer sr = star.AddComponent<SpriteRenderer>();
-					sr.sprite = starSprites[0];
+					if (i < 10) {
+						sr.sprite = starSprites[0];
+					} else {
+						sr.sprite = starSprites[1];
+					}
 				
 				stars[i] = star.gameObject.AddComponent<Star>();
+					stars[i].speed = Random.Range(5f,8f);
+					stars[i].delay = Random.Range(0,5f);
 		}
 		
 	}
