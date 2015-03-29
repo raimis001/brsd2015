@@ -33,6 +33,7 @@ public class Gui : MonoBehaviour {
 	public GameObject buildPanel;
 	public GameObject selectedPanel;
 	public GameObject planetPanel;
+	public GameObject travelPanel;
 	
 	public GameObject blankPanel;
 	public GameObject devicePanel;
@@ -118,8 +119,8 @@ public class Gui : MonoBehaviour {
 			ShipData.levelData.currentTime -= Time.deltaTime;
 			int sec = (int)(ShipData.levelData.time - ShipData.levelData.currentTime);
 			
-			travelSlider.value = ShipData.levelData.currentTime / ShipData.levelData.time;
-			travelText.text = (travelSlider.value * 100f).ToString("00");
+			travelSlider.value = 1 - ShipData.levelData.currentTime / ShipData.levelData.time;
+			travelText.text = (travelSlider.value * 100f).ToString("00") + "%";
 			
 			if (currentSec != sec) {
 				currentSec = sec;
@@ -191,12 +192,14 @@ public class Gui : MonoBehaviour {
 		case 0: 
 			edditorToggle.isOn = false;
 			planetPanel.SetActive(true);
+			travelPanel.SetActive(false);
 			selected = null;
 			break;
 		case 1: 
 			edditorToggle.isOn = false;
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
+			travelPanel.SetActive(true);
 			selected = null;
 			break;
 		case 2:
@@ -205,6 +208,7 @@ public class Gui : MonoBehaviour {
 			planetPanel.SetActive(false);
 			selectedPanel.SetActive(false);
 			selected = null;
+			travelPanel.SetActive(false);
 			Base.StartBase();
 			break;
 		}
