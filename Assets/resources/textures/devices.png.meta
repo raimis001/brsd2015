@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b5e6b69d9ef40a147bbc2ef2a98298ea
-timeCreated: 1427647615
+timeCreated: 1427648831
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -95,6 +95,7 @@ TextureImporter:
     21300176: trukstenergijas
     21300178: star1
     21300180: star2
+    21300182: scraps
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -1047,6 +1048,16 @@ TextureImporter:
         y: 444
         width: 10
         height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: scraps
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 425
+        width: 17
+        height: 18
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
