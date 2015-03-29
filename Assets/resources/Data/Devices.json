@@ -2,7 +2,7 @@
   "devices": {
   	"0": {
   		"atlas":"",
-  		"name":"Pamatne", "price":20, "hp":10, "damage":0, "speed":0,	"time":0,	"distance":0,	"energy":0},
+  		"name":"Pamatne", "price":10, "hp":5, "damage":0, "speed":0,	"time":0,	"distance":0,	"energy":0},
   		
   	"1": {
   		"atlas":"Cabine",
@@ -12,16 +12,16 @@
   		"atlas":"Turret",
   		"name":"Lāzers", "price":60, "hp":50,	"damage":50, "speed":0.8,	"time":1.5,	"distance":10, "energy":-30,
       "upgrade":{
-  			"damage":{"price":[100,200,300],"value":50, "energy":0, "name":"šaušanas ātrums"},
-  			"time":{"price":[100,200,300],"value":-10, "energy":0, "name":"uzlādes laiks"},
-  			"distance":{"price":[100,200,300],"value":15, "energy":0, "name":"radara distance"}
+  			"damage":{"price":[50,100,200],"value":50, "energy":0, "name":"Šaušanas spēks"},
+  			"time":{"price":[50,100,200],"value":-10, "energy":0, "name":"Šaušanas biežums"},
+  			"distance":{"price":[50,100,200],"value":15, "energy":0, "name":"Šaušanas attālums"}
   		}
   	},
   	"3": {
   		"atlas":"Generator",
-  		"name":"Ģenerators", "price":40, "hp":50,	"damage":0,	"speed":0, "time":0.1,	"distance":5,	"energy":120,
+  		"name":"Ģenerators", "price":30, "hp":50,	"damage":0,	"speed":0, "time":0.1,	"distance":5,	"energy":90,
   		"upgrade":{
-  			"energy":{"price":[100,200,300],"value":10, "energy":0, "name":"enerģijas ražošana"}
+  			"energy":{"price":[50,50,50],"value":0, "energy":33, "name":"enerģijas ražošana"}
   		}
   		},
   		
@@ -33,17 +33,17 @@
   		"atlas":"RTurret",
   		"name":"Raķešmetējs",	"price":120,	"hp":50,	"damage":100,	"speed":0.5,	"time":3,	"distance":20, "energy":-30,
       "upgrade":{
-  			"damage":{"price":[100,200,300],"value":50, "energy":0, "name":"šaušanas ātrums"},
-  			"time":{"price":[100,200,300],"value":-10, "energy":0, "name":"uzlādes laiks"},
-  			"distance":{"price":[100,200,300],"value":25, "energy":0, "name":"radara distance"}
+  			"damage":{"price":[50,100,200],"value":50, "energy":0, "name":"Šaušanas spēks"},
+  			"time":{"price":[50,100,200],"value":-10, "energy":0, "name":"Šaušanas biežums"},
+  			"distance":{"price":[50,100,200],"value":15, "energy":0, "name":"Šaušanas attālums"}
   		}
   		},
   	"7": {
   		"atlas":"Fabric",
   		"name":"Metāla pārstrādātājs",	"price":60,	"hp":50,	"damage":100,	"speed":0,	"time":1,	"distance":5,	"energy":-30,	"rate":4,
   		"upgrade":{
-  			"rate":{"price":[100,200,300],"value":25, "energy":0, "name":"pārstrādes daudzums"},
-  			"time":{"price":[100,200,300],"value":-25, "energy":0, "name":"pārstrādes ātrums"}
+  			"rate":{"price":[50,100,200],"value":-25, "energy":0, "name":"metāla cena"},
+  			"time":{"price":[50,100,200],"value":-25, "energy":0, "name":"pārstrādes ātrums"}
   		}
   		},
   	"8": {
@@ -55,9 +55,9 @@
   		"atlas":"Tractor",
   		"name":"Savācējstars",	"price":60,	"hp":50,	"damage":100,	"speed":0.6,	"time":0.1,	"distance":15,	"energy":-30,
   		 "upgrade":{
-  			"speed":{"price":[100,200,300],"value":50, "energy":20, "name":"lausku kustības ātrums"},
-  			"time":{"price":[100,200,300],"value":-25, "energy":0, "name":"lausku savākšanas laiks"},
-  			"distance":{"price":[100,200,300],"value":50, "energy":10, "name":"radara distance"}
+  			"speed":{"price":[50,100,200],"value":50, "energy":20, "name":"lausku kustības ātrums"},
+  			"time":{"price":[50,100,200],"value":-25, "energy":0, "name":"lausku savākšanas laiks"},
+  			"distance":{"price":[50,100,200],"value":50, "energy":10, "name":"radara distance"}
   		}
   		}
   }
