@@ -5,7 +5,7 @@
 		"baseName":"Centauri sektors",
 		"events": {
 			"1": {
-				 "rock":{"count":1, "scale":0.8, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":100}
+				 "rock":{"count":1, "scale":0.8, "angle":270, "speed":3, "damage":50, "hp":50, "delay":0, "distance":20, "value":100}
 			 },
 			"10": {
 				 "rock":{"count":6, "angle":300, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":20, "value":14}
