@@ -62,6 +62,11 @@ public class HexaTile : MonoBehaviour {
 
 		device = DeviceData.createDevice(tileID, transform);
 		
+		if (device.id > 0) {
+			SpriteRenderer sr = device.gameObject.GetComponent<SpriteRenderer>();
+			sr.sortingOrder = key.y * 100;
+		}
+		
 		switch (tileID) {
 			case 1:
 				key.ship.zero = key;
