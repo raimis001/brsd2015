@@ -11,6 +11,8 @@ public class Gui : MonoBehaviour {
 	public Text scrapText1;
 	public Text knownText;
 	
+	public Text timerText;
+	
 	public Text tilePriceText;
 	
 	public Text tileDamage;
@@ -121,6 +123,7 @@ public class Gui : MonoBehaviour {
 			
 			if (currentSec != sec) {
 				currentSec = sec;
+				if (timerText != null) timerText.text = sec.ToString("000");
 				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}

@@ -227,6 +227,9 @@ public class HexaTile : MonoBehaviour {
 			case "energy":
 				result = device.energyProduce.ToString();
 				break;
+			case "speed":
+				result = device.speed.ToString("0.00");
+				break;
 		}
 		return result;
 	}
