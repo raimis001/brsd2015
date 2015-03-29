@@ -27,6 +27,6 @@ public class Rocket : Device {
 		Vector3 dir = enemy.transform.position - transform.position;
 		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
 		
-		Shot.create(transform.position, angle, data, shotType);
+		Shot.create(transform.position, angle, data, shotType,enemy.transform);
 	}
 }
