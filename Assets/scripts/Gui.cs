@@ -179,7 +179,7 @@ public class Gui : MonoBehaviour {
 }
 	
 	public void StartFly() {
-		gameMode = 2;
+		gameMode = 1;
 	}
 	
 	public void SetGameMode() {
