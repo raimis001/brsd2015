@@ -2,7 +2,7 @@
   "devices": {
   	"0": {
   		"atlas":"",
-  		"name":"Pamatne", "price":10, "hp":5, "damage":0, "speed":0,	"time":0,	"distance":0,	"energy":0},
+  		"name":"Pamatne", "price":15, "hp":10, "damage":0, "speed":0,	"time":0,	"distance":0,	"energy":0},
   		
   	"1": {
   		"atlas":"Cabine",
@@ -42,21 +42,25 @@
   		"atlas":"Fabric",
   		"name":"Metāla pārstrādātājs",	"price":60,	"hp":50,	"damage":100,	"speed":0,	"time":1,	"distance":5,	"energy":-30,	"rate":4,
   		"upgrade":{
-  			"rate":{"price":[50,100,200],"value":-25, "energy":0, "name":"metāla cena"},
-  			"time":{"price":[50,100,200],"value":-25, "energy":0, "name":"pārstrādes ātrums"}
+  			"rate":{"price":[100,200,400],"value":-25, "energy":0, "name":"Metāla cena"},
+  			"time":{"price":[50,100,200],"value":-15, "energy":0, "name":"Pārstrādes biežums"}
   		}
   		},
   	"8": {
   		"atlas":"Research",
-  		"name":"Pētniecības bloks",	"price":60,	"hp":50,	"damage":100,	"speed":1,	"time":1,	"distance":5,	"energy":-30},
+  		"name":"Pētniecības bloks",	"price":60,	"hp":50,	"damage":100,	"speed":1,	"time":1,	"distance":5,	"energy":-30,
+  		"upgrade":{
+  			"time":{"price":[50,100,200],"value":-15, "energy":0, "name":"Zinātnes ražošana"}
+  		}  		
+  		},
   	
   	
   	"11": {
   		"atlas":"Tractor",
   		"name":"Savācējstars",	"price":60,	"hp":50,	"damage":100,	"speed":0.6,	"time":0.1,	"distance":15,	"energy":-30,
   		 "upgrade":{
-  			"speed":{"price":[50,100,200],"value":50, "energy":0, "name":"lausku kustības ātrums"},
-  			"distance":{"price":[50,100,200],"value":50, "energy":0, "name":"radara distance"}
+  			"speed":{"price":[50,100,200],"value":30, "energy":0, "name":"Atlūzu savākšanas ātrums"},
+  			"distance":{"price":[50,100,200],"value":30, "energy":0, "name":"Savākšanas distance"}
   		}
   		}
   }
