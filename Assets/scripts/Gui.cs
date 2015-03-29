@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -21,6 +22,10 @@ public class Gui : MonoBehaviour {
 	public Text[] buyPrices;
 		
 	public Toggle edditorToggle;
+	
+	public Sprite[] deviceSprites;
+	public Image deviceImage;
+	public Text deviceName;
 		
 	public GameObject buildPanel;
 	public GameObject selectedPanel;
@@ -30,6 +35,8 @@ public class Gui : MonoBehaviour {
 	public GameObject devicePanel;
 		
 	public GameObject cursor;
+	
+	public GuiUpgrade[] upgrades;
 	
 	public static Gui instance;
 	public static bool editorMode = false;
@@ -160,7 +167,7 @@ public class Gui : MonoBehaviour {
 				tileEnergy.text = tile.device.energyProduce.ToString();
 				tileEnergy.color = energyColors[2];
 			} else {
-				tileEnergy.text = tile.device.energyCurrent.ToString("0") + "/" + tile.device.energyNeed.ToString("0");
+				tileEnergy.text = tile.device.energyNeed.ToString("0") + "/" + tile.device.energyCurrent.ToString("0");
 				if (tile.device.energyCurrent >= tile.device.energyNeed) {
 					tileEnergy.color = energyColors[0];
 				} else {
@@ -208,6 +215,25 @@ public class Gui : MonoBehaviour {
 			HexaTile tile = ShipData.mainShip.GetTile(selected);
 				blankPanel.SetActive(tile.device.id == 0);
 				devicePanel.SetActive(tile.device.id != 0);
+				deviceImage.sprite = deviceSprites[tile.device.id];
+				deviceName.text = ShipData.devices[tile.device.id].name;
+				
+				foreach (GuiUpgrade obj in upgrades) {
+					if (tile.device.upgrades.ContainsKey(obj.gameObject.name)) {
+						obj.value.text = tile.valueByName(obj.gameObject.name);
+						
+						if (tile.device.upgrades[obj.gameObject.name].level < 3) {
+							obj.button.gameObject.SetActive(true);
+						} else {
+							obj.button.gameObject.SetActive(false);
+						}
+						
+						
+						obj.gameObject.SetActive(true);
+					} else {
+						obj.gameObject.SetActive(false);
+					}
+				}
 				
 		} else {
 			selectedPanel.SetActive(false);
@@ -285,15 +311,6 @@ public class Gui : MonoBehaviour {
 		
 		
 	/*GUI buttons*/
-	public void FabricMode() {
-		//SetEditorMode(false);
-		//if (Fabric.activeSelf) {
-		//	Fabric.SetActive(false);
-		//} else {
-		//	Fabric.SetActive(true);
-		//}
-	}
-	
 	public void FabricSellAll() {
 		if (ShipData.scraps < 1) return;
 		
@@ -329,45 +346,42 @@ public class Gui : MonoBehaviour {
 		
 	}
 	public void deleteDevice() {
-	/*
-		if (selectedTile == null) return;
+		if (selected == null) return;
 		
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		if (tile.device.id == 1) {
 			AddMessage("Cannot delete pilot cabine");
 			return;
 		}
 		
-		int price = ShipData.devices[tile.device.id].price;
+		int price = (int)((float)ShipData.devices[tile.device.id].price * 0.75f);
 		
-		if (selectedTile.ship.DeleteDevice(selectedTile.index)) {
+		if (ShipData.mainShip.DeleteDevice(selected)) {
 			ShipData.addMetals(price);
 		}
 		
-		selectedTile = null;
-		selectedTile = tile.key;
-		*/
+		selected = tile.key.index;
+		
 	}
 	public void upgradeDevice(string param) {
-	/*
-		if (selectedTile == null) return;
+		if (selected == null) return;
 		
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		tile.ugradeDevice(param);
 		
 		ShipData.mainShip.RecalcEnergy();
 		
-		selectedTile = selectedTile;
-		*/
+		selected = selected;
 	}
 	
 	public void repairTile() {
-	/*
-		if (selectedTile == null) return;
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		if (selected == null) return;
+		
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		if (tile != null || tile.device.hpCurrent >= tile.device.hpMax) return;
 		
-		int price = (int)((float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		int price = (int)(((float)tile.device.price / (float)tile.device.hpMax)  * (float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		
 		
 		if (ShipData.metals < price) {
 			AddMessage("Pietrukst metala");
@@ -377,8 +391,8 @@ public class Gui : MonoBehaviour {
 		ShipData.addMetals(-price);
 		tile.device.hpCurrent = tile.device.hpMax;
 		
-		selectedTile = selectedTile;
-*/		
+		selected = selected;
+		
 	}
 	
 }

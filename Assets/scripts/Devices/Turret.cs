@@ -15,7 +15,7 @@ public class Turret : Device {
 	protected override void Update () {
 		base.Update();
 		
-		if (data.energyCurrent < data.energyNeed) return;
+		if (data == null || data.energyCurrent < data.energyNeed) return;
 		
 		if (shot > 0) {
 			shot -= Time.smoothDeltaTime;

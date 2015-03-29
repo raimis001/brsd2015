@@ -208,4 +208,26 @@ public class HexaTile : MonoBehaviour {
 		}
 	}
 	
+	public string valueByName(string value) {
+		string result = "";
+		Debug.Log("get value for " + value);
+		switch (value) {
+			case "damage":
+				result = device.damage.ToString();
+				break;
+			case "time":
+				result = device.time.ToString("0.00");
+				break;
+			case "distance":
+				result = device.distance.ToString("0");
+				break;
+			case "rate":
+				result = device.rate.ToString("0.00");
+				break;
+			case "energy":
+				result = device.energyProduce.ToString();
+				break;
+		}
+		return result;
+	}
 }

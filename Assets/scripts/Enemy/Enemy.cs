@@ -64,7 +64,8 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 	
-	void explode() {
+	protected virtual void explode() {
+		Explode.create(transform.position,false);
 		if (data != null && data.value > 0) {
 			Scrap.create(transform.position, data.value);
 		}

@@ -37,7 +37,7 @@ public class ShipData  {
 			
 		Sprite[] sprites;
 		
-		sprites = Resources.LoadAll<Sprite>("textures/space");
+		sprites = Resources.LoadAll<Sprite>("textures/devices");
 		for(int i=0; i< sprites.Length; i++) {
 			if (sprites[i].name.IndexOf("mainShip") > -1) {
 				string s = sprites[i].name.Remove(0,8);
