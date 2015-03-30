@@ -38,7 +38,7 @@ public class Shield : Device {
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-		
+		Debug.Log(coll.gameObject.name);
 		if (coll.gameObject.name == "rock") {
 			float damage = coll.gameObject.GetComponent<Enemy>().damage;
 			ApplyDamage(damage);

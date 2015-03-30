@@ -51,6 +51,7 @@ public class ShipData  {
 					tilesPirate.Add(int.Parse(s), sprites[i]);
 				}
 			}	
+			tileResource = Resources.Load ("Tile") as GameObject;
 			
 			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
 			for (int i = 0; i < json.Count; i++) {
@@ -63,15 +64,6 @@ public class ShipData  {
 				ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
 			}
 			
-			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
-			for (int i = 0; i < json.Count; i++) {
-				int id = int.Parse(json.AsObject.keyAt(i));
-				levels.Add(id, new LevelData(json[i]));
-			}
-			levelCount = levels.Count;
-			
-			tileResource = Resources.Load ("Tile") as GameObject;
-			
 			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Enemies").text)["enemies"];
 			for (int i = 0; i < json.Count; i++) {
 				enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
@@ -80,7 +72,14 @@ public class ShipData  {
 		}		
 					
 			
-
+		levels = new Dictionary<int, LevelData>();
+		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
+		for (int i = 0; i < json.Count; i++) {
+			int id = int.Parse(json.AsObject.keyAt(i));
+			levels.Add(id, new LevelData(json[i]));
+		}
+		levelCount = levels.Count;
+		
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
 			knowledge = json["properties"]["knowledge"].AsInt;
 			scraps = json["properties"]["scraps"].AsInt;

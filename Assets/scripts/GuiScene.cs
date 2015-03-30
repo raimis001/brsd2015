@@ -20,4 +20,8 @@ public class GuiScene : MonoBehaviour {
 	public void EndGame() {
 		Application.Quit();
 	}
+	
+	public void StartIntro() {
+		Application.LoadLevel("introScene");
+	}
 }
