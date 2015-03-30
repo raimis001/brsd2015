@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300182, guid: b5e6b69d9ef40a147bbc2ef2a98298ea, type: 3}
+  m_Sprite: {fileID: 21300052, guid: df6b4ddaff8437f42b0ee1b75089ee33, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5416,7 +5416,7 @@ Canvas:
   m_GameObject: {fileID: 927942136}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 819083926}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -8825,7 +8825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1816506714
 RectTransform:
   m_ObjectHideFlags: 0
