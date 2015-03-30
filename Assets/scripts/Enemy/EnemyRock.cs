@@ -10,6 +10,7 @@ public class EnemyRock : Enemy {
 		base.Start();
 		_rotate = new Vector3(0,0, Random.Range(-2f, 2f));
 		name = "rock";
+		transform.localScale = new Vector3(data.scale,data.scale, 1f);
 	}
 	
 	// Update is called once per frame
@@ -22,4 +23,5 @@ public class EnemyRock : Enemy {
 		} 
 		
 	}
+	
 }

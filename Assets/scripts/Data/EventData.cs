@@ -25,7 +25,7 @@ public class EventData {
 		dispatched = false;
 	
 		foreach (KeyValuePair<string, SpawnData> key in spawners) {
-			Debug.Log(key.Key +  ":" + key.Value.count);
+			//Debug.Log(key.Key +  ":" + key.Value.count);
 			Enemy.create(key.Key, key.Value);
 		}
 				

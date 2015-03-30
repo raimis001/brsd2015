@@ -59,12 +59,13 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		
-		if (Gui.gameMode == 0) {
+		if (Gui.gameMode == 0 || Gui.gameMode == 2) {
 			Destroy(gameObject);
 		}
 	}
 	
-	void explode() {
+	protected virtual void explode() {
+		Explode.create(transform.position,false);
 		if (data != null && data.value > 0) {
 			Scrap.create(transform.position, data.value);
 		}

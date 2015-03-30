@@ -4,7 +4,7 @@ using System.Collections;
 public class Shot : MonoBehaviour {
 
 	
-	public static void create(Vector3 position, float direction, DeviceData data, string tag) {
+	public static void create(Vector3 position, float direction, DeviceData data, string tag, Transform target = null) {
 		string prefab = null;
 		switch (data.id) {
 			case 2:
@@ -17,10 +17,10 @@ public class Shot : MonoBehaviour {
 		}
 		if (prefab == null) return;		
 		
-		Shot.create(position, direction, data.speed, data.damage, tag, prefab);
+		Shot.create(position, direction, data.speed, data.damage, tag, prefab,target);
 	}
 	
-	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab) {
+	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab, Transform target = null) {
 	
 		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
 		Shot shot = (Instantiate (Resources.Load (prefab),position,angle)as GameObject).GetComponent<Shot>();
@@ -28,13 +28,14 @@ public class Shot : MonoBehaviour {
 		shot.speed = speed;
 		shot.damage = damage;
 		shot.gameObject.tag = tag;
+		shot.target = target;
 	
 		Debug.Log("Creating shot with tag:" + tag);	
 	}
 
 	public float speed;	
 	public int damage;
-	
+	public Transform target;
 
 	Vector3 direction;
 	Vector3 start;
@@ -48,6 +49,12 @@ public class Shot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (target != null) {
+			Vector3 dir = target.position - transform.position;
+			float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		}
+	
 		transform.Translate(direction);
 		
 		if (Vector3.Distance(start, transform.position) > 20f) {

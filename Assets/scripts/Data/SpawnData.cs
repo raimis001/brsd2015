@@ -16,6 +16,7 @@ public class SpawnData {
 	public float charge = 0;
 	public float range = 0;
 	public float velocity = 0;
+	public float scale = 1;
 	
 	//"count":10, "angle":90, x:100,y:100,"spread":10},	
 	public SpawnData (JSONNode node) {
@@ -32,6 +33,7 @@ public class SpawnData {
 		charge = node["charge"].AsFloat;
 		range = node["range"].AsFloat;
 		velocity = node["velocity"].AsFloat;
+		scale = node["scale"].AsFloat > 0 ? node["scale"].AsFloat : 1f;
 	}	
 	
 }

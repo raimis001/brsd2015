@@ -1,17 +1,32 @@
 fileFormatVersion: 2
 guid: df6b4ddaff8437f42b0ee1b75089ee33
-timeCreated: 1426938267
+timeCreated: 1427649095
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: inteface_0
-    21300002: inteface_1
-    21300004: inteface_2
-    21300006: inteface_3
+    21300000: panelMain
+    21300002: Shop
+    21300004: progressBar
+    21300006: metalICO
     21300008: inteface_4
     21300010: inteface_5
     21300012: inteface_6
     21300014: inteface_7
+    21300016: planet
+    21300018: inteface_0
+    21300020: btnStart
+    21300022: progressBack
+    21300024: inteface_1
+    21300026: progressImage
+    21300028: progressShip
+    21300030: metal
+    21300032: scrap
+    21300034: scrapICO
+    21300036: science
+    21300038: bRepair
+    21300040: bUpgrade
+    21300042: bSell
+    21300044: selectedTile
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,7 +49,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -57,83 +72,193 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
+    - name: panelMain
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 893
+        width: 1024
+        height: 131
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 50}
+    - name: planet
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 480
+        height: 480
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: inteface_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 912
-        width: 106
-        height: 106
+        x: 366
+        y: 670
+        width: 377
+        height: 155
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 12, y: 12, z: 12, w: 12}
+      border: {x: 25, y: 0, z: 24, w: 25}
+    - name: Shop
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 497
+        width: 651
+        height: 157
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 24, y: 0, z: 0, w: 25}
+    - name: btnStart
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 673
+        width: 257
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: progressBack
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 557
+        width: 92
+        height: 95
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 2, y: 2, z: 2, w: 2}
     - name: inteface_1
       rect:
         serializedVersion: 2
-        x: 133
-        y: 900
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 60, y: 60, z: 60, w: 60}
-    - name: inteface_2
-      rect:
-        serializedVersion: 2
-        x: 279
-        y: 936
-        width: 60
-        height: 60
+        x: 19
+        y: 781
+        width: 258
+        height: 61
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inteface_3
+    - name: progressBar
       rect:
         serializedVersion: 2
-        x: 270
-        y: 896
-        width: 79
-        height: 25
+        x: 19
+        y: 860
+        width: 256
+        height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 14, y: 6, z: 14, w: 6}
-    - name: inteface_4
+      border: {x: 2, y: 3, z: 2, w: 2}
+    - name: progressImage
       rect:
         serializedVersion: 2
-        x: 366
-        y: 936
-        width: 58
-        height: 59
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inteface_5
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 897
-        width: 31
-        height: 24
+        x: 223
+        y: 740
+        width: 29
+        height: 30
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inteface_6
+    - name: progressShip
       rect:
         serializedVersion: 2
-        x: 416
-        y: 903
-        width: 8
+        x: 145
+        y: 740
+        width: 50
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: metal
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 509
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: metalICO
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 510
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: inteface_7
+    - name: scrap
       rect:
         serializedVersion: 2
-        x: 139
-        y: 771
-        width: 108
-        height: 108
+        x: 105
+        y: 503
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: scrapICO
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 510
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: science
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 507
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bRepair
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 453
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bUpgrade
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 453
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bSell
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 453
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: selectedTile
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 557
+        width: 90
+        height: 104
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

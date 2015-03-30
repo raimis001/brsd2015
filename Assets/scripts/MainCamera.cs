@@ -10,32 +10,22 @@ public class MainCamera : MonoBehaviour {
 	public static bool panMode = false;
 	Vector3 _panPos;
 	
-	float _timeRock;
-	float _timeRockMax = 1f;
-	
 	// Use this for initialization
 	void Start () {
-		_timeRock =_timeRockMax;
+		
 	}
 	void LateUpdate () {
-		if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-			if (Camera.main.orthographicSize > 1) Camera.main.orthographicSize--;
-		}
-		if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-			if (Camera.main.orthographicSize < 12) Camera.main.orthographicSize++;
-		}
-		
 		
 		
 	}
 	// Update is called once per frame
 	void Update () {
-		if (_timeRock > 0) {
-			_timeRock -= Time.deltaTime;
-			if (_timeRock <= 0) {
-				//Rock.create();
-				_timeRock =_timeRockMax;
+	
+		if (Gui.gameMode == 2) {
+			if (Camera.main.orthographicSize != 5f) {
+				Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 5f, 0.01f);
 			}
+			return;
 		}
 	
 		if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -62,6 +52,13 @@ public class MainCamera : MonoBehaviour {
 				panMode = false;
 				return;
 			}
+		}
+		
+		if (Input.GetAxis("Mouse ScrollWheel") > 0) {
+			if (Camera.main.orthographicSize > 3) Camera.main.orthographicSize -= 0.5f;
+		}
+		if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+			if (Camera.main.orthographicSize < 10) Camera.main.orthographicSize += 0.5f;
 		}
 		
 		

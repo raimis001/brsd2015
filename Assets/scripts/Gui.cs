@@ -1,74 +1,77 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Gui : MonoBehaviour {
 
-	public Text BaseName;
-	public Text levelText;
-	
-	public Text timeText;
-	public Image timeProgress;
-	
+	public Text metalText;
 	public Text scrapText;
 	public Text scrapText1;
-	public Image scrapProgress;
-	
-	public Text metalText;
 	public Text knownText;
 	
-	public Text buttonText;
+	public Text timerText;
 	
-	public Text messageText;
+	public Text tilePriceText;
 	
-	public GameObject Base;
-	public GameObject Fabric;
+	public Text tileDamage;
+	public Text tileEnergy;
+
+	public Slider travelSlider;
+	public Text travelText;
 	
-	public GameObject PanelTile;
-	public GameObject PanelDevice;
+	public Text[] buyNames;
+	public Text[] buyPrices;
+		
+	public Toggle edditorToggle;
 	
-	public Animator endGame;
+	public Sprite[] deviceSprites;
+	public Image deviceImage;
+	public Text deviceName;
+		
+	public GameObject buildPanel;
+	public GameObject selectedPanel;
+	public GameObject planetPanel;
+	public GameObject travelPanel;
 	
-	
+	public GameObject blankPanel;
+	public GameObject devicePanel;
+		
 	public GameObject cursor;
+	
+	public GuiUpgrade[] upgrades;
 	
 	public static Gui instance;
 	public static bool editorMode = false;
 	
-	private static TilePoint _selectedTile = null;
-	public static TilePoint selectedTile {
-		get { return _selectedTile; }
+	private static string _selected = null;
+	public static string selected {
+		get { return _selected; }
 		set {
-			TilePoint old = _selectedTile;
-			_selectedTile = value;
-			if (instance) {
-				instance.setSelected(old);
-			}
+			string old = _selected;
+			_selected = value;
+			if (!instance) return;
+			
+			instance.SetSelected(old);
+		}
+	}
+	private static int _gameMode = 0;//0 - in planet, 1 - in fly, 2 - fly pause
+	public static int gameMode {
+		get { return _gameMode; }
+		set {
+			_gameMode = value;
+			if (!instance) return;
+			
+			instance.SetGameMode();
 		}
 	}
 	
-	public Text selectedCoord;
-	public Text selectedDamageText;
-	public Image selectedDamageProgress;
-
-	public Text deviceDamage;
-	public Text deviceTime;
-	public Text deviceDistance;
-	public Text deviceSpeed;
-	public Text deviceRate;
-	
-	public Text selectedDevice;
-	
-	public Text selectedEnergyText;
-	public Text selectedEnergyNeed;
-	public Image selectedEnergyProgress;
-	
-	public Button[] upgrades;
-	
-	public static int gameMode = 0; //0 - in planet, 1 - in fly, 2 - fly pause
+	//public Button[] upgrades;
 	
 	int currentSec = 0;
+	Color[] energyColors = new Color[3];
+	
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -77,10 +80,37 @@ public class Gui : MonoBehaviour {
 		UpdateScraps();
 		UpdateMetals();
 		
-		cursor.SetActive(false);
+		//cursor.SetActive(false);
 		
-		PanelTile.SetActive(false);
-		PanelDevice.SetActive(false);
+		tilePriceText.text = ShipData.devices[0].price.ToString();
+		
+		buyNames[0].text = ShipData.devices[2].name;
+		buyPrices[0].text = ShipData.devices[2].price.ToString();
+
+		buyNames[1].text = ShipData.devices[6].name;
+		buyPrices[1].text = ShipData.devices[6].price.ToString();
+		
+		buyNames[2].text = ShipData.devices[3].name;
+		buyPrices[2].text = ShipData.devices[3].price.ToString();
+		
+		buyNames[3].text = ShipData.devices[4].name;
+		buyPrices[3].text = ShipData.devices[4].price.ToString();
+		
+		buyNames[4].text = ShipData.devices[11].name;
+		buyPrices[4].text = ShipData.devices[11].price.ToString();
+		
+		buyNames[5].text = ShipData.devices[8].name;
+		buyPrices[5].text = ShipData.devices[8].price.ToString();
+		
+		buyNames[6].text = ShipData.devices[7].name;
+		buyPrices[6].text = ShipData.devices[7].price.ToString();
+		
+		energyColors[0] = new Color(0, 174f / 255f, 239f / 255f);
+		energyColors[1] = new Color(237f / 255f, 37f / 255f, 37f / 255f);
+		energyColors[2] = new Color(0f / 255f, 174f / 255f, 24f / 255f);
+		
+		cursor.SetActive(false);
+		gameMode = 2;
 	}
 	
 	
@@ -89,20 +119,20 @@ public class Gui : MonoBehaviour {
 		if ((gameMode == 1) && ShipData.levelData.currentTime > 0) {
 			ShipData.levelData.currentTime -= Time.deltaTime;
 			int sec = (int)(ShipData.levelData.time - ShipData.levelData.currentTime);
-			timeProgress.fillAmount = ShipData.levelData.currentTime / ShipData.levelData.time;
+			
+			travelSlider.value = 1 - ShipData.levelData.currentTime / ShipData.levelData.time;
+			
 			if (currentSec != sec) {
 				currentSec = sec;
-				timeText.text = sec.ToString("000");
+				if (timerText != null) timerText.text = sec.ToString("000");
+				travelText.text = sec.ToString("000");//(travelSlider.value * 100f).ToString("00") + "%";
+				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
 			
 			if (ShipData.levelData.currentTime <= 0) {
 				//End level
-				gameMode = 0;
-				Base.SetActive(true);
-				timeProgress.fillAmount = 1f;
-				buttonText.text = "LAUNCH";
-				timeText.text = "000";
+				gameMode = 2;
 				ShipData.nextLevel();
 			}
 		
@@ -121,159 +151,192 @@ public class Gui : MonoBehaviour {
 					}
 				}
 			}
-			
-		}
-		
-		if (Input.GetMouseButtonDown(1) && selectedTile != null) {
-			selectedTile = null;
-		}
-		
-		if (selectedTile != null) {
-			HexaTile tile = ShipData.mainShip.GetTile(selectedTile.index);
-			if (tile != null) {
-				selectedDamageText.text = tile.device.hpCurrent.ToString("00");
-				selectedDamageProgress.fillAmount = tile.device.hpCurrent / tile.device.hpMax;
-				
-				selectedEnergyText.text = Mathf.Abs(tile.device.energyCurrent).ToString();
-				selectedEnergyNeed.text = Mathf.Abs(tile.device.energyNeed).ToString();
-				
-				if (tile.device.energyNeed < 1) {
-					selectedEnergyProgress.fillAmount = 1f;
-				} else {
-					selectedEnergyProgress.fillAmount = (float)tile.device.energyCurrent / (float)tile.device.energyNeed;
-				}
-			} else {
-				selectedTile = null;
+			if (Input.GetMouseButtonDown(1)) {
+				edditorToggle.isOn = false;
 			}
-			
+			return;
+		} 
+		
+		if (Input.GetMouseButtonDown(1) && selected != null) {
+			if (EventSystem.current.IsPointerOverGameObject()) return;
+			selected = null;
 		}
 		
+		if (selected != null) {
+			HexaTile tile = ShipData.mainShip.GetTile(selected);
+			if (tile == null) {
+				selected = null;
+				return;
+			}
+			tileDamage.text = tile.device.hpCurrent.ToString("0") + "/" + tile.device.hpMax.ToString("0");
+			
+			if (tile.device.energyProduce > 0) {
+				tileEnergy.text = tile.device.energyProduce.ToString();
+				tileEnergy.color = energyColors[2];
+			} else {
+				tileEnergy.text = tile.device.energyNeed.ToString("0") + "/" + tile.device.energyCurrent.ToString("0");
+				if (tile.device.energyCurrent >= tile.device.energyNeed) {
+					tileEnergy.color = energyColors[0];
+				} else {
+					tileEnergy.color = energyColors[1];
+				}
+			}
+		}
+}
+	
+	public void StartFly() {
+		gameMode = 1;
 	}
+	
+	public void SetGameMode() {
+		switch (gameMode) {
+		case 0: 
+			edditorToggle.isOn = false;
+			planetPanel.SetActive(true);
+			travelPanel.SetActive(false);
+			selected = null;
+			break;
+		case 1: 
+			edditorToggle.isOn = false;
+			buildPanel.SetActive(false);
+			planetPanel.SetActive(false);
+			
+			travelSlider.value = 0;
+			travelText.text = "";
+			travelPanel.SetActive(true);
+			selected = null;
+			break;
+		case 2:
+			edditorToggle.isOn = false;
+			buildPanel.SetActive(false);
+			planetPanel.SetActive(false);
+			selectedPanel.SetActive(false);
+			selected = null;
+			travelPanel.SetActive(false);
+			Base.StartBase();
+			break;
+		}
+	}
+	
+	public void SetEditorMode(bool value) {
+		editorMode = value;
+		cursor.SetActive(editorMode);
+		selected = null;
+	}
+	
+	
+	public void SetSelected(string oldValue) {
+		if (oldValue != null) ShipData.mainShip.SetSelected(oldValue, false);
+		
+		if (selected != null) {
+			buildPanel.SetActive(false);
+			ShipData.mainShip.SetSelected(selected, true);
+			selectedPanel.SetActive(true);
+			
+			HexaTile tile = ShipData.mainShip.GetTile(selected);
+				blankPanel.SetActive(tile.device.id == 0);
+				devicePanel.SetActive(tile.device.id != 0);
+				deviceImage.sprite = deviceSprites[tile.device.id];
+				deviceName.text = ShipData.devices[tile.device.id].name;
+				
+				foreach (GuiUpgrade obj in upgrades) {
+					if (tile.device.upgrades.ContainsKey(obj.gameObject.name)) {
+						obj.value.text = tile.valueByName(obj.gameObject.name);
+						
+						if (tile.device.upgrades[obj.gameObject.name].level <= 3) {
+							obj.price.text = tile.device.upgrades[obj.gameObject.name].price.ToString();
+							obj.label.text = tile.device.upgrades[obj.gameObject.name].label;
+							obj.button.gameObject.SetActive(true);
+						} else {
+							obj.button.gameObject.SetActive(false);
+						}
+						
+						
+						obj.gameObject.SetActive(true);
+					} else {
+						obj.gameObject.SetActive(false);
+					}
+				}
+				
+		} else {
+			selectedPanel.SetActive(false);
+			if (_gameMode == 0) {
+				buildPanel.SetActive(true);
+			}
+		}
+
+	}
+	
 	void OnEnable() {
 		HexaTile.OnMouseClick += OnTileClick;
 	}
 	void OnDisable() {
 		HexaTile.OnMouseClick -= OnTileClick;
 	}
+	void OnTileClick(TilePoint key) {
+		if (EventSystem.current.IsPointerOverGameObject()) return;
+		if (editorMode) return;
+		if (gameMode == 2) return;
+		
+		selected = key.index;		
+	}
+	
 	public static void AddMessage(string message) {
 		Debug.Log(message);
 		if (instance == null) return;
 		
 		
-		instance.messageText.text = instance.messageText.text.Insert(0,message + "\n");
+		//instance.messageText.text = instance.messageText.text.Insert(0,message + "\n");
 	}
 	public static void updateLevel() {
 		AddMessage("Level " + ShipData.currentLevel + " loaded!");
 		if (!instance) return;
-		instance.BaseName.text = ShipData.levelData.name;
-		instance.levelText.text = ShipData.currentLevel.ToString();
+		//instance.BaseName.text = ShipData.levelData.name;
+		//instance.levelText.text = ShipData.currentLevel.ToString();
 	}
 		
+	
+	public static void UpdateMetals() {
+		if (!instance) return;
+		if (instance.metalText == null) return;
+		
+		instance.metalText.text = ShipData.metals.ToString();
+	}
+	public static void UpdateScraps() {
+		if (!instance) return;
+		if (instance.scrapText == null) return;
+		
+		instance.scrapText.text = ShipData.scraps.ToString();
+		instance.scrapText1.text = ShipData.scraps.ToString();
+	}
 	public static void UpdateKnowledge() {
 		if (!instance) return;
+		if (instance.knownText == null) return;
 		
 		instance.knownText.text = ShipData.knowledge.ToString();
 	}
 	
-	public static void UpdateScraps() {
-		if (!instance) return;
-		
-		instance.scrapText.text = ShipData.scraps.ToString();
-		instance.scrapText1.text = ShipData.scraps.ToString();
-		
-		instance.scrapProgress.fillAmount = (float)ShipData.scraps / (float)ShipData.scrapInventory;
-	}
-	public static void UpdateMetals() {
-		if (!instance) return;
-		instance.metalText.text = ShipData.metals.ToString();
-	}
-	
-	void OnTileClick(TilePoint key) {
-		if (EventSystem.current.IsPointerOverGameObject()) return;
-		if (editorMode) return;
-		
-		selectedTile = key;
-	}
 	
 	
 	public void createDevice(int device) {
-		if (selectedTile == null) return;
+		if (selected == null) return;
+		
 		if (ShipData.metals < ShipData.devices[device].price) {
 			AddMessage("Pietrukst metala");
 			return;
 		}
-		if (selectedTile.ship.CreateDevice(selectedTile.index, device)) {
+		
+		if (ShipData.mainShip.CreateDevice(selected, device)) {
 			ShipData.addMetals(-ShipData.devices[device].price);
 		}
-		
-		//selectedTile = null;
-		selectedTile = selectedTile;
+
+				
+		selected = selected;
 		
 	}
 		
-	public void setSelected(TilePoint oldValue) {
-		if (oldValue != null) ShipData.mainShip.SetSelected(oldValue.index, false);
-		
-		
-		PanelTile.SetActive(false);
-		PanelDevice.SetActive(false);
-		if (_selectedTile != null) {
-			
-			ShipData.mainShip.SetSelected(_selectedTile.index, true);
-			HexaTile tile = ShipData.mainShip.GetTile(_selectedTile.index);
-			
-			if (tile.tileID == 0) {
-				selectedCoord.text = "x:" + tile.key.x.ToString() + " y:" + tile.key.y.ToString();
-				PanelTile.SetActive(true);
-			} else {
-				selectedDevice.text = tile.device.name;
-				deviceDamage.text = "dmg: " + tile.device.damage.ToString(); 
-				deviceTime.text = "crg: " + tile.device.time.ToString("0.00"); 
-				deviceDistance.text = "dist: " + tile.device.distance.ToString(); 
-				deviceSpeed.text = "spd: " + tile.device.speed.ToString("0.00"); 
-				deviceRate.text = "rate: " + tile.device.rate.ToString("0.00"); 
-				
-												
-				for (int i = 0; i < upgrades.Length; i++) {
-					//Debug.Log(upgrades[i].name);
-					if (tile.device.upgrades.ContainsKey(upgrades[i].name)) {
-						upgrades[i].gameObject.SetActive(true);
-					} else {
-						upgrades[i].gameObject.SetActive(false);
-					}
-				}
-				PanelDevice.SetActive(true);
-				
-			}
-		} 
-	}
 		
 	/*GUI buttons*/
-	public void SetGameMode() {
-		switch (gameMode) {
-			case 0: 
-			case 2: 
-				EditorMode(false);
-				Base.SetActive(false);
-				Fabric.SetActive(false);
-				buttonText.text = "Pause";
-				gameMode = 1;
-				break;
-			case 1: 
-				buttonText.text = "Resume";
-				gameMode = 2;
-				break;
-		}
-	}
-	public void FabricMode() {
-		EditorMode(false);
-		if (Fabric.activeSelf) {
-			Fabric.SetActive(false);
-		} else {
-			Fabric.SetActive(true);
-		}
-	}
-	
 	public void FabricSellAll() {
 		if (ShipData.scraps < 1) return;
 		
@@ -283,15 +346,7 @@ public class Gui : MonoBehaviour {
 		ShipData.addMetals(scrap);
 	}
 
-	public void EditorMode(bool value) {
-		editorMode = value;
-		cursor.SetActive(editorMode);
-		selectedTile = null;
-	}	
 	
-	public void swicthEditor() {
-		EditorMode(!editorMode);
-	}
 	
 	public void loadLevel(int tag) {
 		if (tag == 0) 
@@ -300,56 +355,63 @@ public class Gui : MonoBehaviour {
 	}
 	
 	public void deleteTile() {
-		if (selectedTile == null) return;
+		if (selected == null) return;
 		
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		if (tile.device.id == 1) {
 			AddMessage("Cannot delete pilot cabine");
 			return;
 		}
 		
-		ShipData.addMetals(ShipData.devices[tile.device.id].price);
-		AddMessage("Return metal:" + ShipData.devices[tile.device.id].price.ToString());
+		int price = (int)((float)ShipData.devices[tile.device.id].price * 0.75f);
+		ShipData.addMetals(price);
+		AddMessage("Return metal:" + price.ToString());
 		
-		selectedTile.ship.DeleteTile(selectedTile.index);
-		selectedTile = null;
+		ShipData.mainShip.DeleteTile(selected);
+		selected = null;
 		
 	}
 	public void deleteDevice() {
-		if (selectedTile == null) return;
+		if (selected == null) return;
 		
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		if (tile.device.id == 1) {
 			AddMessage("Cannot delete pilot cabine");
 			return;
 		}
 		
-		int price = ShipData.devices[tile.device.id].price;
+		int price = (int)((float)ShipData.devices[tile.device.id].price * 0.75f);
 		
-		if (selectedTile.ship.DeleteDevice(selectedTile.index)) {
+		if (ShipData.mainShip.DeleteDevice(selected)) {
 			ShipData.addMetals(price);
 		}
 		
-		selectedTile = null;
-		selectedTile = tile.key;
+		selected = tile.key.index;
+		
 	}
 	public void upgradeDevice(string param) {
-		if (selectedTile == null) return;
+		if (selected == null) return;
 		
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		tile.ugradeDevice(param);
 		
 		ShipData.mainShip.RecalcEnergy();
 		
-		selectedTile = selectedTile;
+		selected = selected;
 	}
 	
 	public void repairTile() {
-		if (selectedTile == null) return;
-		HexaTile tile = selectedTile.ship.GetTile(selectedTile.index);
-		if (tile != null || tile.device.hpCurrent >= tile.device.hpMax) return;
+		if (selected == null) return;
+		Debug.Log("Start repair " + selected);
+		HexaTile tile = ShipData.mainShip.GetTile(selected);
+		if (tile == null || tile.device.hpCurrent >= tile.device.hpMax) {
+			Debug.Log("repair not needed " + selected);
+			return;
+		}
 		
-		int price = (int)((float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		int price = Mathf.CeilToInt(((float)tile.device.price / (float)tile.device.hpMax)  * (float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
+		Debug.Log("repair price " + price.ToString());
+		
 		
 		if (ShipData.metals < price) {
 			AddMessage("Pietrukst metala");
@@ -357,9 +419,10 @@ public class Gui : MonoBehaviour {
 		}
 		
 		ShipData.addMetals(-price);
-		tile.device.hpCurrent = tile.device.hpMax;
+		tile.Repair();
+		Debug.Log("repairing " + tile.device.hpCurrent.ToString());
 		
-		selectedTile = selectedTile;
+		selected = selected;
 		
 	}
 	
