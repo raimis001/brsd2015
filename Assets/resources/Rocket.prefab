@@ -12,6 +12,7 @@ GameObject:
   - 95: {fileID: 9525682}
   - 114: {fileID: 11439318}
   - 61: {fileID: 6159022}
+  - 50: {fileID: 5070370}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: shot
@@ -26,11 +27,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.18799996, y: .0370000005, z: 0}
+  m_LocalPosition: {x: -1.49573731, y: -6.47549486, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5070370
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104508}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!61 &6159022
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -39,7 +55,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 104508}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2

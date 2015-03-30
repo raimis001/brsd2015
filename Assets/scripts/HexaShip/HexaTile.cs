@@ -224,7 +224,7 @@ public class HexaTile : MonoBehaviour {
 	
 	public string valueByName(string value) {
 		string result = "";
-		Debug.Log("get value for " + value);
+		//Debug.Log("get value for " + value);
 		switch (value) {
 			case "damage":
 				result = device.damage.ToString();

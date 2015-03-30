@@ -30,7 +30,7 @@ public class Shot : MonoBehaviour {
 		shot.gameObject.tag = tag;
 		shot.target = target;
 	
-		Debug.Log("Creating shot with tag:" + tag);	
+		//Debug.Log("Creating shot with tag:" + tag);	
 	}
 
 	public float speed;	

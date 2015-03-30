@@ -87,8 +87,9 @@ public class Enemy : MonoBehaviour {
 			Destroy(coll.gameObject);
 			return;
 		}
+		//Debug.Log("collide with: " + coll.gameObject.tag);
+		if (coll.gameObject.tag == "shot") {
 		
-		if (coll.gameObject.name == "shot" && coll.gameObject.tag == "shot") {
 			float damage = coll.gameObject.GetComponent<Shot>().damage;
 			ApplyDamage(damage);
 			Destroy(coll.gameObject);

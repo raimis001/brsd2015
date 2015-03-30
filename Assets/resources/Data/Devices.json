@@ -21,7 +21,7 @@
   		"atlas":"Generator",
   		"name":"Ģenerators", "price":30, "hp":50,	"damage":0,	"speed":0, "time":0.1,	"distance":5,	"energy":90,
   		"upgrade":{
-  			"energy":{"price":[50,50,50],"value":0, "energy":33, "name":"enerģijas ražošana"}
+  			"energy":{"price":[50,50,50],"value":33, "energy":33, "name":"enerģijas ražošana"}
   		}
   		},
   		
