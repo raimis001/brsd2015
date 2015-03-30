@@ -5,7 +5,7 @@
 		"baseName":"Centauri sektors",
 		"events": {
 			"1": {
-				 "rock":{"count":1, "scale":0.8, "angle":270, "speed":3, "damage":50, "hp":50, "delay":0, "distance":20, "value":100}
+				 "gold":{"count":1, "scale":0.8, "angle":270, "speed":3, "damage":50, "hp":50, "delay":0, "distance":20, "value":100}
 			 },
 			"10": {
 				 "rock":{"count":6, "angle":300, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":20, "value":14}
@@ -38,19 +38,19 @@
 		"baseName":"Sirius sektors",
 		"events": {
       "1": {
-				 "rock":{"count":1, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":150}
+				 "gold":{"count":1, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":150}
 			},			
 			"10": {
-				 "rock":{"count":6, "angle":310, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":20, "value":14}
+				 "rock":{"count":6, "angle":310, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":20, "value":13}
 			 },
 			"25": {
 				 "medusa":{"count":1, "angle":60, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":130, "charge":1}
 			 },
 			"45": {
-         "rock":{"count":6, "angle":40, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":14}
+         "rock":{"count":6, "angle":40, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":13}
 			 },
 			"46": {
-         "rock":{"count":6, "angle":70, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":14}
+         "rock":{"count":6, "angle":70, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":13}
 			 },
 			"47": {
 				 "medusa":{"count":1, "angle":60, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":130, "charge":1}
@@ -62,10 +62,10 @@
 				 "medusa":{"count":1, "angle":180, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":130, "charge":1}
 			 },
 			"82": {
-				 "rock":{"count":6, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":14}
+				 "rock":{"count":6, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":13}
 			 },
 			"83": {
-				 "rock":{"count":6, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":14}
+				 "rock":{"count":6, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":13}
 			 }
 		}	},
 	"3": {
@@ -73,19 +73,22 @@
 		"baseName":"Eridani sektors",
 		"events": {
 			"1": {
-				 "rock":{"count":1, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":200}
+				 "gold":{"count":1, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":200}
 			 },
 			"10": {
-				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"11": {
-				 "rock":{"count":10, "angle":90, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":90, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
+			 },
+			"12": {
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"13": {
-				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"14": {
-				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"30": {
 				 "medusa":{"count":1, "angle":30, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
@@ -100,31 +103,52 @@
          "medusa":{"count":2, "angle":30, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
 			 },
 			"56": {
-				 "rock":{"count":10, "angle":90, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":90, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"57": {
-				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 },
 			"58": {
-				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":30, "delay":0, "distance":25, "value":6}
+				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
+			 },
+			"59": {
+				 "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":6, "scale":0.5}
 			 }, 
 			"90": {
-				 "medusa":{"count":2, "angle":30, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
+				 "medusa":{"count":1, "angle":70, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
 			 },
 			"91": {
-				 "medusa":{"count":2, "angle":110, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
+				 "medusa":{"count":1, "angle":80, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
+			 },
+			"92": {
+				 "medusa":{"count":1, "angle":90, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
+			 },
+			"93": {
+				 "medusa":{"count":1, "angle":100, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
+			 },
+			"94": {
+				 "medusa":{"count":1, "angle":110, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":100, "charge":1}
 			 }
 		}
 	},
 	"4": {
-		"time":180,
+		"time":140,
 		"baseName":"Vega sektors",
 		"events": {
-			"5": {
-				 "rock":{"count":30, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
+			"1": {
+				 "gold":{"count":30, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
 			 },
-			"25": {
-				 "rock":{"count":36, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
+			"10": {
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+			 },
+			"11": {
+				 "evil":{"count":1, "angle":0, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+			 },
+			"12": {
+				 "evil":{"count":1, "angle":180, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+			 },
+			"20": {
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":450, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
 			 }, 
 			"40": {
          "rock":{"count":45, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
@@ -135,7 +159,7 @@
 		}
 	},
 	"5": {
-		"time":180,
+		"time":140,
 		"baseName":"Herculis sektors",
 		"events": {
 			"5": {
@@ -153,7 +177,7 @@
 		}
 	},
 	"6": {
-		"time":180,
+		"time":140,
 		"baseName":"Pegasi sektors",
 		"events": {
 			"5": {
@@ -171,7 +195,7 @@
 		}
 	},
 	"7": {
-		"time":200,
+		"time":140,
 		"baseName":"Aldemarin sektors",
 		"events": {
 			"5": {
@@ -184,6 +208,24 @@
          "rock":{"count":77, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":16}
 			 }, 
 			"80": {
+				 "rock":{"count":89, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":16}
+			 }
+		}
+	},
+	"8": {
+		"time":150,
+		"baseName":"Testing sektor",
+		"events": {
+			"5": {
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":450, "delay":0, "distance":25, "value":50, "range":10, "velocity":3}
+			 },
+			"250": {
+				 "rock":{"count":71, "angle":90, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":16}
+			 }, 
+			"400": {
+         "rock":{"count":77, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":16}
+			 }, 
+			"800": {
 				 "rock":{"count":89, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":16}
 			 }
 		}
