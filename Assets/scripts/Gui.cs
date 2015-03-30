@@ -289,7 +289,7 @@ public class Gui : MonoBehaviour {
 	}
 	
 	public static void AddMessage(string message) {
-		Debug.Log(message);
+		//Debug.Log(message);
 		if (instance == null) return;
 		
 		

@@ -9,9 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 413848}
   - 212: {fileID: 21275186}
-  - 95: {fileID: 9500310}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: Kupol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,6 +27,7 @@ GameObject:
   - 212: {fileID: 21221540}
   - 114: {fileID: 11486806}
   - 60: {fileID: 6066808}
+  - 95: {fileID: 9518424}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -42,8 +42,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .370000005, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .800000012, y: .959999979, z: 1}
   m_Children: []
   m_Father: {fileID: 450054}
   m_RootOrder: 0
@@ -54,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.81831896, y: 1.40978122, z: 0}
-  m_LocalScale: {x: .75999999, y: .910000026, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 413848}
   m_Father: {fileID: 0}
@@ -91,13 +91,13 @@ PolygonCollider2D:
       - {x: -1.52280104, y: -.705756068}
       - {x: -1.74752486, y: -.393032819}
       - {x: -1.83438003, y: -.03885011}
---- !u!95 &9500310
+--- !u!95 &9518424
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 109426}
+  m_GameObject: {fileID: 197448}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e9c8a5cbea98e4b468d6b36079d9a65a, type: 2}
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439709017
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300152, guid: b5e6b69d9ef40a147bbc2ef2a98298ea, type: 3}
+  m_Sprite: {fileID: 21300004, guid: b5e6b69d9ef40a147bbc2ef2a98298ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21275186
 SpriteRenderer:
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 671958563
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300004, guid: b5e6b69d9ef40a147bbc2ef2a98298ea, type: 3}
+  m_Sprite: {fileID: 21300152, guid: b5e6b69d9ef40a147bbc2ef2a98298ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -6,13 +6,16 @@ public class Shield : Device {
 
 	float scale = 1f;
 	Vector3 localScale;
+	Transform kupol;
 	
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
 		transform.position = new Vector3(transform.position.x, transform.position.y, 5f);
 		gameObject.name = "shield";
-		localScale = transform.localScale;
+		
+		kupol = transform.FindChild("Kupol") as Transform;
+		localScale = kupol.localScale;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +26,7 @@ public class Shield : Device {
 				scale += (data.rate / 1000);
 				if (scale >= 1f) scale = 1f;
 			}
-			transform.localScale = scale * localScale;
+			kupol.localScale = scale * localScale;
 		}
 	}
 	

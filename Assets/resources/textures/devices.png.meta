@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b5e6b69d9ef40a147bbc2ef2a98298ea
-timeCreated: 1427722939
+timeCreated: 1427729656
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -170,7 +170,7 @@ TextureImporter:
         width: 47
         height: 87
       alignment: 9
-      pivot: {x: .46808511, y: .517241359}
+      pivot: {x: .46808511, y: .119999997}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SGen2
       rect:
@@ -180,7 +180,7 @@ TextureImporter:
         width: 47
         height: 87
       alignment: 9
-      pivot: {x: .46808511, y: .517241359}
+      pivot: {x: .46808511, y: .119999997}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SGen3
       rect:
@@ -190,7 +190,7 @@ TextureImporter:
         width: 47
         height: 87
       alignment: 9
-      pivot: {x: .46808511, y: .517241359}
+      pivot: {x: .46808511, y: .119999997}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: cabin1
       rect:
