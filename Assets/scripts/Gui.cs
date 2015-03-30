@@ -117,6 +117,8 @@ public class Gui : MonoBehaviour {
 		
 		cursor.SetActive(false);
 		gameMode = 2;
+		
+		AudioListener.pause = false;
 	}
 	
 	
@@ -162,9 +164,24 @@ public class Gui : MonoBehaviour {
 			return;
 		} 
 		
-		if (Input.GetMouseButtonDown(1) && selected != null) {
+		if (selected != null) {
 			if (EventSystem.current.IsPointerOverGameObject()) return;
-			selected = null;
+			if (Input.GetMouseButtonDown(1)) {
+				selected = null;
+				return;
+			}
+			if (Input.GetMouseButtonDown(0)) {
+				Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Collider2D[] collission = Physics2D.OverlapPointAll(mousePos);
+				bool istile = false;
+				foreach (Collider2D collider in collission) {
+					if (collider.gameObject.tag == "ship") {
+						istile = true;
+						break;
+					}
+				}
+				if (!istile) selected = null;
+			}
 		}
 		
 		if (selected != null) {
@@ -239,6 +256,9 @@ public class Gui : MonoBehaviour {
 			buildPanel.SetActive(false);
 			ShipData.mainShip.SetSelected(selected, true);
 			selectedPanel.SetActive(true);
+			tileDamage.gameObject.SetActive(true);
+			tileEnergy.gameObject.SetActive(true);
+			
 			
 			HexaTile tile = ShipData.mainShip.GetTile(selected);
 				blankPanel.SetActive(tile.device.id == 0);
@@ -266,6 +286,8 @@ public class Gui : MonoBehaviour {
 				}
 				
 		} else {
+			tileDamage.gameObject.SetActive(false);
+			tileEnergy.gameObject.SetActive(false);
 			selectedPanel.SetActive(false);
 			if (_gameMode == 0) {
 				buildPanel.SetActive(true);

@@ -135,9 +135,11 @@ public class HexaTile : MonoBehaviour {
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		switch (color) {
 			case 0: //default
+				energyStatus = 0;
 				sr.color = Color.white;
 				break;
 			case 1: //Selected
+				energyStatus = 2;
 				sr.color = new Color(237f / 255f,1f,69f / 255f);
 				break;
 			case 2: //Fitting
@@ -147,6 +149,7 @@ public class HexaTile : MonoBehaviour {
 				sr.color = Color.red;
 				break;
 			case 4: //No energy
+				energyStatus = 1;
 				sr.color = new Color(145f / 255f,95f / 255f, 145f / 255f);
 				break;
 		}
@@ -224,6 +227,8 @@ public class HexaTile : MonoBehaviour {
 			key.ship.DeleteTile(key.index,true);
 			return;
 		}
+		
+		if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
 		
 		int cnt = ShipData.tiles.Count - 1;
 		int sprite = cnt - (int)((float)cnt * ((float)device.hpCurrent / (float)device.hpMax ));

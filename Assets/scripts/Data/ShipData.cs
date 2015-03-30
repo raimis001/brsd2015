@@ -29,61 +29,64 @@ public class ShipData  {
 	public static GameObject tileResource;
 	public static HexaShip mainShip;
 	
+	public static bool initMainData = false;
+	
 	static float _offsetX = Mathf.Sqrt(3) / 2;
 	static float _offsetY = 1f - Mathf.Sqrt(3) + 0.225f;
 	
 	public ShipData() {
 		JSONNode json;
 			
-		Sprite[] sprites;
+		if (!initMainData) {
+			initMainData = true;
+			Sprite[] sprites;
+			sprites = Resources.LoadAll<Sprite>("textures/devices");
+			for(int i=0; i< sprites.Length; i++) {
+				if (sprites[i].name.IndexOf("mainShip") > -1) {
+					string s = sprites[i].name.Remove(0,8);
+					tiles.Add(int.Parse(s), sprites[i]);
+				}
+				if (sprites[i].name.IndexOf("pirateShip") > -1) {
+					string s = sprites[i].name.Remove(0,10);
+					tilesPirate.Add(int.Parse(s), sprites[i]);
+				}
+			}	
 		
-		sprites = Resources.LoadAll<Sprite>("textures/devices");
-		for(int i=0; i< sprites.Length; i++) {
-			if (sprites[i].name.IndexOf("mainShip") > -1) {
-				string s = sprites[i].name.Remove(0,8);
-				tiles.Add(int.Parse(s), sprites[i]);
+					
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
+			for (int i = 0; i < json.Count; i++) {
+				int id = int.Parse(json.AsObject.keyAt(i));
+				devices.Add(id, new DeviceData(id, json[i]));
 			}
-			if (sprites[i].name.IndexOf("pirateShip") > -1) {
-				string s = sprites[i].name.Remove(0,10);
-				tilesPirate.Add(int.Parse(s), sprites[i]);
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
+			for (int i = 0; i < json["ship"].Count; i++) {
+				ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
 			}
-		}	
-	
-				
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
-		for (int i = 0; i < json.Count; i++) {
-			int id = int.Parse(json.AsObject.keyAt(i));
-			devices.Add(id, new DeviceData(id, json[i]));
+			
+			knowledge = json["properties"]["knowledge"].AsInt;
+			scraps = json["properties"]["scraps"].AsInt;
+			scrapInventory = json["properties"]["scrapInventory"].AsInt;
+			metals = json["properties"]["metals"].AsInt;
+			metalPrice = json["properties"]["metalPrice"].AsInt;
+			Gui.UpdateScraps();
+			Gui.UpdateMetals();
+			Gui.UpdateKnowledge();
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
+			for (int i = 0; i < json.Count; i++) {
+				int id = int.Parse(json.AsObject.keyAt(i));
+				levels.Add(id, new LevelData(json[i]));
+			}
+			levelCount = levels.Count;
+			
+			tileResource = Resources.Load ("Tile") as GameObject;
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Enemies").text)["enemies"];
+			for (int i = 0; i < json.Count; i++) {
+				enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
+			}
 		}
-		
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
-		for (int i = 0; i < json["ship"].Count; i++) {
-			ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
-		}
-		
-		knowledge = json["properties"]["knowledge"].AsInt;
-		scraps = json["properties"]["scraps"].AsInt;
-		scrapInventory = json["properties"]["scrapInventory"].AsInt;
-		metals = json["properties"]["metals"].AsInt;
-		metalPrice = json["properties"]["metalPrice"].AsInt;
-		Gui.UpdateScraps();
-		Gui.UpdateMetals();
-		Gui.UpdateKnowledge();
-		
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
-		for (int i = 0; i < json.Count; i++) {
-			int id = int.Parse(json.AsObject.keyAt(i));
-			levels.Add(id, new LevelData(json[i]));
-		}
-		levelCount = levels.Count;
-		
-		tileResource = Resources.Load ("Tile") as GameObject;
-		
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Enemies").text)["enemies"];
-		for (int i = 0; i < json.Count; i++) {
-			enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
-		}
-		
 		mainShip = HexaShip.createShip(ship,Vector3.zero);
 		
 		loadLevel(1);
