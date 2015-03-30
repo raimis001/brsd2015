@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class HexaTile : MonoBehaviour {
 
+	public GameObject energyDevice;
+
 	[HideInInspector]
 	public int tileID = 0;
 	public TilePoint key;
@@ -13,6 +15,8 @@ public class HexaTile : MonoBehaviour {
 
 	public delegate void MouseClick(TilePoint key);
 	public static event MouseClick OnMouseClick;
+
+	int energyStatus = 0; //0 energijas pietiek 1 energinas nav 2 ieselektets
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +29,23 @@ public class HexaTile : MonoBehaviour {
 		} else {
 			sr.sprite = ShipData.tilesPirate[0];
 		}
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (energyStatus == 2) return;
+	
+		if (device.isEnergy()) {
+			if (energyStatus == 1) {
+				energyStatus = 0;
+				energyDevice.SetActive(false);	
+				show(0);
+			}
+		} else if (energyStatus == 0) {
+			energyStatus = 1;
+			energyDevice.SetActive(true);	
+			show(4);
+		}
 	}
 	
 	public void resetEnergy() {
@@ -129,11 +145,28 @@ public class HexaTile : MonoBehaviour {
 			case 3: //No connection
 				sr.color = Color.red;
 				break;
+			case 4: //No energy
+				sr.color = new Color(145f / 255f,95f / 255f, 145f / 255f);
+				break;
 		}
 	}
 	 
 	public void setSelected(bool selected) {
-		show(selected ? 1 : 0);
+		//show(selected ? 1 : 0);
+		if (!selected) {
+			if (!device.isEnergy()) {
+				energyStatus = 1;
+				energyDevice.SetActive(true);	
+				show(4);
+			} else {
+				energyDevice.SetActive(false);	
+				energyStatus = 0;
+				show(0);
+			}
+		} else {
+			energyStatus = 2;
+			show(1);
+		}
 		
 		//foreach (TilePoint point in key.AllNeighbours) {
 		//	HexaTile tile = key.ship.GetTile(point.index);

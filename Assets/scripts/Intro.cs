@@ -6,10 +6,44 @@ public class Intro : MonoBehaviour {
 	public GameObject intro1;
 	public GameObject intro2;
 	public GameObject intro3;
+	public GameObject intro4;
+	
+	public GameObject button;
 	
 
 	float startTime = 0;
-	int currentItro = 0;
+	int _currentIntro = -1;
+	int currentIntro {
+		get { return _currentIntro; }
+		set { 
+			_currentIntro = value;
+			switch (_currentIntro) {
+				case 0:
+					startTime = 0f;
+					button.SetActive(false);
+					break;
+				case 1:
+					startTime = 3.1f;
+					intro1.SetActive(true);
+					break;
+				case 2:
+					startTime = 8.1f;
+					intro2.SetActive(true);
+					break;
+				case 3:
+					startTime = 13.1f;
+					intro3.SetActive(true);
+					break;
+				case 4:
+					startTime = 18.1f;
+					intro4.SetActive(true);
+					break;
+				case 5:
+					StartGame();
+					break;
+			}
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -18,32 +52,44 @@ public class Intro : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		startTime += Time.deltaTime;
-		if (currentItro == 0) {
-			if (startTime > 5) {
-				intro1.SetActive(true);
-				currentItro = 1;
-			}
-		} else if (currentItro == 1) {
-			if (startTime > 10) {
-				intro2.SetActive(true);
-				currentItro = 2;
-			}
-		} else if (currentItro == 2) {
-			if (startTime > 15) {
-				intro3.SetActive(true);
-				currentItro = 3;
-			}
-		} else if (currentItro == 3) {
-			if (startTime > 20) {
-				currentItro = 4;
-				StartGame();
-			}
+		if (_currentIntro < 0) {
+			return;
 		}
+	
+		if (Input.GetMouseButtonDown(0)) {
+			currentIntro++;
+			return;
+		}
+	
+		startTime += Time.deltaTime;
+		if (currentIntro == 0) {
+			if (startTime > 3) {
+				currentIntro = 1;
+			}
+		} else if (currentIntro == 1) {
+			if (startTime > 8) {
+				currentIntro = 2;
+			}
+		} else if (currentIntro == 2) {
+			if (startTime > 13) {
+				currentIntro = 3;
+			}
+		} else if (currentIntro == 3) {
+			if (startTime > 18) {
+				currentIntro = 4;
+			}
+		} else if (startTime > 25) {
+			StartGame();
+		}
+		
 	}
 	
 	public void StartGame() {
 		Application.LoadLevel("mainScene");
+	}
+	
+	public void InitIntro() {
+		currentIntro = 0;
 	}
 }
 
