@@ -25,6 +25,8 @@ public class MainCamera : MonoBehaviour {
 			if (Camera.main.orthographicSize != 5f) {
 				Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 5f, 0.01f);
 			}
+			Vector3 pos = Camera.main.transform.position;
+			Camera.main.transform.position = new Vector3(Mathf.Lerp(pos.x, 3f, 0.02f),Mathf.Lerp(pos.y, 0f, 0.02f),-10f);
 			return;
 		}
 	
@@ -40,6 +42,14 @@ public class MainCamera : MonoBehaviour {
 			
 			if (Mathf.Abs(delta.x) > 0.1f || Mathf.Abs(delta.y) > 0.1f) {
 				transform.Translate(delta);
+				Vector3 pos = transform.position;
+				if (transform.position.x < -15f) pos.x = -15f;
+				if (transform.position.x > 15f) pos.x = 15f;
+				if (transform.position.y < -10f) pos.y = -10f;
+				if (transform.position.y > 10f) pos.y = 10f;
+				
+				transform.position = pos;
+				
 				_panPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				panMode = true;
 				return;

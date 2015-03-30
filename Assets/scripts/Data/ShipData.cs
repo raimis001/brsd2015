@@ -96,6 +96,7 @@ public class ShipData  {
 		currentLevel = level;
 		levelData = levels[currentLevel];
 		Gui.updateLevel();
+		Planet.UpdateLevel();
 		
 		return true;
 	}
