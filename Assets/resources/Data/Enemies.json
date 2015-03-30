@@ -3,6 +3,14 @@
   	"smallPirateShip": {
 				"1": {x:0,y:0, device:{id:1, hp:500}},
 				"2": {x:1,y:0, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}}
+   	},
+  	"pirateShip": {
+				"1": {x:0,y:2, device:{id:6, hp:500, damage:3, time: 0.75, distance:8}},
+				"2": {x:0,y:3, device:{id:6, hp:500, damage:3, time: 0.75, distance:8}},
+				"3": {x:1,y:2, device:{id:1, hp:500}},
+				"4": {x:1,y:3, device:{id:3, hp:500}},
+				"5": {x:2,y:2, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}},
+				"6": {x:2,y:3, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}}
    	}
   }
 }
