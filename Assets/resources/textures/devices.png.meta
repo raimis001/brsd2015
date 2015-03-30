@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b5e6b69d9ef40a147bbc2ef2a98298ea
-timeCreated: 1427648831
+timeCreated: 1427722939
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -96,6 +96,7 @@ TextureImporter:
     21300178: star1
     21300180: star2
     21300182: scraps
+    21300184: goldMeteor
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -1058,6 +1059,16 @@ TextureImporter:
         y: 425
         width: 17
         height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: goldMeteor
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 97
+        width: 64
+        height: 71
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

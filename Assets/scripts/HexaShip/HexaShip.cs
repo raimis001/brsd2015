@@ -15,6 +15,8 @@ public class HexaShip : MonoBehaviour {
 	public float speed = 0f;
 	Vector3 destination = Vector3.zero;
 	
+	
+	
 	public static HexaShip createShip(Dictionary<TilePoint, DeviceData> data, Vector3 position) {
 	
 		HexaShip ship = (Instantiate (Resources.Load ("Ship"),position,Quaternion.identity)as GameObject).GetComponent<HexaShip>();
@@ -114,6 +116,7 @@ public class HexaShip : MonoBehaviour {
 			
 	// Update is called once per frame
 	void Update () {
+	
 		if (speed == 0) return;
 		
 		transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);		
@@ -187,6 +190,9 @@ public class HexaShip : MonoBehaviour {
 		}
 		
 		Destroy(gameObject);
+		if (type == "ship") {
+			Gui.instance.DestroyShip(1);
+		}
   }
   
 	

@@ -37,6 +37,9 @@ public class Gui : MonoBehaviour {
 	public GameObject selectedPanel;
 	public GameObject planetPanel;
 	public GameObject travelPanel;
+	public Image travelPlanet;
+	
+	public Sprite[] planetIcons;
 	
 	public GameObject blankPanel;
 	public GameObject devicePanel;
@@ -129,8 +132,6 @@ public class Gui : MonoBehaviour {
 				currentSec = sec;
 				if (timerText != null) timerText.text = sec.ToString("000");
 				travelText.text = sec.ToString("000");
-				//(travelSlider.value * 100f).ToString("00") + "%";
-				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
 			
@@ -208,6 +209,7 @@ public class Gui : MonoBehaviour {
 			
 			travelSlider.value = 0;
 			travelText.text = "";
+			travelPlanet.sprite = planetIcons[ShipData.currentLevel];
 			travelPanel.SetActive(true);
 			selected = null;
 			break;
@@ -424,6 +426,20 @@ public class Gui : MonoBehaviour {
 		
 		selected = selected;
 		
+	}
+	
+	public void DestroyShip(int condition) {
+		StartCoroutine(WaitAndClose(3.0F, condition));
+	}
+
+	IEnumerator WaitAndClose(float waitTime, int condition) {
+		yield return new WaitForSeconds(waitTime);
+		Debug.Log("WaitAndPrint " + Time.time);
+		if (condition == 1) {
+			Application.LoadLevel("lostScene");
+		} else {
+			Application.LoadLevel("victoryScene");
+		}
 	}
 	
 }

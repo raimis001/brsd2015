@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &76128379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5509,6 +5509,16 @@ MonoBehaviour:
   selectedPanel: {fileID: 45153285}
   planetPanel: {fileID: 1378266327}
   travelPanel: {fileID: 76128378}
+  travelPlanet: {fileID: 238953878}
+  planetIcons:
+  - {fileID: 21300014, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300014, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300022, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300024, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300020, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300026, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300016, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300018, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   blankPanel: {fileID: 318283478}
   devicePanel: {fileID: 11519842}
   cursor: {fileID: 1032016798}

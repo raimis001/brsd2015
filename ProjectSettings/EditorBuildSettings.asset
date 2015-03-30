@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/introScene.unity
   - enabled: 1
     path: Assets/mainScene.unity
+  - enabled: 1
+    path: Assets/lostScene.unity
+  - enabled: 1
+    path: Assets/victoryScene.unity

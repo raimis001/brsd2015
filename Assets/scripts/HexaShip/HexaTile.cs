@@ -34,6 +34,7 @@ public class HexaTile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (energyStatus == 2) return;
+		if (device == null) return;
 	
 		if (device.isEnergy()) {
 			if (energyStatus == 1) {

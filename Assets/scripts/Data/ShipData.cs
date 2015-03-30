@@ -91,7 +91,10 @@ public class ShipData  {
 	}
 	
 	public static bool loadLevel(int level) {
-		if (!levels.ContainsKey(level)) return false;
+		if (!levels.ContainsKey(level)) {
+			Gui.instance.DestroyShip(2);
+			return false;
+		}
 		
 		currentLevel = level;
 		levelData = levels[currentLevel];
@@ -160,5 +163,7 @@ public class ShipData  {
 	public static Vector2 GetMouseHex() {
 		return HexOffset(ShipData.GetMouse());
 	}
+	
+
 	
 }
