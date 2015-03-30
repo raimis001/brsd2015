@@ -220,10 +220,31 @@
 		"baseName":"Centauri sektors",
 		"events": {
 			"1": {
-				 "smallPirateShip":{"count":1, "angle":80, "speed":1, "delay":0, "distance":25, "value":100}
+				 "smallPirateShip":{"count":1, "angle":85, "speed":1, "delay":0, "distance":25, "value":100}
 			 },
-			 "200": {
+			"2": {
+				 "smallPirateShip":{"count":1, "angle":95, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			"3": {
+				 "smallPirateShip":{"count":1, "angle":100, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			"4": {
+				 "smallPirateShip":{"count":1, "angle":95, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			"5": {
+				 "smallPirateShip":{"count":1, "angle":115, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			 "40": {
 				 "pirateShip":{"count":1, "angle":85, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			 "41": {
+				 "pirateShip":{"count":1, "angle":80, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			 "42": {
+				 "pirateShip":{"count":1, "angle":100, "speed":1, "delay":0, "distance":25, "value":100}
+			 },
+			 "43": {
+				 "pirateShip":{"count":1, "angle":110, "speed":1, "delay":0, "distance":25, "value":100}
 			 }
       }
 		}
