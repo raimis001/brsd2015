@@ -16,4 +16,8 @@ public class GuiScene : MonoBehaviour {
 	public void StartGame() {
 		Application.LoadLevel("mainScene");
 	}
+	
+	public void EndGame() {
+		Application.Quit();
+	}
 }

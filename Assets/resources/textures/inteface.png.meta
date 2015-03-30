@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: df6b4ddaff8437f42b0ee1b75089ee33
-timeCreated: 1427649095
+timeCreated: 1427732490
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,9 @@ TextureImporter:
     21300040: bUpgrade
     21300042: bSell
     21300044: selectedTile
+    21300046: bPamest
+    21300048: bReplace
+    21300050: bRestart
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -259,6 +262,36 @@ TextureImporter:
         y: 557
         width: 90
         height: 104
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bPamest
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 386
+        width: 222
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bReplace
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 324
+        width: 222
+        height: 51
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bRestart
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 265
+        width: 221
+        height: 50
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

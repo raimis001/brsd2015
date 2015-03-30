@@ -63,7 +63,7 @@ public class Intro : MonoBehaviour {
 	
 		startTime += Time.deltaTime;
 		if (currentIntro == 0) {
-			if (startTime > 3) {
+			if (startTime > 1.5) {
 				currentIntro = 1;
 			}
 		} else if (currentIntro == 1) {

@@ -31,13 +31,9 @@ public class Base : MonoBehaviour {
 		topRightPosition.z = 0;
 		topRightPosition.y = 0;
 		transform.position = topRightPosition + delta;
-		//Debug.Log("Seting new position");
 		
-		if (!gameObject.activeSelf) {
-			gameObject.SetActive(true);
-			roof.SetActive(true);
-		}
-		
+		GetComponent<AudioSource>().Play();
+		//Debug.Log("Playe");
 	}
 	
 	public static void StartBase() {
@@ -47,6 +43,10 @@ public class Base : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		if (Gui.gameMode == 1 && gameObject.activeSelf) {
+			if (!GetComponent<AudioSource>().isPlaying) {
+				GetComponent<AudioSource>().Play();
+				//Debug.Log("Playe");
+			}
 			transform.Translate(-5f * Time.deltaTime, 0, 0);
 			if (transform.position.x < -20) {
 				gameObject.SetActive(false);
@@ -61,6 +61,7 @@ public class Base : MonoBehaviour {
 		if (transform.position.x < -3) {
 			transform.position = new Vector3(-3f, 0, 0);
 			roof.SetActive(false);
+			//GetComponent<AudioSource>().Pause();
 			Gui.gameMode = 0;
 		}
 	}

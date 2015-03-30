@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 401012}
   - 114: {fileID: 11476568}
+  - 82: {fileID: 8201390}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -28,6 +29,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &8201390
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150976}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a480253a00d67d54c81202d02f1fe7af, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .0780000016
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 219
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: -.509000003
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11476568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51b4bd7621cd7240a315be8a805386e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexaGrid: {fileID: 147406, guid: bf098306b76e84c4da10bea14f8f6616, type: 2}
+  type: ship
+  speed: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
