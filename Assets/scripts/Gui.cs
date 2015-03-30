@@ -11,15 +11,18 @@ public class Gui : MonoBehaviour {
 	public Text scrapText1;
 	public Text knownText;
 	
+	public Text baseName;
+	public Text baseLevel;
 	public Text timerText;
+	public Slider travelSlider;
+	public Text travelText;
 	
 	public Text tilePriceText;
+	public Text tileRepairText;
 	
 	public Text tileDamage;
 	public Text tileEnergy;
 
-	public Slider travelSlider;
-	public Text travelText;
 	
 	public Text[] buyNames;
 	public Text[] buyPrices;
@@ -125,7 +128,8 @@ public class Gui : MonoBehaviour {
 			if (currentSec != sec) {
 				currentSec = sec;
 				if (timerText != null) timerText.text = sec.ToString("000");
-				travelText.text = sec.ToString("000");//(travelSlider.value * 100f).ToString("00") + "%";
+				travelText.text = sec.ToString("000");
+				//(travelSlider.value * 100f).ToString("00") + "%";
 				//timeText.text = sec.ToString("000");
 				ShipData.update(currentSec);
 			}
@@ -169,6 +173,7 @@ public class Gui : MonoBehaviour {
 				return;
 			}
 			tileDamage.text = tile.device.hpCurrent.ToString("0") + "/" + tile.device.hpMax.ToString("0");
+			tileRepairText.text = tile.RepairPrice().ToString();
 			
 			if (tile.device.energyProduce > 0) {
 				tileEnergy.text = tile.device.energyProduce.ToString();
@@ -291,8 +296,8 @@ public class Gui : MonoBehaviour {
 	public static void updateLevel() {
 		AddMessage("Level " + ShipData.currentLevel + " loaded!");
 		if (!instance) return;
-		//instance.BaseName.text = ShipData.levelData.name;
-		//instance.levelText.text = ShipData.currentLevel.ToString();
+		instance.baseName.text = ShipData.levelData.name;
+		instance.baseLevel.text = ShipData.currentLevel.ToString();
 	}
 		
 	
@@ -402,16 +407,12 @@ public class Gui : MonoBehaviour {
 	
 	public void repairTile() {
 		if (selected == null) return;
-		Debug.Log("Start repair " + selected);
 		HexaTile tile = ShipData.mainShip.GetTile(selected);
 		if (tile == null || tile.device.hpCurrent >= tile.device.hpMax) {
-			Debug.Log("repair not needed " + selected);
 			return;
 		}
 		
-		int price = Mathf.CeilToInt(((float)tile.device.price / (float)tile.device.hpMax)  * (float)(tile.device.hpMax - tile.device.hpCurrent) * 0.75f);
-		Debug.Log("repair price " + price.ToString());
-		
+		int price = tile.RepairPrice();
 		
 		if (ShipData.metals < price) {
 			AddMessage("Pietrukst metala");
@@ -420,7 +421,6 @@ public class Gui : MonoBehaviour {
 		
 		ShipData.addMetals(-price);
 		tile.Repair();
-		Debug.Log("repairing " + tile.device.hpCurrent.ToString());
 		
 		selected = selected;
 		

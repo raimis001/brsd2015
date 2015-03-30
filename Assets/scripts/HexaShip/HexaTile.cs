@@ -165,7 +165,14 @@ public class HexaTile : MonoBehaviour {
     Destroy(gameObject);
 	}
 	
+	public int RepairPrice() {
+		float damageHP = device.hpMax - device.hpCurrent;
+		if (damageHP <= 0) return 0;
+		
+		float pricePerHP = (float)device.price / (float)device.hpMax;
 	
+		return Mathf.CeilToInt(pricePerHP  * damageHP * 0.75f);
+	}
 	public void Repair() {
 		device.hpCurrent = device.hpMax;
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
