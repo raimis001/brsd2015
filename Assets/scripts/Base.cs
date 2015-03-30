@@ -32,6 +32,9 @@ public class Base : MonoBehaviour {
 		topRightPosition.y = 0;
 		transform.position = topRightPosition + delta;
 		
+		
+		gameObject.SetActive(true);
+		roof.SetActive(true);
 		GetComponent<AudioSource>().Play();
 		//Debug.Log("Playe");
 	}
@@ -43,10 +46,7 @@ public class Base : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		if (Gui.gameMode == 1 && gameObject.activeSelf) {
-			if (!GetComponent<AudioSource>().isPlaying) {
-				GetComponent<AudioSource>().Play();
-				//Debug.Log("Playe");
-			}
+			if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
 			transform.Translate(-5f * Time.deltaTime, 0, 0);
 			if (transform.position.x < -20) {
 				gameObject.SetActive(false);

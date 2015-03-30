@@ -51,8 +51,7 @@ public class ShipData  {
 					tilesPirate.Add(int.Parse(s), sprites[i]);
 				}
 			}	
-		
-					
+			
 			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
 			for (int i = 0; i < json.Count; i++) {
 				int id = int.Parse(json.AsObject.keyAt(i));
@@ -63,15 +62,6 @@ public class ShipData  {
 			for (int i = 0; i < json["ship"].Count; i++) {
 				ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
 			}
-			
-			knowledge = json["properties"]["knowledge"].AsInt;
-			scraps = json["properties"]["scraps"].AsInt;
-			scrapInventory = json["properties"]["scrapInventory"].AsInt;
-			metals = json["properties"]["metals"].AsInt;
-			metalPrice = json["properties"]["metalPrice"].AsInt;
-			Gui.UpdateScraps();
-			Gui.UpdateMetals();
-			Gui.UpdateKnowledge();
 			
 			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
 			for (int i = 0; i < json.Count; i++) {
@@ -86,7 +76,22 @@ public class ShipData  {
 			for (int i = 0; i < json.Count; i++) {
 				enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
 			}
-		}
+			
+		}		
+					
+			
+
+		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
+			knowledge = json["properties"]["knowledge"].AsInt;
+			scraps = json["properties"]["scraps"].AsInt;
+			scrapInventory = json["properties"]["scrapInventory"].AsInt;
+			metals = json["properties"]["metals"].AsInt;
+			metalPrice = json["properties"]["metalPrice"].AsInt;
+			
+		Gui.UpdateScraps();
+		Gui.UpdateMetals();
+		Gui.UpdateKnowledge();
+		
 		mainShip = HexaShip.createShip(ship,Vector3.zero);
 		
 		loadLevel(1);
