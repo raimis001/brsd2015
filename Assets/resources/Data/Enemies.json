@@ -1,8 +1,8 @@
 {
   "enemies": {
-  	"pirateShip": {
-				"1": {x:0,y:0, device:{id:1, damage:2}},
-				"2": {x:1,y:0, device:{id:2, damage:2}}
+  	"smallPirateShip": {
+				"1": {x:0,y:0, device:{id:1, hp:500}},
+				"2": {x:1,y:0, device:{id:2, hp:500, damage:5, time: 1.5}}
    	}
   }
 }

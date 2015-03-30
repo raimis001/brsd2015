@@ -5,6 +5,15 @@
 		"baseName":"Centauri sektors",
 		"events": {
 			"1": {
+				 "smallPirateShip":{"count":1, "angle":60, "speed":0.5, "damage":5, "delay":0, "distance":25, "value":100}
+			 }
+		}
+	},
+	"2": {
+		"time":140,
+		"baseName":"Centauri sektors",
+		"events": {
+			"1": {
 				 "gold":{"count":1, "scale":0.8, "angle":270, "speed":3, "damage":50, "hp":50, "delay":0, "distance":20, "value":100}
 			 },
 			"10": {
@@ -33,7 +42,7 @@
 			 }
 		}
 	},
-	"2": {
+	"3": {
 		"time":140,
 		"baseName":"Sirius sektors",
 		"events": {
@@ -68,7 +77,7 @@
 				 "rock":{"count":6, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":13}
 			 }
 		}	},
-	"3": {
+	"4": {
 		"time":140,
 		"baseName":"Eridani sektors",
 		"events": {
@@ -131,7 +140,7 @@
 			 }
 		}
 	},
-	"4": {
+	"5": {
 		"time":140,
 		"baseName":"Vega sektors",
 		"events": {
@@ -215,7 +224,7 @@
 			 } 
 		}
 	},
-	"5": {
+	"6": {
 		"time":140,
 		"baseName":"Herculis sektors",
 		"events": {
@@ -233,7 +242,7 @@
 			 }
 		}
 	},
-	"6": {
+	"7": {
 		"time":140,
 		"baseName":"Pegasi sektors",
 		"events": {
@@ -251,7 +260,7 @@
 			 }
 		}
 	},
-	"7": {
+	"8": {
 		"time":140,
 		"baseName":"Aldemarin sektors",
 		"events": {
@@ -269,7 +278,7 @@
 			 }
 		}
 	},
-	"8": {
+	"9": {
 		"time":150,
 		"baseName":"Testing sektor",
 		"events": {

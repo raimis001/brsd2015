@@ -31,7 +31,7 @@
   		
   	"6": {
   		"atlas":"RTurret",
-  		"name":"Raķešmetējs",	"price":60,	"hp":50,	"damage":25,	"speed":0.6,	"time":0.75,	"distance":8, "energy":-30,
+  		"name":"Raķešmetējs",	"price":60,	"hp":50,	"damage":25,	"speed":0.6,	"time":0.5,	"distance":8, "energy":-30,
       "upgrade":{
   			"damage":{"price":[50,100,200],"value":50, "energy":0, "name":"Šaušanas spēks"},
   			"time":{"price":[50,100,200],"value":-15, "energy":0, "name":"Šaušanas biežums"},
