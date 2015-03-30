@@ -135,27 +135,84 @@
 		"time":140,
 		"baseName":"Vega sektors",
 		"events": {
-			"1": {
-				 "gold":{"count":30, "angle":0, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
-			 },
+      "1": {
+				 "gold":{"count":1, "angle":270, "speed":4, "damage":50, "hp":50, "delay":0, "distance":20, "value":250}
+			},
 			"10": {
-				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
 			 },
 			"11": {
-				 "evil":{"count":1, "angle":0, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+				 "evil":{"count":1, "angle":0, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
 			 },
 			"12": {
-				 "evil":{"count":1, "angle":180, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+				 "evil":{"count":1, "angle":180, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
 			 },
-			"20": {
-				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":450, "delay":0, "distance":25, "value":50, "range":7, "velocity":1, "charge":2}
+			"13": {
+				 "evil":{"count":1, "angle":270, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 },
+			"30": {
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 },
+			"31": {
+				 "evil":{"count":1, "angle":0, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
 			 }, 
-			"40": {
-         "rock":{"count":45, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
-			 }, 
-			"80": {
-				 "rock":{"count":53, "angle":270, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":15}
-			 }
+			"32": {
+         "rock":{"count":15, "angle":180, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":10}
+			 },
+			"33": {
+         "rock":{"count":15, "angle":220, "speed":0.7, "damage":5, "hp":100, "delay":0, "distance":25, "value":10}
+			 },  
+			"60": {
+				 "medusa":{"count":1, "angle":110, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"61": {
+				 "medusa":{"count":1, "angle":120, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"62": {
+				 "medusa":{"count":1, "angle":130, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"63": {
+				 "medusa":{"count":1, "angle":140, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"64": {
+				 "medusa":{"count":1, "angle":150, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"65": {
+				 "medusa":{"count":1, "angle":160, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"90": {
+         "rock":{"count":10, "angle":0, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":5, "scale":0.5}
+			 },
+			"91": {
+         "rock":{"count":10, "angle":90, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":5, "scale":0.5}
+			 },
+			"92": {
+         "rock":{"count":10, "angle":180, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":5, "scale":0.5}
+			 },
+			"93": {
+         "rock":{"count":10, "angle":270, "speed":0.7, "damage":5, "hp":25, "delay":0, "distance":25, "value":5, "scale":0.5}
+			 },
+			"94": {
+				 "medusa":{"count":1, "angle":140, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"95": {
+				 "medusa":{"count":1, "angle":150, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"96": {
+				 "medusa":{"count":1, "angle":160, "speed":1, "damage":10, "hp":600, "delay":0, "distance":20, "value":90, "charge":1}
+			 },
+			"97": {
+				 "evil":{"count":1, "angle":180, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 },
+			"98": {
+				 "evil":{"count":1, "angle":270, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 },
+			"99": {
+				 "evil":{"count":1, "angle":90, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 },
+			"100": {
+				 "evil":{"count":1, "angle":0, "speed":2, "damage":10, "hp":300, "delay":0, "distance":25, "value":70, "range":7, "velocity":1, "charge":2}
+			 } 
 		}
 	},
 	"5": {
