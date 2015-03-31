@@ -30,23 +30,30 @@ public class MainCamera : MonoBehaviour {
 			return;
 		}
 	
-		if (EventSystem.current.IsPointerOverGameObject()) return;
+		if (EventSystem.current.IsPointerOverGameObject()) {
+			panMode = false;
+			return;
+		}
 		
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		if (Input.GetMouseButtonDown(0)) {
 			_panPos = mousePos;
+			panMode = true;
 		}
 		
-		if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0) && panMode) {
 			Vector3 delta = _panPos - mousePos;
+			delta.z = -10f;
 			
 			if (Mathf.Abs(delta.x) > 0.1f || Mathf.Abs(delta.y) > 0.1f) {
 				transform.Translate(delta);
+				
 				Vector3 pos = transform.position;
 				if (transform.position.x < -15f) pos.x = -15f;
 				if (transform.position.x > 15f) pos.x = 15f;
 				if (transform.position.y < -10f) pos.y = -10f;
 				if (transform.position.y > 10f) pos.y = 10f;
+				pos.z = -10f;
 				
 				transform.position = pos;
 				
