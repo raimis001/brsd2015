@@ -27,7 +27,7 @@
   		
   	"4": {
   		"atlas":"Shield",
-  		"name":"Spēka vairogs",	"price":60,	"hp":50,	"damage":1,	"speed":0,	"energy":-30,	"rate":1},
+  		"name":"Spēka vairogs",	"price":60,	"hp":50,	"damage":3,	"speed":0,	"energy":-30,	"rate":1},
   		
   	"6": {
   		"atlas":"RTurret",
