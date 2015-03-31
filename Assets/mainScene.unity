@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &11519843
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2012,7 +2012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &318283479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3839,7 +3839,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -2.13380008e-05, y: 40.7000008}
-  m_SizeDelta: {x: 38.2000008, y: 39.2000008}
+  m_SizeDelta: {x: 24.75, y: 25.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &440801758
 MonoBehaviour:
@@ -5510,13 +5510,13 @@ MonoBehaviour:
   travelPlanet: {fileID: 238953878}
   planetIcons:
   - {fileID: 21300014, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
-  - {fileID: 21300014, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300022, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300024, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300020, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300026, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300016, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   - {fileID: 21300018, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
+  - {fileID: 21300014, guid: 5fd070c2df2bfec419febcb591cefbfd, type: 3}
   blankPanel: {fileID: 318283478}
   devicePanel: {fileID: 11519842}
   cursor: {fileID: 1032016798}
@@ -9219,8 +9219,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: .5, y: 0}
-  m_SizeDelta: {x: 67.5, y: 77.25}
+  m_AnchoredPosition: {x: -.5, y: .5}
+  m_SizeDelta: {x: 68.5, y: 78.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!222 &1857094472
 CanvasRenderer:
