@@ -24,4 +24,7 @@ public class GuiScene : MonoBehaviour {
 	public void StartIntro() {
 		Application.LoadLevel("introScene");
 	}
+	public void EasyMode(bool on) {
+		ShipData.easyMode = on;
+	}
 }

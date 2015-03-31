@@ -18,13 +18,16 @@ public class UpgradeData {
 			
 		JSONArray arr = node["price"].AsArray;
 		for (int i = 0; i < arr.Count; i++) {
-			prices[i] = arr[i].AsInt;
+			//prices[i] = arr[i].AsInt;
+			prices[i] = (int)(arr[i].AsFloat * (ShipData.easyMode ? 0.75f : 1));
 		}
 			
 		//this.prices = node["price"].AsArray;
 		this.label = node["name"];
 		this.value = node["value"].AsInt;
 		this.energy = node["energy"].AsInt;
+		
+		
 	}
 	public UpgradeData(UpgradeData data) {
 		this.label = data.label;

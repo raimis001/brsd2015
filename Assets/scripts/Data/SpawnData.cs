@@ -34,6 +34,10 @@ public class SpawnData {
 		range = node["range"].AsFloat;
 		velocity = node["velocity"].AsFloat;
 		scale = node["scale"].AsFloat > 0 ? node["scale"].AsFloat : 1f;
+		
+		damage = damage * (ShipData.easyMode ? 0.75f : 1);
+		value = (int)((float)value *  (ShipData.easyMode ? 1.5f : 1));
+		hp  = hp	* (ShipData.easyMode ? 0.75f : 1);
 	}	
 	
 }

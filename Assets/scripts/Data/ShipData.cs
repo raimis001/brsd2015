@@ -30,6 +30,7 @@ public class ShipData  {
 	public static HexaShip mainShip;
 	
 	public static bool initMainData = false;
+	public static bool easyMode = false;
 	
 	static float _offsetX = Mathf.Sqrt(3) / 2;
 	static float _offsetY = 1f - Mathf.Sqrt(3) + 0.225f;

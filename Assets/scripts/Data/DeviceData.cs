@@ -46,6 +46,11 @@ public class DeviceData {
 		this.energy = node["energy"].AsInt;
 		this.rate = node["rate"].AsFloat;
 
+		damage = (int)((float)damage *  (ShipData.easyMode ? 1.5f : 1));
+		price = (int)((float)price *  (ShipData.easyMode ? 0.75f : 1));
+		hp = (int)((float)hp *  (ShipData.easyMode ? 1.5f : 1));
+		
+
 		if (node["upgrade"] != null) {
 			for (int i = 0; i < node["upgrade"].Count; i++) {
 				string n = node["upgrade"].AsObject.keyAt(i);
