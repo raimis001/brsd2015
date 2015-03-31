@@ -45,7 +45,7 @@ public class Shot : MonoBehaviour {
 		start = transform.position;
 		direction = new Vector3(0.2f,0f,0) * speed;
 		name = "shot";
-		AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position);
+		AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position,GetComponent<AudioSource>().volume);
 	}
 	
 	// Update is called once per frame

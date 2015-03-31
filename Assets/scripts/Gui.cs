@@ -39,6 +39,7 @@ public class Gui : MonoBehaviour {
 	public GameObject travelPanel;
 	public Image travelPlanet;
 	
+	public GameObject restartPanel;
 	public GameObject hintPanel;
 	public GameObject helpPanel;
 	public Toggle soundSwitch;
@@ -121,6 +122,7 @@ public class Gui : MonoBehaviour {
 		
 		cursor.SetActive(false);
 		helpPanel.SetActive(false);
+		restartPanel.SetActive(false);
 		
 		soundSwitch.isOn = false;
 		AudioListener.pause = false;
@@ -500,6 +502,16 @@ public class Gui : MonoBehaviour {
 	}
 	public void DestroyShip(int condition) {
 		StartCoroutine(WaitAndClose(3.0F, condition));
+	}
+	
+	public void RestartGame() {
+		restartPanel.SetActive(true);
+	}
+	public void RestartClose() {
+		restartPanel.SetActive(false);
+	}
+	public void Restart() {
+		Application.LoadLevel("mainScene");
 	}
 
 	IEnumerator WaitAndClose(float waitTime, int condition) {

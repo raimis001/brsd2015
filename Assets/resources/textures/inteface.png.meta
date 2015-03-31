@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: df6b4ddaff8437f42b0ee1b75089ee33
-timeCreated: 1427802400
+timeCreated: 1427823652
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -36,6 +36,12 @@ TextureImporter:
     21300058: soundOFF
     21300060: soundON
     21300062: bHelp1
+    21300064: bYes
+    21300066: bNo
+    21300068: bRepeat
+    21300070: chkBack
+    21300072: chkOn
+    21300074: beginGame
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -91,16 +97,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 50}
-    - name: planet
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 0
-        width: 480
-        height: 480
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
     - name: inteface_0
       rect:
         serializedVersion: 2
@@ -358,6 +354,66 @@ TextureImporter:
         y: 410
         width: 22
         height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bYes
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 378
+        width: 64
+        height: 23
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bNo
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 347
+        width: 64
+        height: 23
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bRepeat
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 462
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: chkBack
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 326
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: chkOn
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 306
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: beginGame
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 384
+        width: 272
+        height: 109
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
