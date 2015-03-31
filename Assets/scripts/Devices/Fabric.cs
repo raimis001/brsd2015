@@ -5,21 +5,19 @@ using System.Collections;
 public class Fabric : Device {
 	
 	float timer = 1;
-	float rate = 1;
 	
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
 		if (data != null) {
 			timer = data.time;
-			rate = data.rate;
 		}
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-		if (Gui.gameMode != 1 || data.energyCurrent < data.energyNeed || ShipData.scraps < rate) {
+		if (Gui.gameMode != 1 || data.energyCurrent < data.energyNeed || ShipData.scraps < data.rate) {
 			timer = data.time;
 			return;
 		}
@@ -28,7 +26,7 @@ public class Fabric : Device {
 			timer -= Time.smoothDeltaTime;
 			if (timer <= 0) {
 				timer = data.time;
-				ShipData.addScraps(-(int)rate);
+				ShipData.addScraps(-(int)data.rate);
 				ShipData.addMetals(1);
 			}
 		}

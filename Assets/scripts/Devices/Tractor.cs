@@ -31,9 +31,6 @@ public class Tractor : Device {
 				scrap = null;
 			}
 		} 
-			
-		
-		
 	}
 	
 	GameObject FindClosestScrap(string tag, float radius) {

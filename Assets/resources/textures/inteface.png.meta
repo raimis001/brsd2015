@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: df6b4ddaff8437f42b0ee1b75089ee33
-timeCreated: 1427743777
+timeCreated: 1427802400
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,6 +31,11 @@ TextureImporter:
     21300048: bReplace
     21300050: bRestart
     21300052: scrapBig
+    21300054: hint
+    21300056: bHelp
+    21300058: soundOFF
+    21300060: soundON
+    21300062: bHelp1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -145,7 +150,7 @@ TextureImporter:
         height: 61
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 6, z: 6, w: 6}
     - name: progressBar
       rect:
         serializedVersion: 2
@@ -303,6 +308,56 @@ TextureImporter:
         y: 503
         width: 33
         height: 34
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hint
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 45
+        width: 273
+        height: 204
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bHelp
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 458
+        width: 65
+        height: 23
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: soundOFF
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 412
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: soundON
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 411
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bHelp1
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 410
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

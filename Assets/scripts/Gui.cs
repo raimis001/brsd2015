@@ -39,6 +39,10 @@ public class Gui : MonoBehaviour {
 	public GameObject travelPanel;
 	public Image travelPlanet;
 	
+	public GameObject hintPanel;
+	public GameObject helpPanel;
+	public Toggle soundSwitch;
+	
 	public Sprite[] planetIcons;
 	
 	public GameObject blankPanel;
@@ -116,9 +120,14 @@ public class Gui : MonoBehaviour {
 		energyColors[2] = new Color(0f / 255f, 174f / 255f, 24f / 255f);
 		
 		cursor.SetActive(false);
+		helpPanel.SetActive(false);
+		
+		soundSwitch.isOn = false;
+		AudioListener.pause = false;
+		
 		gameMode = 2;
 		
-		AudioListener.pause = false;
+	
 	}
 	
 	
@@ -228,6 +237,7 @@ public class Gui : MonoBehaviour {
 	public void SetGameMode() {
 		switch (gameMode) {
 		case 0: 
+			hintPanel.SetActive(ShipData.currentLevel == 1);
 			edditorToggle.isOn = false;
 			planetPanel.SetActive(true);
 			travelPanel.SetActive(false);
@@ -237,6 +247,7 @@ public class Gui : MonoBehaviour {
 			edditorToggle.isOn = false;
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
+			hintPanel.SetActive(false);
 			
 			travelSlider.value = 0;
 			travelText.text = "";
@@ -246,11 +257,14 @@ public class Gui : MonoBehaviour {
 			break;
 		case 2:
 			edditorToggle.isOn = false;
+			
+			hintPanel.SetActive(false);
 			buildPanel.SetActive(false);
 			planetPanel.SetActive(false);
 			selectedPanel.SetActive(false);
-			selected = null;
 			travelPanel.SetActive(false);
+			
+			selected = null;
 			Base.StartBase();
 			break;
 		}
@@ -352,6 +366,9 @@ public class Gui : MonoBehaviour {
 		instance.scrapText.text = ShipData.scraps.ToString();
 		instance.scrapText1.text = ShipData.scraps.ToString();
 	}
+	
+	
+	
 	public static void UpdateKnowledge() {
 		if (!instance) return;
 		if (instance.knownText == null) return;
@@ -460,10 +477,27 @@ public class Gui : MonoBehaviour {
 		ShipData.addMetals(-price);
 		tile.Repair();
 		
+		tileDamage.text = tile.device.hpCurrent.ToString("0") + "/" + tile.device.hpMax.ToString("0");
+		tileRepairText.text = tile.RepairPrice().ToString();
+		
 		selected = selected;
 		
 	}
 	
+	public void closeHint() {
+		hintPanel.SetActive(false);
+	}
+	
+	public void openHelp() {
+		if (gameMode == 2) return;
+		helpPanel.SetActive(true);
+	}
+	public void closeHelp() {
+		helpPanel.SetActive(false);
+	}
+	public void switchSound(bool on) {
+		AudioListener.pause = on;
+	}
 	public void DestroyShip(int condition) {
 		StartCoroutine(WaitAndClose(3.0F, condition));
 	}
