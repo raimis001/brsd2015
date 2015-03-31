@@ -150,6 +150,20 @@ public class Gui : MonoBehaviour {
 			cursor.transform.position = new Vector3(mouseHex.x, mouseHex.y);
 			
 			if (Input.GetMouseButtonDown(0)) {
+				Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Collider2D[] collission = Physics2D.OverlapPointAll(mousePos);
+				bool istile = false;
+				foreach (Collider2D collider in collission) {
+					if (collider.gameObject.tag == "ship") {
+						istile = true;
+						break;
+					}
+				}
+				if (istile) {
+					edditorToggle.isOn = false;
+					return;
+				}				
+			
 				if (ShipData.metals < ShipData.devices[0].price) {
 					AddMessage("Pietrukst metala");
 				} else {
