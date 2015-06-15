@@ -4,32 +4,49 @@ using System.Collections.Generic;
 
 public class HexaTile : MonoBehaviour {
 
+	public GameObject energyDevice;
+
 	[HideInInspector]
 	public int tileID = 0;
 	public TilePoint key;
 	public bool connected = true;
-	
-	//public int energy = 0;
-	//public int energyNeed = 0;
-
-	public float hp = 1f;
-	public float hpMax = 1f;
-	
 	
 	public DeviceData device = null;
 
 	public delegate void MouseClick(TilePoint key);
 	public static event MouseClick OnMouseClick;
 
+	int energyStatus = 0; //0 energijas pietiek 1 energinas nav 2 ieselektets
+
 	// Use this for initialization
 	void Start () {
-		SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
-		sr.sortingOrder = key.y;
 		gameObject.name = "tile";
+		
+		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		sr.sortingOrder = key.y * 100;
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[0];
+		} else {
+			sr.sprite = ShipData.tilesPirate[0];
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (energyStatus == 2) return;
+		if (device == null) return;
+	
+		if (device.isEnergy()) {
+			if (energyStatus == 1) {
+				energyStatus = 0;
+				energyDevice.SetActive(false);	
+				show(0);
+			}
+		} else if (energyStatus == 0) {
+			energyStatus = 1;
+			energyDevice.SetActive(true);	
+			show(4);
+		}
 	}
 	
 	public void resetEnergy() {
@@ -61,19 +78,35 @@ public class HexaTile : MonoBehaviour {
 		tileID = deviceID;
 
 		device = DeviceData.createDevice(tileID, transform);
-		hp = hpMax = device.hp;
+		
+		if (device.id > 0) {
+			SpriteRenderer sr = device.gameObject.GetComponent<SpriteRenderer>();
+			sr.sortingOrder = key.y * 100;
+		}
 		
 		switch (tileID) {
 			case 1:
 				key.ship.zero = key;
 				break;
-			case 11:
-				ShipData.mainShip.tractor = key;
-				break;
 		}
 		
 		return true;
 	}
+	public bool deleteDevice() {
+		if (device == null || device.id == 0) return false;
+		
+		Destroy(device.gameObject);
+		device = null;
+		createDevice(0);
+		return true;
+	}
+	
+	public bool ugradeDevice(string param) {
+		if (device == null || device.id == 0) return false;
+		
+		return device.upgrade(param);
+	}
+	
 	
 	public bool isGenerator() {
 		if (tileID == 1) return true;
@@ -102,10 +135,12 @@ public class HexaTile : MonoBehaviour {
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
 		switch (color) {
 			case 0: //default
+				energyStatus = 0;
 				sr.color = Color.white;
 				break;
 			case 1: //Selected
-				sr.color = Color.blue;
+				energyStatus = 2;
+				sr.color = new Color(237f / 255f,1f,69f / 255f);
 				break;
 			case 2: //Fitting
 				sr.color = Color.yellow;
@@ -113,34 +148,40 @@ public class HexaTile : MonoBehaviour {
 			case 3: //No connection
 				sr.color = Color.red;
 				break;
+			case 4: //No energy
+				energyStatus = 1;
+				sr.color = new Color(145f / 255f,95f / 255f, 145f / 255f);
+				break;
 		}
 	}
 	 
 	public void setSelected(bool selected) {
-		show(selected ? 1 : 0);
-		
-		foreach (TilePoint point in key.AllNeighbours) {
-			HexaTile tile = key.ship.GetTile(point.index);
-			if (tile != null) tile.show(selected ? 2 : 0);
+		//show(selected ? 1 : 0);
+		if (!selected) {
+			if (!device.isEnergy()) {
+				energyStatus = 1;
+				energyDevice.SetActive(true);	
+				show(4);
+			} else {
+				energyDevice.SetActive(false);	
+				energyStatus = 0;
+				show(0);
+			}
+		} else {
+			energyStatus = 2;
+			show(1);
 		}
+		
+		//foreach (TilePoint point in key.AllNeighbours) {
+		//	HexaTile tile = key.ship.GetTile(point.index);
+		//	if (tile != null) tile.show(selected ? 2 : 0);
+		//}
 		
 		if (!selected) return;
 		
 		if (key.zeroPath == null) {
 			show(3);
 		} 
-	}
-	
-	public void Demolish(bool explode, bool delay) {
-		switch (device.id) {
-			case 11:
-				ShipData.mainShip.tractor = null;
-				break;
-		}
-	
-		setSelected(false);
-		if (explode) Explode.create(transform.position,delay);
-    Destroy(gameObject);
 	}
 	
 	public bool Reconnect(string index) {
@@ -154,24 +195,102 @@ public class HexaTile : MonoBehaviour {
 		return false;
 	}
 	
+	public void Demolish(bool explode, bool delay) {
+	
+		setSelected(false);
+		if (explode) Explode.create(transform.position,delay);
+    Destroy(gameObject);
+	}
+	
+	public int RepairPrice() {
+		float damageHP = device.hpMax - device.hpCurrent;
+		if (damageHP <= 0) return 0;
+		
+		float pricePerHP = (float)device.price / (float)device.hpMax;
+	
+		return Mathf.CeilToInt(pricePerHP  * damageHP * 0.75f);
+	}
+	public void Repair() {
+		device.hpCurrent = device.hpMax;
+		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[0];
+		} else {
+			sr.sprite = ShipData.tilesPirate[0];
+		}
+	}
+	
 	public void ApplyDamage(float damage) {
 		
-		hp -= damage;
-		if (hp <= 0 && key != null) {
+		device.hpCurrent -= (int)damage;
+		if (device.hpCurrent <= 0 && key != null) {
 			key.ship.DeleteTile(key.index,true);
 			return;
 		}
 		
+		if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+		
 		int cnt = ShipData.tiles.Count - 1;
-		int sprite = (int)(cnt - (hp / hpMax * cnt));
+		int sprite = cnt - (int)((float)cnt * ((float)device.hpCurrent / (float)device.hpMax ));
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		sr.sprite = ShipData.tiles[sprite];
+		//Debug.Log("Set sprite " + sprite.ToString());
+		if (tag == "ship") {
+			sr.sprite = ShipData.tiles[sprite];
+		} else {
+			sr.sprite = ShipData.tilesPirate[sprite];
+		}
 	}
 	
 	public virtual void doShot(Shot collider) {
-		Debug.Log(collider.damage);
 		ApplyDamage(collider.damage);
 		Destroy(collider.gameObject);
 	}
 	
+	void OnTriggerEnter2D(Collider2D coll) {
+		if (coll.gameObject.name ==  "rock") {
+			float damage = coll.gameObject.GetComponent<Enemy>().damage;
+			ApplyDamage(damage);
+			Destroy(coll.gameObject);
+			return;
+		}
+		if (coll.gameObject.name == "shot") {
+			if (tag == "ship" && coll.gameObject.tag == "enemyShot") {
+				float damage = coll.gameObject.GetComponent<Shot>().damage;
+				ApplyDamage(damage);
+				Destroy(coll.gameObject);
+			}
+			if (tag == "enemy" && coll.gameObject.tag == "shot") {
+				float damage = coll.gameObject.GetComponent<Shot>().damage;
+				ApplyDamage(damage);
+				Destroy(coll.gameObject);
+			}
+			return;
+		}
+	}
+	
+	public string valueByName(string value) {
+		string result = "";
+		//Debug.Log("get value for " + value);
+		switch (value) {
+			case "damage":
+				result = device.damage.ToString();
+				break;
+			case "time":
+				result = device.time.ToString("0.00");
+				break;
+			case "distance":
+				result = device.distance.ToString("0");
+				break;
+			case "rate":
+				result = device.rate.ToString("0.00");
+				break;
+			case "energy":
+				result = device.energyProduce.ToString();
+				break;
+			case "speed":
+				result = device.speed.ToString("0.00");
+				break;
+		}
+		return result;
+	}
 }

@@ -3,11 +3,13 @@ using UnityEngine;
 using SimpleJSON;
 
 public class ShipData  {
-	public static Dictionary<TilePoint, int> ship = new Dictionary<TilePoint, int>();
+	public static Dictionary<TilePoint, DeviceData> ship = new Dictionary<TilePoint, DeviceData>();
 	public static Dictionary<int, DeviceData> devices = new Dictionary<int, DeviceData>();
 	public static Dictionary<int, LevelData> levels = new Dictionary<int, LevelData>();
+	public static Dictionary<string, EnemyData> enemyShips = new Dictionary<string, EnemyData>();
 	
-	public static List<Sprite> tiles = new List<Sprite>();
+	public static Dictionary<int, Sprite> tiles = new Dictionary<int, Sprite>();
+	public static Dictionary<int, Sprite> tilesPirate = new Dictionary<int,Sprite>();
 	
 	public static int currentLevel;
 	public static LevelData levelData;
@@ -27,46 +29,51 @@ public class ShipData  {
 	public static GameObject tileResource;
 	public static HexaShip mainShip;
 	
+	public static bool initMainData = false;
+	public static bool easyMode = false;
+	
 	static float _offsetX = Mathf.Sqrt(3) / 2;
 	static float _offsetY = 1f - Mathf.Sqrt(3) + 0.225f;
 	
 	public ShipData() {
 		JSONNode json;
 			
-		Sprite[] sprites = Resources.LoadAll<Sprite>("textures/devices");
-		Dictionary<string, Sprite> spritesNames = new Dictionary<string, Sprite>();
-		for(int i=0; i< sprites.Length; i++) {
-			spritesNames.Add(sprites[i].name, sprites[i]);
-		}		
-		
-		sprites = Resources.LoadAll<Sprite>("textures/hexaTiles");
-		for(int i=0; i< sprites.Length; i++) {
-			if (sprites[i].name.IndexOf("cursor") < 0) {
-				tiles.Add(sprites[i]);
+		if (!initMainData) {
+			initMainData = true;
+			Sprite[] sprites;
+			sprites = Resources.LoadAll<Sprite>("textures/devices");
+			for(int i=0; i< sprites.Length; i++) {
+				if (sprites[i].name.IndexOf("mainShip") > -1) {
+					string s = sprites[i].name.Remove(0,8);
+					tiles.Add(int.Parse(s), sprites[i]);
+				}
+				if (sprites[i].name.IndexOf("pirateShip") > -1) {
+					string s = sprites[i].name.Remove(0,10);
+					tilesPirate.Add(int.Parse(s), sprites[i]);
+				}
+			}	
+			tileResource = Resources.Load ("Tile") as GameObject;
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
+			for (int i = 0; i < json.Count; i++) {
+				int id = int.Parse(json.AsObject.keyAt(i));
+				devices.Add(id, new DeviceData(id, json[i]));
 			}
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
+			for (int i = 0; i < json["ship"].Count; i++) {
+				ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),new DeviceData(json["ship"][i]["device"]["id"].AsInt,json["ship"][i]["device"]));
+			}
+			
+			json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Enemies").text)["enemies"];
+			for (int i = 0; i < json.Count; i++) {
+				enemyShips.Add(json.AsObject.keyAt(i), new EnemyData(json[i]));
+			}
+			
 		}		
-		
-		
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/Devices").text)["devices"];
-		for (int i = 0; i < json.Count; i++) {
-			int id = int.Parse(json.AsObject.keyAt(i));
-			devices.Add(id, new DeviceData(id, json[i],id == 0 ? null : spritesNames[json[i]["atlas"]]));
-		}
-		
-		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
-		for (int i = 0; i < json["ship"].Count; i++) {
-			ship.Add(new TilePoint(json["ship"][i]["x"].AsInt,json["ship"][i]["y"].AsInt),json["ship"][i]["device"]["id"].AsInt);
-		}
-		
-		knowledge = json["properties"]["knowledge"].AsInt;
-		scraps = json["properties"]["scraps"].AsInt;
-		scrapInventory = json["properties"]["scrapInventory"].AsInt;
-		metals = json["properties"]["metals"].AsInt;
-		metalPrice = json["properties"]["metalPrice"].AsInt;
-		Gui.UpdateScraps();
-		Gui.UpdateMetals();
-		Gui.UpdateKnowledge();
-		
+					
+			
+		levels = new Dictionary<int, LevelData>();
 		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/EnemyWaves").text)["levels"];
 		for (int i = 0; i < json.Count; i++) {
 			int id = int.Parse(json.AsObject.keyAt(i));
@@ -74,7 +81,16 @@ public class ShipData  {
 		}
 		levelCount = levels.Count;
 		
-		tileResource = Resources.Load ("Tile") as GameObject;
+		json = JSONNode.Parse(Resources.Load<TextAsset>("Data/MainShip").text);
+			knowledge = json["properties"]["knowledge"].AsInt;
+			scraps = json["properties"]["scraps"].AsInt;
+			scrapInventory = json["properties"]["scrapInventory"].AsInt;
+			metals = json["properties"]["metals"].AsInt;
+			metalPrice = json["properties"]["metalPrice"].AsInt;
+			
+		Gui.UpdateScraps();
+		Gui.UpdateMetals();
+		Gui.UpdateKnowledge();
 		
 		mainShip = HexaShip.createShip(ship,Vector3.zero);
 		
@@ -83,11 +99,15 @@ public class ShipData  {
 	}
 	
 	public static bool loadLevel(int level) {
-		if (!levels.ContainsKey(level)) return false;
+		if (!levels.ContainsKey(level)) {
+			Gui.instance.DestroyShip(2);
+			return false;
+		}
 		
 		currentLevel = level;
 		levelData = levels[currentLevel];
 		Gui.updateLevel();
+		Planet.UpdateLevel();
 		
 		return true;
 	}
@@ -151,5 +171,7 @@ public class ShipData  {
 	public static Vector2 GetMouseHex() {
 		return HexOffset(ShipData.GetMouse());
 	}
+	
+
 	
 }

@@ -10,46 +10,53 @@ public class MainCamera : MonoBehaviour {
 	public static bool panMode = false;
 	Vector3 _panPos;
 	
-	float _timeRock;
-	float _timeRockMax = 1f;
-	
 	// Use this for initialization
 	void Start () {
-		_timeRock =_timeRockMax;
+		
 	}
 	void LateUpdate () {
-		if (Input.GetAxis("Mouse ScrollWheel") > 0) {
-			if (Camera.main.orthographicSize > 1) Camera.main.orthographicSize--;
-		}
-		if (Input.GetAxis("Mouse ScrollWheel") < 0) {
-			if (Camera.main.orthographicSize < 12) Camera.main.orthographicSize++;
-		}
-		
 		
 		
 	}
 	// Update is called once per frame
 	void Update () {
-		if (_timeRock > 0) {
-			_timeRock -= Time.deltaTime;
-			if (_timeRock <= 0) {
-				//Rock.create();
-				_timeRock =_timeRockMax;
+	
+		if (Gui.gameMode == 2) {
+			if (Camera.main.orthographicSize != 5f) {
+				Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 5f, 0.01f);
 			}
+			Vector3 pos = Camera.main.transform.position;
+			Camera.main.transform.position = new Vector3(Mathf.Lerp(pos.x, 3f, 0.02f),Mathf.Lerp(pos.y, 0f, 0.02f),-10f);
+			return;
 		}
 	
-		if (EventSystem.current.IsPointerOverGameObject()) return;
+		if (EventSystem.current.IsPointerOverGameObject()) {
+			panMode = false;
+			return;
+		}
 		
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		if (Input.GetMouseButtonDown(0)) {
 			_panPos = mousePos;
+			panMode = true;
 		}
 		
-		if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0) && panMode) {
 			Vector3 delta = _panPos - mousePos;
+			delta.z = -10f;
 			
 			if (Mathf.Abs(delta.x) > 0.1f || Mathf.Abs(delta.y) > 0.1f) {
 				transform.Translate(delta);
+				
+				Vector3 pos = transform.position;
+				if (transform.position.x < -15f) pos.x = -15f;
+				if (transform.position.x > 15f) pos.x = 15f;
+				if (transform.position.y < -10f) pos.y = -10f;
+				if (transform.position.y > 10f) pos.y = 10f;
+				pos.z = -10f;
+				
+				transform.position = pos;
+				
 				_panPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				panMode = true;
 				return;
@@ -62,6 +69,13 @@ public class MainCamera : MonoBehaviour {
 				panMode = false;
 				return;
 			}
+		}
+		
+		if (Input.GetAxis("Mouse ScrollWheel") > 0) {
+			if (Camera.main.orthographicSize > 3) Camera.main.orthographicSize -= 0.5f;
+		}
+		if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+			if (Camera.main.orthographicSize < 10) Camera.main.orthographicSize += 0.5f;
 		}
 		
 		

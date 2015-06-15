@@ -1,44 +1,16 @@
 {
   "enemies": {
-  	"1": {
-  		"atlas":"smallmeteor",
-  		"name":"Mazs meteors",
-  		"hitpoints":10,
-  		"damage":3,
-  		"speed":0.5,
-  		"scrap":0
+  	"smallPirateShip": {
+				"1": {x:0,y:0, device:{id:1, hp:500}},
+				"2": {x:1,y:0, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}}
    	},
-  	"2": {
-  		"atlas":"bigmeteor",
-  		"name":"lielais meteors",
-  		"hitpoints":50,
-  		"damage":30,
-  		"speed":0.1,
-      "scrap":0
-  	},
-  	"3": {
-  		"atlas":"comet",
-  		"name":"Komēta",
-  		"hitpoints":20,
-  		"damage":10,
-  		"speed":2,
-      "scrap":0
-  	},
-  	"4": {
-  		"atlas":"crystalship",
-  		"name":"Kristāla kuģis",
-  		"hitpoints":30,
-  		"damage":10,
-  		"speed":2,
-      "scrap":0
-    },
-  	"5": {
-  		"atlas":"cosmicameba",
-  		"name":"Kosmiskā amēba",
-  		"hitpoints":20,
-  		"damage":10,
-  		"speed":2,
-      "scrap":0
-    }
+  	"pirateShip": {
+				"1": {x:0,y:2, device:{id:6, hp:500, damage:3, time: 0.75, distance:8}},
+				"2": {x:0,y:3, device:{id:6, hp:500, damage:3, time: 0.75, distance:8}},
+				"3": {x:1,y:2, device:{id:1, hp:500}},
+				"4": {x:1,y:3, device:{id:3, hp:500}},
+				"5": {x:2,y:2, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}},
+				"6": {x:2,y:3, device:{id:2, hp:500, damage:5, time: 1.5, distance:8}}
+   	}
   }
 }

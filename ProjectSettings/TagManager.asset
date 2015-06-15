@@ -9,6 +9,7 @@ TagManager:
   - shot
   - enemyShot
   - shield
+  - scraps
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,12 @@ TagManager:
   - name: devices
     uniqueID: 671958563
     locked: 0
+  - name: shield
+    uniqueID: 3855258279
+    locked: 0
   - name: cosmoss
     uniqueID: 2552351099
+    locked: 0
+  - name: ui
+    uniqueID: 3421258593
     locked: 0

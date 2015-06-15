@@ -4,38 +4,38 @@ using System.Collections;
 public class Shot : MonoBehaviour {
 
 	
-	public static void create(Vector3 position, float direction, DeviceData data) {
-		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
-		Shot shot = null;
+	public static void create(Vector3 position, float direction, DeviceData data, string tag, Transform target = null) {
+		string prefab = null;
 		switch (data.id) {
 			case 2:
-				shot = (Instantiate (Resources.Load ("Shot"),position,angle)as GameObject).GetComponent<Shot>();
+				prefab = "Shot";
 				break;
 			case 6:
-				shot = (Instantiate (Resources.Load ("Rocket"),position,angle)as GameObject).GetComponent<Shot>();
+				prefab = "Rocket";
 				break;
 			
 		}
-		if (shot == null) return;		
+		if (prefab == null) return;		
 		
-		shot.speed = data.speed;
-		shot.damage = data.damage;
+		Shot.create(position, direction, data.speed, data.damage, tag, prefab,target);
 	}
 	
-	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab) {
+	public static void create(Vector3 position, float direction, float speed, int damage, string tag , string prefab, Transform target = null) {
 	
 		Quaternion angle = Quaternion.AngleAxis(direction, Vector3.forward);
 		Shot shot = (Instantiate (Resources.Load (prefab),position,angle)as GameObject).GetComponent<Shot>();
 			
-		shot.gameObject.tag = tag;
 		shot.speed = speed;
 		shot.damage = damage;
-		
+		shot.gameObject.tag = tag;
+		shot.target = target;
+	
+		//Debug.Log("Creating shot with tag:" + tag);	
 	}
 
 	public float speed;	
 	public int damage;
-	
+	public Transform target;
 
 	Vector3 direction;
 	Vector3 start;
@@ -44,56 +44,24 @@ public class Shot : MonoBehaviour {
 	void Start () {
 		start = transform.position;
 		direction = new Vector3(0.2f,0f,0) * speed;
+		name = "shot";
+		AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, transform.position,GetComponent<AudioSource>().volume);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (target != null) {
+			Vector3 dir = target.position - transform.position;
+			float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		}
+	
 		transform.Translate(direction);
 		
 		if (Vector3.Distance(start, transform.position) > 20f) {
 			Destroy(gameObject);
 			return;
 		}
-		
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.9f);
-		
-		foreach (Collider2D coll in colliders) {
-			if (coll.gameObject.GetInstanceID() == this.gameObject.GetInstanceID()) continue;
-			if (coll.gameObject.name == "shield") {
-				if (gameObject.tag == "enemyShot") {
-					if (coll.gameObject.tag == "ship") {
-						Device device = coll.gameObject.GetComponent<Device>();						
-						if (device) device.doShot(this);
-						return;
-					}
-				} else {
-					if (coll.gameObject.tag == "enemy") {
-						Device device = coll.gameObject.GetComponent<Device>();						
-						if (device) device.doShot(this);
-						return;
-					}
-				}
-			}
-		}
-		
-		foreach (Collider2D coll in colliders) {
-			if (coll.gameObject.GetInstanceID() == this.gameObject.GetInstanceID()) continue;
-			if (coll.gameObject.name == "tile") {
-				if (gameObject.tag == "enemyShot") {
-					if (coll.gameObject.tag == "ship") {
-						HexaTile tile = coll.gameObject.GetComponent<HexaTile>();
-						if (tile != null) tile.doShot(this);
-						return;
-					}
-				} else {
-					if (coll.gameObject.tag == "enemy") {
-						HexaTile tile = coll.gameObject.GetComponent<HexaTile>();
-						if (tile != null) tile.doShot(this);
-						return;
-					}
-				}
-			}
-		}
-		
 	}
+
 }

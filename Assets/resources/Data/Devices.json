@@ -2,131 +2,66 @@
   "devices": {
   	"0": {
   		"atlas":"",
-  		"name":"Šūna parasta",
-  		"price":30,
-  		"hp":50,
-  		"damage":0,
-  		"speed":0,
-  		"time":0,
-  		"distance":0,
-  		"energy":0
-  	},
+  		"name":"Pamatne", "price":15, "hp":10, "damage":0, "speed":0,	"time":0,	"distance":0,	"energy":0},
+  		
   	"1": {
-  		"atlas":"devices_0",
-  		"name":"Pilota kabine (C)",
-  		"price":10,
-  		"hp":100,
-  		"damage":0,
-  		"speed":0,
-  		"time":0.1,
-  		"distance":5,
-  		"energy":60
-  	},
+  		"atlas":"Cabine",
+  		"name":"Pilota kabīne", "price":100,	"hp":100,	"damage":0,	"speed":0, "time":0.1, "distance":5, "energy":180},
+  		
   	"2": {
-  		"atlas":"devices_13",
-  		"name":"Lāzers (L)",
-  		"price":50,
-  		"hp":75,
-  		"damage":50,
-  		"speed":0.8,
-  		"time":1.5,
-  		"distance":10,
-  		"energy":-30
+  		"atlas":"Turret",
+  		"name":"Lāzers", "price":60, "hp":50,	"damage":50, "speed":0.8,	"time":1.5,	"distance":10, "energy":-30,
+      "upgrade":{
+  			"damage":{"price":[60,100,200],"value":50, "energy":0, "name":"Šaušanas spēks"},
+  			"time":{"price":[60,100,200],"value":-15, "energy":0, "name":"Šaušanas biežums"},
+  			"distance":{"price":[60,100,200],"value":20, "energy":0, "name":"Šaušanas attālums"}
+  		}
   	},
   	"3": {
-  		"atlas":"devices_12",
-  		"name":"Ģenerators (G)",
-  		"price":10,
-  		"hp":75,
-  		"damage":0,
-  		"speed":0,
-  		"time":0.1,
-  		"distance":5,
-  		"energy":120
-  	},
+  		"atlas":"Generator",
+  		"name":"Ģenerators", "price":30, "hp":50,	"damage":0,	"speed":0, "time":0.1,	"distance":7,	"energy":90,
+  		"upgrade":{
+  			"energy":{"price":[60,60,60],"value":35, "energy":0, "name":"enerģijas ražošana"}
+  		}
+  		},
+  		
   	"4": {
-  		"atlas":"devices_14",
-  		"name":"Spēka vairogs (S)",
-  		"price":10,
-  		"hp":75,
-  		"damage":0,
-  		"speed":0,
-  		"energy":-100
-  	},
-  	"5": {
-  		"atlas":"devices_1",
-  		"name":"Hulls (H)",
-  		"price":10,
-  		"hp":160,
-  		"damage":0,
-  		"speed":0,
-  		"time":0.1,
-  		"distance":5,
-  		"energy":0
-  	},
+  		"atlas":"Shield",
+  		"name":"Spēka vairogs",	"price":60,	"hp":50,	"damage":3,	"speed":0,	"energy":-30,	"rate":1},
+  		
   	"6": {
-  		"atlas":"devices_2",
-  		"name":"Raķešmetējs (R)",
-  		"price":10,
-  		"hp":75,
-  		"damage":100,
-  		"speed":1,
-  		"time":1,
-  		"distance":5,
-  		"energy":-10
-  	},
+  		"atlas":"RTurret",
+  		"name":"Raķešmetējs",	"price":60,	"hp":50,	"damage":20,	"speed":0.75,	"time":0.75,	"distance":8, "energy":-30,
+      "upgrade":{
+  			"damage":{"price":[60,100,200],"value":50, "energy":0, "name":"Šaušanas spēks"},
+  			"time":{"price":[60,100,200],"value":-15, "energy":0, "name":"Šaušanas biežums"},
+  			"distance":{"price":[60,100,200],"value":20, "energy":0, "name":"Šaušanas attālums"}
+  		}
+  		},
   	"7": {
-  		"atlas":"devices_4",
-  		"name":"Metāla pārstrādātājs (F)",
-  		"price":10,
-  		"hp":75,
-  		"damage":100,
-  		"speed":1,
-  		"time":0.75,
-  		"distance":5,
-  		"energy":-10
-  	},
+  		"atlas":"Fabric",
+  		"name":"Fabrika",	"price":60,	"hp":50,	"damage":100,	"speed":0,	"time":0.8,	"distance":5,	"energy":-30,	"rate":4,
+  		"upgrade":{
+  			"rate":{"price":[100,200,400],"value":-25, "energy":0, "name":"Metāla cena"},
+  			"time":{"price":[60,100,200],"value":-17, "energy":0, "name":"Pārstrādes biežums"}
+  		}
+  		},
   	"8": {
-  		"atlas":"devices_3",
-  		"name":"Pētnieciskais sektors (K)",
-  		"price":10,
-  		"hp":75,
-  		"damage":100,
-  		"speed":1,
-  		"time":1,
-  		"distance":5,
-  		"energy":-10
-  	},
-  	"9": {
-  		"atlas":"devices_5",
-  		"name":"Dzinējs (E)",
-  		"price":10,
-  		"hp":10,
-  		"damage":100,
-  		"speed":1,
-  		"time":0.1,
-  		"distance":5,
-  		"energy":-100
-  	},
-  	"10": {
-  		"atlas":"devices_7",
-  		"name":"Krātuve (I)",
-  		"price":10,
-  		"hp":10,
-  		"damage":100,
-  		"speed":1,
-  		"energy":-100
-  	},
+  		"atlas":"Research",
+  		"name":"Laboratorija",	"price":60,	"hp":50,	"damage":100,	"speed":1,	"time":1,	"distance":5,	"energy":-30,
+  		"upgrade":{
+  			"time":{"price":[60,100,200],"value":-20, "energy":0, "name":"Zinātnes ražošana"}
+  		}  		
+  		},
+  	
+  	
   	"11": {
-  		"atlas":"devices_6",
-  		"name":"Lausku vacele (T)",
-  		"price":10,
-  		"hp":100,
-  		"damage":100,
-  		"speed":1,
-  		"time":0.1,
-  		"distance":5,
-  		"energy":-10
-  	}
+  		"atlas":"Tractor",
+  		"name":"Savācējs",	"price":60,	"hp":50,	"damage":100,	"speed":0.6,	"time":0.1,	"distance":15,	"energy":-30,
+  		 "upgrade":{
+  			"speed":{"price":[60,100,200],"value":30, "energy":0, "name":"Savākšanas ātrums"},
+  			"distance":{"price":[60,100,200],"value":30, "energy":0, "name":"Savākšanas distance"}
+  		}
+  		}
   }
 }

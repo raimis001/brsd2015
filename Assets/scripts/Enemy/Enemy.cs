@@ -12,6 +12,15 @@ public class Enemy : MonoBehaviour {
 	
 	public static void create(string type, SpawnData data) {
 		
+		if (ShipData.enemyShips.ContainsKey(type)) {
+			Vector3 pos = new Vector3(Mathf.Sin(data.angle),Mathf.Cos(data.angle), 0) * data.distance ;
+			HexaShip enemy = HexaShip.createShip(ShipData.enemyShips[type].ship,pos);
+				enemy.speed = data.speed;
+				enemy.type = "enemy";
+			
+			return;
+		}
+		
 		GameObject prefab = Resources.Load(type) as GameObject;
 		if (prefab == null) return;	
 			
@@ -30,10 +39,11 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
-		speed = data.speed * Random.Range(0.9f, 1.2f);
-		hp = data.hp;
-		damage = data.damage;
-		
+		if (data != null) {
+			speed = data.speed * Random.Range(0.9f, 1.2f);
+			hp = data.hp;
+			damage = data.damage;
+		}
 		if (delay > 0) {
 			GetComponent<SpriteRenderer>().enabled = false;
 		}
@@ -48,42 +58,42 @@ public class Enemy : MonoBehaviour {
 				GetComponent<SpriteRenderer>().enabled = true;
 			}
 		}
+		
+		if (Gui.gameMode == 0 || Gui.gameMode == 2) {
+			Destroy(gameObject);
+		}
 	}
 	
-	void explode() {
+	protected virtual void explode() {
+		Explode.create(transform.position,false);
+		if (data != null && data.value > 0) {
+			Scrap.create(transform.position, data.value);
+		}
 		Destroy(gameObject);
+	}
+		
+	
+	public void ApplyDamage(float damage) {
+		hp -= damage;
+		if (hp <= 0) {
+			explode();
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-	
-		if (coll.gameObject.tag == "ship") {
-				collideShip(coll.gameObject);
-				return;
+		if (name != "rock" && coll.gameObject.name ==  "rock") {
+			float damage = coll.gameObject.GetComponent<Enemy>().damage;
+			ApplyDamage(damage);
+			Destroy(coll.gameObject);
+			return;
 		}
-		
+		//Debug.Log("collide with: " + coll.gameObject.tag);
 		if (coll.gameObject.tag == "shot") {
-			if (coll.gameObject != null) {
-				collideShot(coll.gameObject.GetComponent<Shot>());
-				Destroy(coll.gameObject);
-			}
-		}
 		
-	}
-	protected virtual void collideShip(GameObject collider) {
-		if (collider != null) {
-			collider.SendMessage("ApplyDamage", damage);
-			explode();
-		}
-		
-	}
-	protected virtual void collideShot(Shot shot) {
-		if (shot == null) return;
-		
-		hp -= shot.damage;
-		//Debug.Log(hp + " : " + shot.damage);
-		if (hp <= 0) {
-			Scrap.create(transform.position, data.value);
-			explode();
+			float damage = coll.gameObject.GetComponent<Shot>().damage;
+			ApplyDamage(damage);
+			Destroy(coll.gameObject);
+			return;
 		}
 	}
 	

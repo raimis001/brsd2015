@@ -30,6 +30,7 @@ public class Medusa : Enemy {
 		List<HexaTile> tiles = new List<HexaTile>();
 		foreach (Collider2D collider in colliders) {
 			if (collider.gameObject.tag != "ship") continue;
+			if (collider.gameObject.name == "shield") continue;
 			tiles.Add(collider.gameObject.GetComponent<HexaTile>());
 			//Debug.Log(collider.gameObject.tag);
 		}
@@ -37,7 +38,9 @@ public class Medusa : Enemy {
 		if (tiles.Count > 0) {
 			charge = data.charge;
 			if (animator != null) animator.SetTrigger("atack");
-			foreach (HexaTile tile in tiles) tile.ApplyDamage(data.damage);
+			foreach (HexaTile tile in tiles) {
+				if (tile) tile.ApplyDamage(data.damage);
+			}
 			return;
 		}
 		if (animator != null) animator.SetTrigger("go");

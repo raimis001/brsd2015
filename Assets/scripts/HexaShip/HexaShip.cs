@@ -6,13 +6,18 @@ using UnityEngine.EventSystems;
 public class HexaShip : MonoBehaviour {
 
 	public Dictionary<string, HexaTile> tileSet = new Dictionary<string, HexaTile>();
-	public Dictionary<TilePoint, int> shipData;
+	public Dictionary<TilePoint, DeviceData> shipData;
 	
 	public TilePoint zero = null;
-	public TilePoint tractor = null;
+	
+	public string type = "ship";
+	
+	public float speed = 0f;
+	Vector3 destination = Vector3.zero;
 	
 	
-	public static HexaShip createShip(Dictionary<TilePoint, int> data, Vector3 position) {
+	
+	public static HexaShip createShip(Dictionary<TilePoint, DeviceData> data, Vector3 position) {
 	
 		HexaShip ship = (Instantiate (Resources.Load ("Ship"),position,Quaternion.identity)as GameObject).GetComponent<HexaShip>();
 			ship.shipData = data;
@@ -23,15 +28,20 @@ public class HexaShip : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		foreach (KeyValuePair<TilePoint, int> tile in shipData) {
-			createTile(tile.Key, tile.Value);
+		foreach (KeyValuePair<TilePoint, DeviceData> tile in shipData) {
+			createTile(tile.Key.x, tile.Key.y, tile.Value.id, false, tile.Value);
 		}	
 		
 		RecalcShip();
 		RecalcEnergy();
-  }
+		
+		destination = transform.position;
+		if (speed > 0) {
+			destination.x = -10f;
+		}
+	}
 	
-	public bool createTile(int x, int y, int tileID, bool check = false) {
+	private bool createTile(int x, int y, int tileID, bool check = false, DeviceData device = null) {
 		TilePoint key = new TilePoint(x,y);
 		if (tileSet.ContainsKey(key.index)) {
 			Debug.Log("Existing index " + key.index);
@@ -41,12 +51,15 @@ public class HexaShip : MonoBehaviour {
 		
 		Vector2 hexpos = ShipData.HexOffset(x, y);
 		
-		GameObject obj = Instantiate(ShipData.tileResource, new Vector3( hexpos.x, hexpos.y), Quaternion.identity ) as GameObject;
+		GameObject obj = Instantiate(ShipData.tileResource, new Vector3( hexpos.x + transform.position.x, hexpos.y + transform.position.y), Quaternion.identity ) as GameObject;
 		obj.transform.parent = this.transform;
+		obj.tag = type;
 		HexaTile src = obj.GetComponent<HexaTile>();
 			src.tileID = tileID;
 			src.key = key;
 			src.createDevice(tileID);
+			
+			if (device != null) src.device.UpdateData(device);
 		
 		tileSet.Add(key.index,src);
 		if (tileID == 1) zero = src.key;	
@@ -69,9 +82,6 @@ public class HexaShip : MonoBehaviour {
 		return false;
 	}
 	
-	public bool createTile(TilePoint tile, int tileID, bool check = false) {
-		return createTile(tile.x, tile.y, tileID, check);
-	}
 	public bool createTile(Vector2 position, int tileID, bool check = false) {
 		return createTile((int)position.x, (int)position.y, tileID, check);
 	}
@@ -106,7 +116,15 @@ public class HexaShip : MonoBehaviour {
 			
 	// Update is called once per frame
 	void Update () {
+	
+		if (speed == 0) return;
 		
+		transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);		
+	
+		if (Vector3.Distance(transform.position, destination) < 0.01f) {
+			Destroy(gameObject);
+		}
+				
 	}
 	
 	public HexaTile GetTile(string index) {
@@ -122,8 +140,9 @@ public class HexaShip : MonoBehaviour {
 	}
 	
 	public void DeleteTile(string index, bool destroy = false) {
+		HexaTile tile = tileSet[index];
+		int deviceId = tile.tileID;
 		
-		HexaTile tile = tileSet[index]; 
 		tileSet.Remove(index);
     tile.Demolish(destroy, false);
 		
@@ -140,6 +159,11 @@ public class HexaShip : MonoBehaviour {
 			return;
 		}
 		
+		if (deviceId == 1) {
+			DestroyShip();
+			return;
+		}
+		
 		List<string> ind = new List<string>();
 		foreach (HexaTile t in tileSet.Values) {
 			if (!t.connected) ind.Add(t.key.index);
@@ -150,6 +174,25 @@ public class HexaShip : MonoBehaviour {
 			tileSet.Remove(idx);
 		}
 		RecalcEnergy();
+  }
+  
+	public bool DeleteDevice(string index) {
+		HexaTile tile = tileSet[index];
+		bool result = tile.deleteDevice();
+		if (result) RecalcEnergy();
+		
+		return result;
+  }
+  
+  public void DestroyShip() {
+		foreach (HexaTile tile in tileSet.Values) {
+			tile.Demolish(true, true);
+		}
+		
+		Destroy(gameObject);
+		if (type == "ship") {
+			Gui.instance.DestroyShip(1);
+		}
   }
   
 	

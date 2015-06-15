@@ -4,40 +4,72 @@ using System.Collections;
 
 public class Stars : MonoBehaviour {
 
+	public Sprite[] starSprites;
 
-	float _height = 0;
+	private Star[] stars;
+
 	// Use this for initialization
 	void Start () {
-		/*
-		SerializedObject so = new SerializedObject(GetComponent<ParticleSystem>());
-		SerializedProperty it = so.GetIterator();
-		while (it.Next(true))
-			if (it.propertyPath.IndexOf("Shape") > -1)
-			Debug.Log (it.propertyPath);
-		*/
-		setSize();
+		float camHalfHeight = Camera.main.orthographicSize;
+		float camHalfWidth = Camera.main.aspect * camHalfHeight; 
+		
+		Vector3 topRightPosition = new Vector3(camHalfWidth, camHalfHeight / 2f, 0) + Camera.main.transform.position; 
+		
+		topRightPosition.x += 2f;
+		topRightPosition.z = 0;
+		topRightPosition.y = 0;
+		transform.position = topRightPosition;
+		
+	
+		stars = new Star[20];
+		
+		for (int i = 0; i < 20; i++) {
+			GameObject star = new GameObject("star");
+				Vector3 pos = transform.position;
+				pos.y = Random.Range(-camHalfHeight,camHalfHeight);
+				star.transform.position = pos;
+				star.transform.parent = transform;
+				
+				SpriteRenderer sr = star.AddComponent<SpriteRenderer>();
+					if (i < 10) {
+						sr.sprite = starSprites[0];
+					} else {
+						sr.sprite = starSprites[1];
+					}
+				
+				stars[i] = star.gameObject.AddComponent<Star>();
+					stars[i].speed = Random.Range(5f,8f);
+					stars[i].delay = Random.Range(0,5f);
+		}
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		setSize();
+	
+		float camHalfHeight = Camera.main.orthographicSize;
+		float camHalfWidth = Camera.main.aspect * camHalfHeight; 
+		
+		Vector3 topRightPosition = new Vector3(camHalfWidth, camHalfHeight / 2f, 0) + Camera.main.transform.position; 
+		
+		topRightPosition.x += 2f;
+		topRightPosition.z = 0;
+		topRightPosition.y = 0;
+		transform.position = topRightPosition;
+		/*
+		if (Gui.gameMode == 1) {
+			for (int i = 0; i < 20; i++) {
+				stars[i].gameObject.transform.Translate(-5f * Time.deltaTime, 0, 0);
+				if (stars[i].gameObject.transform.position.x < -20f) {
+					Vector3 pos = transform.position;
+					pos.y = Random.Range(-camHalfHeight,camHalfHeight);
+					stars[i].gameObject.transform.position = pos;
+				}
+			}
+		}
+		*/
 	}
 	
-	void setSize() {
-		Vector3 campo = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
-		if (_height == campo.y) return;
-		
-		float worldScreenHeight = Camera.main.orthographicSize * 2f;
-		float worldScreenWidth = worldScreenHeight / (float)Screen.height * (float)Screen.width;
-		
-		
-		_height = worldScreenWidth;
-		/*
-		SerializedObject so = new SerializedObject(GetComponent<ParticleSystem>());
-			so.FindProperty("ShapeModule.boxY").floatValue = worldScreenWidth;
-			so.ApplyModifiedProperties();
-		*/
-		transform.position = new Vector3(campo.x, Camera.main.transform.position.y, 0);
-		
-	}
+	
+	
 }

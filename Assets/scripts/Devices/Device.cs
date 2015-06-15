@@ -4,19 +4,22 @@ using System.Collections;
 public class Device : MonoBehaviour {
 
 	public DeviceData data;
+	protected string type;
+	protected string shotType;
 	
 	// Use this for initialization
-	void Start () {
-	
+	protected virtual void Start () {
+		if (gameObject.tag == "enemy") {
+			type = "ship";
+			shotType = "enemyShot";
+		} else {
+			type = "enemy";
+			shotType = "shot";
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	}
-	
-	public virtual void doShot(Shot collider) {
-		Debug.Log(collider.damage);
-		DestroyImmediate(collider.gameObject);
+	protected virtual void Update () {
 	}
 	
 	protected GameObject FindClosestEnemy(string tag, float radius) {
